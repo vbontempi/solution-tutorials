@@ -1,0 +1,133 @@
+{:navgroup: .navgroup}
+{:topicgroup: .topicgroup}
+
+{: .toc subcollection="solution-tutorials" audience="platform" arm="4086992" href="/docs/tutorials?topic=solution-tutorials-tutorials#tutorials" path="tutorials"}
+Guías de aprendizaje de soluciones
+
+    {: .navgroup id="learn"}
+    index.md
+
+    {: .topicgroup}
+    Sitios web y apps web
+        scalable-webapp-kubernetes.md
+        vm-to-containers-and-kubernetes.md
+        strategies-for-resilient-applications.md
+        continuous-deployment-to-kubernetes.md
+        static-files-cdn.md
+        pub-sub-object-storage.md
+        lamp-stack.md
+        infrastructure-as-code-terraform.md
+        plan-create-update-deployments.md
+        highly-available-and-scalable-web-application.md
+        mean-stack.md
+        sql-database.md
+        serverless-api-webapp.md
+        multi-region-serverless.md
+        application-log-analysis.md
+        isolated-cloud-foundry-enterprise-apps.md
+
+    {: .topicgroup}
+    Chatbots
+        slack-chatbot-database-watson.md
+        android-watson-chatbot.md
+
+    {: .topicgroup}
+    Seguridad
+        multi-region-webapp.md
+        multi-region-k8s-cis.md
+        create-manage-secure-apis.md
+        cloud-e2e-security.md
+
+    {: .topicgroup}
+    Móvil
+        ios-mobile-push-analytics.md
+        android-mobile-push-analytics.md
+        hybrid-mobile-push-analytics.md
+        serverless-mobile-backend.md
+
+    {: .topicgroup}
+    Aprendizaje automático y analítica
+        big-data-log-analytics.md
+        smart-data-lake.md
+        serverless-github-traffic-analytics.md
+        create-deploy-retrain-machine-learning-model.md
+        big-data-analytics-spark.md
+
+    {: .topicgroup}
+    Internet de las cosas
+        gather-visualize-analyze-iot-data.md
+
+    {: .topicgroup}
+    Gestión de identidad y acceso
+        users-teams-applications.md
+        cloud-usage.md
+
+    {: .topicgroup}
+    Red
+        vpc-public-app-private-backend.md
+        vpc-multi-region.md
+        vpc-site2site-vpn.md
+        vpc-secure-management-bastion-server.md
+        secure-network-enclosure.md
+        nat-config-private.md
+        byoip.md
+        configuring-IPSEC-VPN.md
+        vlan-spanning.md
+        web-app-private-network.md
+    {: .navgroup-end}
+    
+    {: .navgroup id="howto"}
+    {: .topicgroup}
+    Cloud Foundry
+        strategies-for-resilient-applications.md
+        static-files-cdn.md
+        plan-create-update-deployments.md
+        mean-stack.md
+        sql-database.md
+        application-log-analysis.md
+        isolated-cloud-foundry-enterprise-apps.md
+        slack-chatbot-database-watson.md
+        multi-region-webapp.md
+        create-manage-secure-apis.md
+        gather-visualize-analyze-iot-data.md
+        cloud-usage.md
+
+    {: .topicgroup}
+    Cloud Functions
+        strategies-for-resilient-applications.md
+        serverless-api-webapp.md
+        multi-region-serverless.md
+        slack-chatbot-database-watson.md
+        serverless-mobile-backend.md
+        serverless-github-traffic-analytics.md
+
+    {: .topicgroup}
+    Kubernetes
+        scalable-webapp-kubernetes.md
+        vm-to-containers-and-kubernetes.md
+        strategies-for-resilient-applications.md
+        continuous-deployment-to-kubernetes.md
+        pub-sub-object-storage.md
+        plan-create-update-deployments.md
+        isolated-cloud-foundry-enterprise-apps.md
+        multi-region-k8s-cis.md
+        cloud-e2e-security.md
+        users-teams-applications.md
+
+    {: .topicgroup}
+    Servidores virtuales
+        strategies-for-resilient-applications.md
+        lamp-stack.md
+        infrastructure-as-code-terraform.md
+        highly-available-and-scalable-web-application.md
+        vpc-public-app-private-backend.md
+        vpc-multi-region.md
+        vpc-site2site-vpn.md
+        vpc-secure-management-bastion-server.md
+        secure-network-enclosure.md
+        nat-config-private.md
+        configuring-IPSEC-VPN.md
+        vlan-spanning.md
+        web-app-private-network.md
+
+    {: .navgroup-end}
