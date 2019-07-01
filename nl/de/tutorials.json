@@ -1,0 +1,647 @@
+{
+  "tags": [
+    "Cloud Foundry",
+    "Cloud Functions",
+    "Kubernetes",
+    "Virtual Servers"
+  ],
+  "categories": [
+    {
+      "name": "Website und Web-Apps",
+      "anchor": "websites",
+      "solutions": [
+        {
+          "name": "Skalierbare Web-App unter Kubernetes",
+          "url": "scalable-webapp-kubernetes.html",
+          "description": "Das Gerüst einer Java-Webanwendung erstellen, die Anwendung lokal in einem Container ausführen und anschließend in einem Kubernetes-Cluster bereitstellen. Außerdem eine angepasste Domäne binden, den Status der Umgebung überwachen und die Anwendung skalieren.",
+          "imgSrc": "images/solution2/Architecture.png",
+          "tags": [
+            "Docker",
+            "Kubernetes",
+            "Container Service",
+            "Container Registry",
+            "Java"
+          ],
+          "lastUpdated": "2019-03-07"
+        },
+        {
+          "name": "VM-basierte Anwendung in Kubernetes verschieben",
+          "url": "vm-to-containers-and-kubernetes.html",
+          "description": "Eine VM-basierte Anwendung containerisieren und in einem Kubernetes-Cluster bereitstellen. Diese Schritte können als allgemeine Anleitung für andere Anwendungen verwendet werden.",
+          "imgSrc": "images/solution30/modern_architecture.png",
+          "tags": [
+            "Kubernetes",
+            "Container Service",
+            "Dateispeicher",
+            "MySQL",
+            "Java"
+          ],
+          "lastUpdated": "2019-04-15"
+        },
+        {
+          "name": "Strategien für ausfallsichere Anwendungen",
+          "url": "strategies-for-resilient-applications.html",
+          "description": "Unabhängig von der Berechnungsoption, Kubernetes, Cloud Foundry, Cloud Functions oder Virtual Servers versuchen Unternehmen, die Ausfallzeiten zu minimieren und ausfallsichere Architekturen einzurichten, die maximale Verfügbarkeit ermöglichen.",
+          "imgSrc": "images/solution39/Architecture.png",
+          "tags": [
+            "Kubernetes",
+            "Cloud Foundry",
+            "Cloud Functions",
+            "Virtual Servers",
+            "Bare Metal",
+            "Datenbanken",
+            "Dateispeicher",
+            "Watson"
+          ],
+          "lastUpdated": "2019-03-11"
+        },
+        {
+          "name": "Kontinuierliche Bereitstellung in Kubernetes",
+          "url": "continuous-deployment-to-kubernetes.html",
+          "description": "Eine kontinuierliche Integrations- und Bereitstellungs-Pipeline für containerisierte Anwendungen einrichten, die in einem Kubernetes-Cluster ausgeführt werden. Integrationen zu anderen Services (z. B. Scanner, Slack-Benachrichtigungen und Analysen) hinzufügen.",
+          "imgSrc": "images/solution21/Architecture.png",
+          "tags": [
+            "Kubernetes",
+            "Container Service",
+            "Docker",
+            "Slack",
+            "DevOps",
+            "Node.js",
+            "Vulnerability Advisor"
+          ],
+          "lastUpdated": "2019-04-15"
+        },
+        {
+          "name": "Die Bereitstellung statischer Dateien mithilfe von Object Storage und CDN beschleunigen",
+          "url": "static-files-cdn.html?pos=2",
+          "description": "Website-Assets (Bilder, Videos, Dokumente) hosten und bereitstellen sowie benutzergenerierte Inhalte in Cloud Object Storage bereitstellen und ein Content Delivery Network (CDN) für die schnelle und sichere Zustellung an Benutzer auf der ganzen Welt verwenden.",
+          "imgSrc": "images/solution3/Architecture.png",
+          "tags": [
+            "Cloud Foundry",
+            "Node.js",
+            "Content Delivery Network",
+            "Cloud Object Storage"
+          ],
+          "lastUpdated": "2019-03-07"
+        },
+        {
+          "name": "Asynchrone Datenverarbeitung unter Verwendung von Objektspeicher und Publish/Subscribe-Messaging",
+          "url": "pub-sub-object-storage.html",
+          "description": "Mit dem auf Apache Kafka basierenden Message Hub Workloads zwischen Microservices koordinieren, die in einem Kubernetes-Cluster ausgeführt werden, und Daten in Object Storage speichern.",
+          "imgSrc": "images/solution25/Architecture.png",
+          "tags": [
+            "Kubernetes",
+            "Node.js",
+            "Java",
+            "Message Hub",
+            "Cloud Object Storage"
+          ],
+          "lastUpdated": "2019-03-07"
+        },
+        {
+          "name": "Web-Anwendung in LAMP-Stack",
+          "url": "lamp-stack.html",
+          "description": "Einen virtuellen Ubuntu Linux-Server mit Apache-Web-Server, MySQL und PHP erstellen. Anschließend die Open-Source-Anwendung WordPress im LAMP-Stack installieren und konfigurieren.",
+          "imgSrc": "images/solution4/Architecture.png",
+          "tags": [
+            "Virtual Servers",
+            "PHP",
+            "WordPress",
+            "Schwachstellenscanner"
+          ],
+          "lastUpdated": "2019-03-07"
+        },
+        {
+          "name": "LAMP-Stack mithilfe von Terraform bereitstellen",
+          "url": "infrastructure-as-code-terraform.html",
+          "description": "Mithilfe von Terraform einen virtuellen Linux-Server mit Apache-Web-Server, MySQL, PHP  und dem IBM Cloud Object Storage-Service bereitstellen. Die Konfiguration aktualisieren, um die Ressourcen zu skalieren und die Umgebung zu optimieren.",
+          "imgSrc": "images/solution10/architecture-2.png",
+          "tags": [
+            "Terraform",
+            "Virtual Servers",
+            "PHP",
+            "Object Storage"
+          ],
+          "lastUpdated": "2019-04-23"
+        },
+        {
+          "name": "Bereitstellungsumgebungen planen, erstellen und aktualisieren",
+          "url": "plan-create-update-deployments.html",
+          "description": "Die Erstellung und Wartung mehrerer Bereitstellungsumgebungen mit der IBM Cloud-CLI und Terraform automatisieren.",
+          "imgSrc": "images/solution26-plan-create-update-deployments/architecture.png",
+          "tags": [
+            "Terraform",
+            "Kubernetes",
+            "Cloud Foundry",
+            "Identity and Access Management"
+          ],
+          "lastUpdated": "2019-04-29"
+        },
+        {
+          "name": "Mit Virtual Servers eine hochverfügbare und skalierbare Web-App erstellen",
+          "url": "highly-available-and-scalable-web-application.html",
+          "description": "Eine Lastausgleichsfunktion und zwei Anwendungsserver, die unter Ubuntu ausgeführt werden, mit installiertem NGINX und PHP sowie einen MySQL-Datenbankserver und dauerhaften Dateispeicher für Anwendungsdateien und Sicherungen erstellen.",
+          "imgSrc": "images/solution14/Architecture.png",
+          "tags": [
+            "Virtual Servers",
+            "Load Balancer",
+            "PHP",
+            "File Storage"
+          ],
+          "lastUpdated": "2019-03-07"
+        },
+        {
+          "name": "Moderne Webanwendung unter Verwendung von MEAN-Stack",
+          "url": "mean-stack.html",
+          "description": "Ein Webanwendung mit dem vielfach verwendeten MEAN-Stack (Mongo DB, Express, Angular, Node.js) erstellen. Die App lokal ausführen, eine DBaaS-Instanz erstellen und verwenden, die App bereitstellen und die Anwendung überwachen.",
+          "imgSrc": "images/solution7/Architecture.png",
+          "tags": [
+            "Cloud Foundry",
+            "Node.js",
+            "Compose for MongoDB"
+          ],
+          "lastUpdated": "2019-03-07"
+        },
+        {
+          "name": "SQL-Datenbank für Clouddaten",
+          "url": "sql-database.html",
+          "description": "Einen relationalen SQL-Datenbankservice bereitstellen, eine Tabelle erstellen und ein umfangreiches Dataset in die Datenbank laden. Eine Web-App bereitstellen, die auf diese Daten zugreift und den Zugriff auf die Clouddatenbank veranschaulicht.",
+          "imgSrc": "images/solution5/Architecture.png",
+          "tags": [
+            "Cloud Foundry",
+            "Python",
+            "Db2 Warehouse"
+          ],
+          "lastUpdated": "2019-03-07"
+        },
+        {
+          "name": "Serverunabhängige Webanwendung und API",
+          "url": "serverless-api-webapp.html",
+          "description": "Eine serverunabhängige Webanwendung erstellen, indem statische Websiteinhalte auf GitHub-Seiten gehostet werden und mit Cloud Functions das Back-End der Anwendung bereitstellen.",
+          "imgSrc": "images/solution8/Architecture.png",
+          "tags": [
+            "Cloud Functions",
+            "API-Gateway",
+            "Cloudant-NoSQL-Datenbank"
+          ],
+          "lastUpdated": "2019-03-07"
+        },
+        {
+          "name": "Serverunabhängige Apps in mehreren Regionen bereitstellen",
+          "url": "multi-region-serverless.html",
+          "description": "Mit Cloud Functions und Internet Services global verfügbare und sichere serverunabhängige Anwendungen erstellen.",
+          "imgSrc": "images/solution44-multi-region-serverless/Architecture.png",
+          "tags": [
+            "Internet Services",
+            "Cloud Functions",
+            "Certificate Manager"
+          ],
+          "lastUpdated": "2019-03-07"
+        },
+        {
+          "name": "Protokolle analysieren und Anwendungsstatus überwachen mit LogDNA und Sysdig",
+          "url": "application-log-analysis.html",
+          "description": "Unter Verwendung von IBM Log Analysis mit LogDNA Anwendungsaktivitäten verstehen und diagnostizieren. Anwendungen unter Verwendung von IBM Cloud Monitoring mit Sysdig überwachen.",
+          "imgSrc": "images/solution12/Architecture.png",
+          "tags": [
+            "Cloud Foundry",
+            "Python",
+            "Log Analysis",
+            "Availability Monitoring"
+          ],
+          "lastUpdated": "2019-04-29"
+        },
+        {
+          "name": "Isolated Cloud Foundry Enterprise Apps",
+          "url": "isolated-cloud-foundry-enterprise-apps.html",
+          "description": "Eine Innovationsplattform für Ihre Organisation zur Verfügung stellen, indem eine isolierte unternehmensspezifische Cloud Foundry-Plattform mit Cloud Foundry Enterprise Environment bereitgestellt wird.",
+          "imgSrc": "images/solution45-CFEE-apps/Architecture.png",
+          "tags": [
+            "Cloud Foundry",
+            "Cloud Foundry Enterprise Environment",
+            "Node.js",
+            "Kubernetes"
+          ],
+          "featuredPosition": 2,
+          "lastUpdated": "2019-03-07"
+        }
+      ]
+    },
+    {
+      "name": "Chat-Bots",
+      "anchor": "chatbots",
+      "solutions": [
+        {
+          "name": "Datenbankgesteuerten Slackbot erstellen",
+          "url": "slack-chatbot-database-watson.html?pos=2",
+          "description": "Einen datenbankgesteuerten Slackbot mit IBM Watson Assistant, Cloudant und IBM Cloud Functions erstellen.",
+          "imgSrc": "images/solution19/SlackbotArchitecture.png",
+          "tags": [
+            "Cloud Foundry",
+            "IBM Watson Assistant",
+            "Cloudant NoSQL DB",
+            "Db2 Warehouse",
+            "Cloud Functions",
+            "Slack"
+          ],
+          "lastUpdated": "2019-04-22"
+        },
+        {
+          "name": "Sprachgesteuerten Android-Chat-Bot erstellen",
+          "url": "android-watson-chatbot.html",
+          "description": "Absichten und Entitäten definieren und einen Dialogablauf für den Chat-Bot erstellen, um auf Kundenfragen zu antworten. Speech to Text- und Text to Speech-Services für die problemlose Interaktion mit der Android-App aktivieren.",
+          "imgSrc": "images/solution28-watson-chatbot-android/architecture.png",
+          "tags": [
+            "IBM Watson Assistant",
+            "Speech to Text",
+            "Text to Speech",
+            "Android"
+          ],
+          "lastUpdated": "2019-04-29"
+        }
+      ]
+    },
+    {
+      "name": "Sicherheit",
+      "anchor": "security",
+      "solutions": [
+        {
+          "name": "Sichere Web-Anwendung in mehreren Regionen",
+          "url": "multi-region-webapp.html?pos=2",
+          "description": "Eine Webanwendung erstellen, schützen und bereitstellen und mithilfe einer Continuous-Delivery-Pipeline für den Lastausgleich in mehreren Regionen einrichten.",
+          "imgSrc": "images/solution1/Architecture.png",
+          "tags": [
+            "Cloud Foundry",
+            "Node.js",
+            "Continuous Delivery",
+            "Cloud Internet Services"
+          ],
+          "lastUpdated": "2019-03-07"
+        },
+        {
+          "name": "Ausfallsichere uns geschützte Kubernetes-Cluster mit mehreren Regionen",
+          "url": "multi-region-k8s-cis.html?pos=2",
+          "description": "Cloud Internet Services mit Kubernetes-Clustern integrieren, um eine ausfallsichere und geschützte Lösung in mehreren Regionen bereitzustellen.",
+          "imgSrc": "images/solution32-multi-region-k8s-cis/Architecture.png",
+          "tags": [
+            "Kubernetes",
+            "Container Registry",
+            "Cloud Internet Services"
+          ],
+          "lastUpdated": "2019-03-07"
+        },
+        {
+          "name": "REST-APIs erstellen, schützen und verwalten",
+          "url": "create-manage-secure-apis.html",
+          "description": "Eine neue REST-API mit dem API-Framework 'LoopBack Node.js' erstellen. Verwaltung, Sichtbarkeit, Sicherheit und Tarifbegrenzung für die API mit dem API Connect-Service in IBM Cloud hinzufügen.",
+          "imgSrc": "images/solution13/Architecture.png",
+          "tags": [
+            "Cloud Foundry",
+            "Node.js",
+            "API Connect"
+          ],
+          "lastUpdated": "2019-03-07"
+        },
+        {
+          "name": "Durchgängige Sicherheit auf eine Cloudanwendung anwenden",
+          "url": "cloud-e2e-security.html",
+          "description": "Eine sichere Cloudanwendung mit Datenverschlüsselung durch eigene Schlüssel, Benutzerauthentifizierung und Sicherheitsprüfung erstellen.",
+          "imgSrc": "images/solution34-cloud-e2e-security/Architecture.png",
+          "featuredPosition": 1,
+          "tags": [
+            "Kubernetes",
+            "Verschlüsselung",
+            "Sicherheit",
+            "App ID",
+            "Cloud Object Storage",
+            "Key Protect",
+            "Activity Tracker"
+          ],
+          "lastUpdated": "2019-03-07"
+        }
+      ]
+    },
+    {
+      "name": "Mobil",
+      "anchor": "mobile",
+      "solutions": [
+        {
+          "name": "Mobile iOS-App mit Push Notifications",
+          "url": "ios-mobile-push-analytics.html",
+          "description": "Eine iOS-Swift-Anwendung mit Push Notifications in IBM Cloud erstellen.",
+          "imgSrc": "images/solution6/Architecture.png",
+          "tags": [
+            "iOS",
+            "Swift",
+            "Push Notifications"
+          ],
+          "lastUpdated": "2019-03-08"
+        },
+        {
+          "name": "Native mobile Android-App mit Push Notifications",
+          "url": "android-mobile-push-analytics.html",
+          "description": "Eine native Android-Anwendung mit Push Notifications in IBM Cloud erstellen.",
+          "imgSrc": "images/solution9/Architecture.png",
+          "tags": [
+            "Android",
+            "Java",
+            "Push Notifications"
+          ],
+          "lastUpdated": "2019-03-07"
+        },
+        {
+          "name": "Mobile Hybridanwendung mit Push Notifications",
+          "url": "hybrid-mobile-push-analytics.html",
+          "description": "Eine Cordova-Hybridanwendung mit Push Notifications in IBM Cloud entwickeln.",
+          "imgSrc": "images/solution15/Architecture.png",
+          "tags": [
+            "Cordova",
+            "Push Notifications"
+          ],
+          "lastUpdated": "2019-03-07"
+        },
+        {
+          "name": "Mobile Anwendung mit serverunabhängigem Back-End",
+          "url": "serverless-mobile-backend.html?pos=2",
+          "description": "Mit Cloud Functions in Kombination mit kognitiven und Datenservices ein serverunabhängiges Back-End für eine mobile Anwendung erstellen.",
+          "imgSrc": "images/solution11/Architecture.png",
+          "tags": [
+            "Cloud Functions",
+            "App ID",
+            "Cloudant NoSQL DB",
+            "Watson Tone Analyzer",
+            "Push Notifications"
+          ],
+          "lastUpdated": "2019-03-07"
+        }
+      ]
+    },
+    {
+      "name": "Maschinelles Lernen und Analyse",
+      "anchor": "ml",
+      "solutions": [
+        {
+          "name": "Big Data-Protokolle mit Streaming Analytics und SQL",
+          "url": "big-data-log-analytics.html",
+          "description": "Protokolldatensätze erfassen, speichern und analysieren, um gesetzliche Bestimmungen einzuhalten und die Informationserkennung zu unterstützen. Mit Publish/Subscribe-Messaging die Lösung auf millionen Datensätze skalieren und anschließend mit bekannten SQL-Anweisungen die gespeicherten Protokolle analysieren.",
+          "imgSrc": "images/solution31/Architecture.png",
+          "tags": [
+            "Cloud Object Storage",
+            "Event Streams",
+            "SQL Query",
+            "Streaming Analytics"
+          ],
+          "lastUpdated": "2019-03-07"
+        },
+        {
+          "name": "Data Lake mit Object Storage erstellen",
+          "url": "smart-data-lake.html",
+          "description": "Tools für Data-Scientists bereitstellen, um Daten mithilfe von SQL Query abzufragen und Analysen in Watson Studio durchzuführen. Daten und Erkenntnisse in interaktiven Diagrammen offenlegen.",
+          "imgSrc": "images/solution29/architecture.png",
+          "tags": [
+            "Cloud Object Storage",
+            "SQL Query",
+            "Watson Studio"
+          ],
+          "lastUpdated": "2019-03-07"
+        },
+        {
+          "name": "Serverunabhängige Komponenten und Cloud Foundry für Datenabruf und -analyse kombinieren",
+          "url": "serverless-github-traffic-analytics.html?pos=2",
+          "description": "GitHub-Datenverkehrsstatistiken für Repositorys automatisch erfassen, in einer SQL-Datenbank speichern und mit der Datenverkehrsanalyse beginnen.",
+          "imgSrc": "images/solution24-github-traffic-analytics/Architecture.png",
+          "tags": [
+            "Db2 Warehouse",
+            "App ID",
+            "Cloud Functions",
+            "GitHub"
+          ],
+          "lastUpdated": "2019-03-07"
+        },
+        {
+          "name": "Vorhersagemodell für maschinelles Lernen erstellen, implementieren, testen und erneut trainieren",
+          "url": "create-deploy-retrain-machine-learning-model.html",
+          "description": "Ein Vorhersagemodell für maschinelles Lernen erstellen, als API implementieren und mit Feedbackdaten erneut trainieren.",
+          "imgSrc": "images/solution22-build-machine-learning-model/architecture_diagram.png",
+          "tags": [
+            "Maschinelles Lernen",
+            "Apache Spark",
+            "Watson Studio",
+            "Cloud Object Storage",
+            "Db2 Warehouse"
+          ],
+          "lastUpdated": "2019-03-07"
+        },
+        {
+          "name": "Offene Daten mit Apache Spark analysieren und visualisieren",
+          "url": "big-data-analytics-spark.html",
+          "description": "Offene Datasets mithilfe eines Jupyter-Notizbuchs analysieren und visualisieren. Den Apache Spark-Service mit IBM Watson Studio und Pixiedust verwenden, um Grafiken zu generieren.",
+          "imgSrc": "images/solution23/Architecture.png",
+          "tags": [
+            "Apache Spark",
+            "Watson Studio",
+            "Cloud Object Storage"
+          ],
+          "lastUpdated": "2019-03-07"
+        }
+      ]
+    },
+    {
+      "name": "Internet der Dinge",
+      "anchor": "iot",
+      "solutions": [
+        {
+          "name": "Daten aus dem Internet der Dinge (IoT) sammeln, visualisieren und analysieren",
+          "url": "gather-visualize-analyze-iot-data.html",
+          "description": "Ein IoT-Gerät einrichten, umfangreiche Datenmengen in Watson IoT Platform sammeln, Daten mithilfe von maschinellem Lernen analysieren und Darstellungen erstellen.",
+          "imgSrc": "images/solution16/Architecture.png",
+          "tags": [
+            "Cloud Foundry",
+            "IoT Platform",
+            "Cloudant",
+            "Watson Studio",
+            "Apache Spark",
+            "Cloud Object Storage"
+          ],
+          "lastUpdated": "2019-03-07"
+        }
+      ]
+    },
+    {
+      "name": "Identity and Access Management",
+      "anchor": "iam",
+      "solutions": [
+        {
+          "name": "Bewährte Verfahren zum Organisieren von Benutzern, Teams und Anwendungen",
+          "url": "users-teams-applications.html",
+          "description": "Eine Übersicht über die in IBM Cloud verfügbaren Konzepte zum Verwalten der Identität und des Zugriffsmanagements sowie zur Unterstützung der verschiedenen Entwicklungsphasen einer Anwendung.",
+          "imgSrc": "images/solution20-users-teams-applications/architecture.png",
+          "tags": [
+            "Identity and Access Management",
+            "Kubernetes",
+            "Container Service",
+            "Container Registry",
+            "DevOps"
+          ],
+          "lastUpdated": "2019-04-19"
+        },
+        {
+          "name": "IBM Cloud-Services, Ressourcen und Verwendung überprüfen",
+          "url": "cloud-usage.html",
+          "description": "Eine Einführung in verschiedene Ansätze zur Beantwortung allgemeiner Fragen zur Verwendung.",
+          "imgSrc": "images/solution38/Architecture.png",
+          "tags": [
+            "Identity and Access Management",
+            "Cloud Foundry",
+            "Verwendung",
+            "Abrechnung"
+          ],
+          "lastUpdated": "2019-03-07"
+        }
+      ]
+    },
+    {
+      "name": "Netz",
+      "anchor": "Network",
+      "solutions": [
+        {
+          "name": "Private und öffentliche Teilnetze in einer virtuellen privaten Cloud",
+          "url": "vpc-public-app-private-backend.html",
+          "description": "Eine virtuelle private Cloud mit Teilnetzen und Instanzen erstellen. Ressourcen sichern, indem Sicherheitsgruppen zugeordnet und nur minimaler Zugriff zugelassen wird.",
+          "imgSrc": "images/solution40-vpc-public-app-private-backend/Architecture.png",
+          "tags": [
+            "Infrastruktur",
+            "Virtual Private Cloud",
+            "Netz",
+            "Virtual Servers"
+          ],
+          "lastUpdated": "2019-04-02"
+        },
+        {
+          "name": "Isolierte Workloads in mehreren Standorten und Zonen bereitstellen",
+          "url": "vpc-multi-region.html",
+          "description": "Eine Workload in virtuellen privaten Clouds in mehreren Zonen und Regionen bereitstellen. Den Datenverkehr mit lokalen und globalen Lastausgleichsfunktionen auf mehrere Zonen verteilen.",
+          "imgSrc": "images/solution41-vpc-multi-region/Architecture.png",
+          "tags": [
+            "Infrastruktur",
+            "Virtual Private Cloud",
+            "Netz",
+            "Virtual Servers"
+          ],
+          "lastUpdated": "2019-04-02"
+        },
+        {
+          "name": "Ein VPC/VPN-Gateway für den sicheren und privaten lokalen Zugriff auf Cloudressourcen verwenden",
+          "url": "vpc-site2site-vpn.html",
+          "description": "Eine virtuelle private Cloud über ein sicheres Virtual Private Network mit einer anderen IT-Umgebung verbinden und IBM Cloud-Services nutzen.",
+          "imgSrc": "images/solution46-vpc-vpn/ArchitectureDiagram.png",
+          "tags": [
+            "Infrastruktur",
+            "Virtual Private Cloud",
+            "Netz",
+            "Virtual Servers"
+          ],
+          "lastUpdated": "2019-05-02"
+        },
+        {
+          "name": "Sicherer Zugriff auf ferne Instanzen mit einem Bastionshost",
+          "url": "vpc-secure-management-bastion-server.html",
+          "description": "Einen Bastionshost für den sicheren Zugriff auf ferne Instanzen in einer virtuellen privaten Cloud bereitstellen.",
+          "imgSrc": "images/solution47-vpc-secure-management-bastion-server/ArchitectureDiagram.png",
+          "tags": [
+            "Infrastruktur",
+            "Virtual Private Cloud",
+            "Netz",
+            "Virtual Servers"
+          ],
+          "lastUpdated": "2019-04-02"
+        },
+        {
+          "name": "Workloads durch ein sicheres privates Netz isolieren",
+          "url": "secure-network-enclosure.html",
+          "description": "Eine Virtual Router Appliance konfigurieren, um einen geschützten Netzbereich zu erstellen. VLANs zuordnen, Server bereitstellen, IP-Routing und Firewalls konfigurieren.",
+          "imgSrc": "images/solution33-secure-network-enclosure/Secure-priv-enc.png",
+          "tags": [
+            "Infrastruktur",
+            "Vyatta",
+            "Firewall",
+            "Netz",
+            "Virtual Servers"
+          ],
+          "lastUpdated": "2019-03-08"
+        },
+        {
+          "name": "NAT für Internetzugriff aus einem privates Netz konfigurieren",
+          "url": "nat-config-private.html",
+          "description": "Mit der NAT-Maskierung private IP-Adressen in die öffentliche Ausgangsschnittstelle übersetzen.",
+          "imgSrc": "images/solution35-nat-config-private/vra-nat.png",
+          "tags": [
+            "Infrastruktur",
+            "Vyatta",
+            "Firewall",
+            "Netz",
+            "Virtual Servers"
+          ],
+          "lastUpdated": "2019-03-07"
+        },
+        {
+          "name": "Eigene IP-Adresse integrieren",
+          "url": "byoip.html",
+          "description": "Eine Übersicht über die BYOIP-Implementierungsmuster und ein Leitfaden zum Identifizieren des geeigneten Musters.",
+          "imgSrc": "images/solution37-byoip/byoipdecision.png",
+          "tags": [
+            "Infrastruktur",
+            "Vyatta",
+            "Firewall",
+            "Netz"
+          ],
+          "lastUpdated": "2019-03-07"
+        },
+        {
+          "name": "VPN-Verbindung zu einem sicheren privaten Netz",
+          "url": "configuring-IPSEC-VPN.html",
+          "description": "Ein private Verbindung zwischen einer fernen Netzumgebung und Servern im privaten IBM Cloud-Netz herstellen.",
+          "imgSrc": "images/solution36-configuring-IPSEC-VPN/sec-priv-vpn.png",
+          "tags": [
+            "Infrastruktur",
+            "Vyatta",
+            "Firewall",
+            "Netz",
+            "Virtual Servers"
+          ],
+          "lastUpdated": "2019-03-07"
+        },
+        {
+          "name": "Sichere private Netze über das IBM Netz verlinken",
+          "url": "vlan-spanning.html",
+          "description": "Mit dem VLAN Spanning-Service zwei private Netze bereitstellen, die durch eine sichere Verbindung über das private IBM Cloud-Netz verlinkt sind.",
+          "imgSrc": "images/solution43-vlan-spanning/vlan-spanning.png",
+          "tags": [
+            "Infrastruktur",
+            "Vyatta",
+            "Firewall",
+            "Netz",
+            "Virtual Servers",
+            "VLAN Spanning"
+          ],
+          "lastUpdated": "2019-03-07"
+        },
+        {
+          "name": "Webanwendungen über ein sicheres privates Netz bereitstellen",
+          "url": "web-app-private-network.html",
+          "description": "Eine skalierbare und sichere Webanwendung für das Internet erstellen, die in einem privaten Netz gehostet und durch eine Virtual Router Appliance (VRA), VLANs, NAT und Firewalls geschützt ist.",
+          "imgSrc": "images/solution42-web-app-private-network/web-app-private.png",
+          "tags": [
+            "Infrastruktur",
+            "Firewall",
+            "Load Balancer",
+            "Netz",
+            "Virtual Servers",
+            "Virtual Router Appliance-VPN"
+          ],
+          "lastUpdated": "2019-03-07"
+        }
+      ]
+    }
+  ]
+}
