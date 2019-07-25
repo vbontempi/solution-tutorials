@@ -405,7 +405,7 @@
             "Cloud Functions",
             "GitHub"
           ],
-          "lastUpdated": "2019-07-08"
+          "lastUpdated": "2019-07-25"
         },
         {
           "name": "Build, deploy, test, and retrain a predictive machine learning model",
@@ -419,7 +419,7 @@
             "Cloud Object Storage",
             "Db2 Warehouse"
           ],
-          "lastUpdated": "2019-06-12"
+          "lastUpdated": "2019-07-17"
         },
         {
           "name": "Analyze and visualize open data with Apache Spark",
