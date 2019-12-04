@@ -2,7 +2,7 @@
 subcollection: solution-tutorials
 copyright:
   years: 2018, 2019
-lastupdated: "2019-10-05"
+lastupdated: "2019-12-03"
 lasttested: "2019-10-05"
 ---
 
@@ -19,18 +19,15 @@ lasttested: "2019-10-05"
 
 # Build, deploy, test, retrain and monitor a predictive machine learning model
 {: #create-deploy-retrain-machine-learning-model}
-This tutorial walks you through the process of building a predictive machine learning model, deploying it as an API to be used in applications, testing the model, monitoring the deployed model and retraining the model with feedback data. All of this happening in an integrated and unified self-service experience on IBM Cloud.
+This tutorial walks you through the process of building a predictive machine learning model, deploying it as an API to be used in applications, testing the model, monitoring the deployed model and retraining the model with feedback data. All of this happening in an integrated and unified self-service experience on {{site.data.keyword.Bluemix_notm}}.
+{:shortdesc}
 
 In this tutorial, the **Iris flower data set** is used for creating a machine learning model to classify species of flowers.
 
 In the terminology of machine learning, classification is considered an instance of supervised learning, i.e. learning where a training set of correctly identified observations is available.
 {:tip}
 
-{:shortdesc}
-
-<p style="text-align: center;">
-  ![](images/solution22-build-machine-learning-model/architecture_diagram.png)
-</p>
+{{site.data.keyword.DSX}} provides you with the environment and tools to solve your business problems by collaboratively working with data. You can choose the tools you need to analyze and visualize data, to cleanse and shape data, to ingest streaming data, or to create and train machine learning models.
 
 ## Objectives
 {: #objectives}
@@ -53,6 +50,16 @@ This tutorial uses the following runtimes and services:
 * [{{site.data.keyword.dashdblong}}](https://{DomainName}/catalog/services/db2-warehouse)
 * [{{site.data.keyword.aios_full_notm}} service](https://{DomainName}/catalog/services/watson-openscale)
 
+## Architecture
+{: #architecture}
+![](images/solution22-build-machine-learning-model/architecture_diagram.png)
+
+1. The user uploads a CSV file from a local machine.
+2. The uploaded CSV file is stored in {{site.data.keyword.cos_full_notm}} serving as the dataset.
+3. The dataset is then used to build a machine learning model.
+4. A part of the dataset is used to retrain the model to improve the prediction accuracy and other parameters.
+5. The deployed machine learning model is monitored for performance, accuracy and other key parameters.
+
 ## Before you begin
 {: #prereqs}
 
@@ -66,7 +73,8 @@ A project is how you organize your resources to achieve a particular goal. Your 
 
 You can create a project to add data and open a data asset in the data refiner for cleansing and shaping your data.
 
-**Create a project:**
+### Create a project
+{: #create_project}
 
 1. Go to the [{{site.data.keyword.Bluemix_short}} catalog](https://{DomainName}/catalog) and select [{{site.data.keyword.DSX_short}}](https://{DomainName}/catalog/services/data-science-experience?taxonomyNavigation=app-services) under the **AI** section.
   1. Select a **region**.
@@ -79,7 +87,8 @@ You can create a project to add data and open a data asset in the data refiner f
 5. Under **Define Storage**, Click on **Add** and choose an existing Cloud Object Storage service or create a new one (Select **Lite** plan > Create). Hit **Refresh** to see the created service.
 6. Click **Create**. Your new project opens and you can start adding resources to it.
 
-**Import data:**
+### Import data
+{: #import_data}
 
 As mentioned earlier, you will be using the **Iris data set**. The Iris dataset was used in R.A. Fisher's classic 1936 paper, [The Use of Multiple Measurements in Taxonomic Problems](http://rcs.chemometrics.ru/Tutorials/classification/Fisher.pdf), and can also be found on the [UCI Machine Learning Repository](http://archive.ics.uci.edu/ml/). This small dataset is often used for testing out machine learning algorithms and visualizations. The aim is to classify Iris flowers among three species (Setosa, Versicolor or Virginica) from measurements of length and width of sepals and petals. The iris data set contains 3 classes of 50 instances each, where each class refers to a type of iris plant.
 ![](images/solution22-build-machine-learning-model/iris_machinelearning.png)
@@ -102,7 +111,6 @@ As mentioned earlier, you will be using the **Iris data set**. The Iris dataset 
    1. Leave the default values and click **Confirm** to provision a {{site.data.keyword.pm_short}} service.
 
 ## Build a machine learning model
-
 {:#build_model}
 
 1. Click **Add to project** and select **AutoAI experiment**. In the dialog,
@@ -126,7 +134,6 @@ As mentioned earlier, you will be using the **Iris data set**. The Iris dataset 
 9. In the received notification, click **View in project** then click on **Overview** to check the details of the model.
 
 ## Deploy the model and try out the API
-
 {:#deploy_model}
 
 1. Under the created model, click on **Deployments** > **Add Deployment**.
@@ -147,7 +154,6 @@ As mentioned earlier, you will be using the **Iris data set**. The Iris dataset 
 5. Run the **cURL** to see the prediction results.
 
 ## Test your model
-
 {:#test_model}
 
 1. Under **Test**, click on **Provide input data as JSON** icon next to **Enter input data** and provide the JSON below as input.
@@ -166,7 +172,6 @@ As mentioned earlier, you will be using the **Iris data set**. The Iris dataset 
 1. You can change the input data and continue testing your model.
 
 ## Create a feedback data connection
-
 {:#create_feedback_connection}
 
 1. For continuous learning and model evaluation, you need to store new data somewhere. Create a [{{site.data.keyword.dashdbshort}}](https://{DomainName}/catalog/services/db2-warehouse) service by choosing **Flex One** plan which acts as our feedback data connection.
