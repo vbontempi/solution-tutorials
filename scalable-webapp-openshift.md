@@ -418,15 +418,15 @@ In this step, you will automate the build and deploy process. So that whenever y
 ## Use your own custom domain
 {: #custom_domain}
 
-To use your custom domain, you need to update your domain DNS records with a `CNAME` record pointing to your IBM-provided domain(route URL).
+This section requires you to own a custom domain and to be able to modify the DNS records of the domain. You will need to create a `CNAME` record pointing to the IBM-provided domain.
 
 ### With HTTP
-1. Create a route exposing the service at a hostname by replacing `<HOSTNAME>` with your hostname(e.g.,www.example.com), so that external clients can reach it by name.
+1. Create a route exposing the service at a hostname by replacing `<HOSTNAME>` with your hostname(e.g.,www.example.com or project.example.com), so that external clients can reach it by name.
    ```sh
    oc expose svc/$MYPROJECT --hostname=<HOSTNAME> --name=$MYPROJECT-domain --port=3000
    ```
    {:pre}
-2. Access your application at `http://<customdomain>/`
+2. Access your application at `http://<HOSTNAME>/`
 
 ### With HTTPS
 
@@ -445,7 +445,7 @@ To use your custom domain, you need to update your domain DNS records with a `CN
 In this section, you will learn to monitor the health and performance of your application.
 {{site.data.keyword.openshiftshort}} Container Platform ships with a pre-configured and self-updating monitoring stack that is based on the [Prometheus](https://prometheus.io/) open source project and its wider eco-system. It provides monitoring of cluster components and ships with a set of [Grafana](https://grafana.com/) dashboards
 
-1. To access the web UIs of Prometheus and Grafana along with Alertmanager, run the below command and make sure to prepend `https://` to the returned addresses(HOST). You cannot access web UIs using unencrypted connection.If prompted, click **Login with OpenShift** and authorize access by allowing selected permissions.
+1. To access the web UIs of Prometheus and Grafana along with Alertmanager, run the below command and make sure to prepend `https://` to the returned addresses(HOST). You cannot access web UIs using unencrypted connection. If prompted, click **Login with OpenShift** and authorize access by allowing selected permissions.
    ```sh
     oc get routes -n openshift-monitoring
    ```
