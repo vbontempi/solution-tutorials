@@ -1,8 +1,8 @@
 ---
 subcollection: solution-tutorials
 copyright:
-  years: 2017, 2019
-lastupdated: "2019-10-04"
+  years: 2017, 2019, 2020
+lastupdated: "2020-02-12"
 lasttested: "2019-10-04"
 
 ---
@@ -63,7 +63,7 @@ You will find instructions to download and install these tools for your operatin
 
 In addition, make sure you:
 - [grant permissions to a user to view logs in LogDNA](/docs/services/Log-Analysis-with-LogDNA?topic=LogDNA-work_iam#user_logdna)
-* and [grant permissions to a user to view metrics in Sysdig](/docs/services/Monitoring-with-Sysdig?topic=Sysdig-iam_work#user_sysdig)
+* and [grant permissions to a user to view metrics in Sysdig](/docs/services/Monitoring-with-Sysdig?topic=Sysdig-iam#iam_users)
 
 ## Create a Kubernetes cluster
 {: #create_cluster}
@@ -72,9 +72,9 @@ In addition, make sure you:
 
 A minimal cluster with one (1) zone, one (1) worker node and the smallest available size (**Flavor**) is sufficient for this tutorial. The name `mycluster` will be used in this tutorial.
 
-- For Kubernetes on VPC infrastructure, you are required to create a VPC and subnet(s) prior to creating the Kubernetes cluster. You may follow the instructions provided under the [Creating a standard VPC Gen 1 compute cluster in the console](https://{DomainName}/docs/containers?topic=containers-clusters#clusters_vpc_ui). 
+- For Kubernetes on VPC infrastructure, you are required to create a VPC and subnet(s) prior to creating the Kubernetes cluster. You may follow the instructions provided under the [Creating a standard VPC Gen 1 compute cluster in the console](https://{DomainName}/docs/containers?topic=containers-clusters#clusters_vpc_ui).
   - Make sure to attach a Public Gateway for each of the subnet that you create as it is required for accessing cloud services.
-- For Kubernetes on Classic infrastructure follow the [Creating a standard classic cluster](https://{DomainName}/docs/containers?topic=containers-clusters#clusters_standard) instructions. 
+- For Kubernetes on Classic infrastructure follow the [Creating a standard classic cluster](https://{DomainName}/docs/containers?topic=containers-clusters#clusters_standard) instructions.
 
 
 ## Provision a {{site.data.keyword.la_short}} instance
@@ -158,7 +158,7 @@ On a terminal:
 
 ### Deploy the application
 
-1. Gain access to your cluster as described on the Access tab of your cluster.
+1. Gain access to your cluster as described under the **Access** section of your cluster.
 1. Define an environment variable named `MYCLUSTER` with your cluster name:
    ```sh
    MYCLUSTER=mycluster
@@ -276,7 +276,7 @@ In the following, you are going to add {{site.data.keyword.mon_full_notm}} to th
 1. Click on **Edit sources** next to the service which you created earlier and select **Kubernetes**.
 1. Copy and run the command under **Install Sysdig Agent to your cluster** on a terminal where you have set the `KUBECONFIG` environment variable to deploy the Sysdig agent in your cluster. Wait for the deployment to complete.
 
-Note: The Sysdig agent installation as provided by the IBM Cloud script includes the enablement of the Prometheus metrics feature by default. The deployment configuration `app-log-analysis.yaml` used for the example Python application in this tutorial [here](#deploy_configure_kubernetes_app) includes the appropriate annotations to `scrape` for Prometheus metrics. 
+Note: The Sysdig agent installation as provided by the IBM Cloud script includes the enablement of the Prometheus metrics feature by default. The deployment configuration `app-log-analysis.yaml` used for the example Python application in this tutorial [here](#deploy_configure_kubernetes_app) includes the appropriate annotations to `scrape` for Prometheus metrics.
   ```yaml
   spec:
     template:
@@ -285,7 +285,7 @@ Note: The Sysdig agent installation as provided by the IBM Cloud script includes
           prometheus.io/scrape: "true"
           prometheus.io/port: "8002"
   ```
-Finally, the application includes a Prometheus library `prometheus_client`, which is used by the sample app in this tutorial to generate custom metrics.  You can find a Prometheus client to use for most programming languages. See the [Sysdig Blog](https://sysdig.com/blog/prometheus-metrics/) for details. 
+Finally, the application includes a Prometheus library `prometheus_client`, which is used by the sample app in this tutorial to generate custom metrics.  You can find a Prometheus client to use for most programming languages. See the [Sysdig Blog](https://sysdig.com/blog/prometheus-metrics/) for details.
 {: tip}
 
 ### Configure {{site.data.keyword.mon_short}}
@@ -372,7 +372,7 @@ To create a dashboard:
 - Use the [{{site.data.keyword.at_full}} service](/docs/services/Activity-Tracker-with-LogDNA?topic=logdnaat-getting-started#getting-started) to track how applications interact with IBM Cloud services.
 - [Add alerts](/docs/services/Log-Analysis-with-LogDNA?topic=LogDNA-alerts#alerts) to your view.
 - [Export logs](/docs/services/Log-Analysis-with-LogDNA?topic=LogDNA-export#export) to a local file.
-- Examine `views.py` in the sample application and experiment updating the application to capture additional custom metrics. Create an updated image version and update and apply `app-log-analysis.yaml` to redeploy your updates. 
+- Examine `views.py` in the sample application and experiment updating the application to capture additional custom metrics. Create an updated image version and update and apply `app-log-analysis.yaml` to redeploy your updates.
 
 ## Related content
 {:related}
