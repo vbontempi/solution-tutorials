@@ -95,7 +95,7 @@ A minimal cluster with one (1) zone, one (1) worker node and the smallest availa
 
    ```bash
    export MYCLUSTER=<CLUSTER_NAME>
-   ibmcloud ks cluster config ${MYCLUSTER}
+   ibmcloud ks cluster config --cluster ${MYCLUSTER}
    ```
 
 
