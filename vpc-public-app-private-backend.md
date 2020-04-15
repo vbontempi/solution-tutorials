@@ -128,7 +128,7 @@ To create a new subnet for the backend,
 
 ### Create a backend security group
 
-The backend security group will allow to control the inbound and outbound connections for the backend servers.
+The backend security group controls the inbound and outbound connections for the backend servers.
 
 To create a new security group for the backend:
 1. Select [**Security groups**](https://{DomainName}/vpc/network/securityGroups) under **Network**, then click **New security group**.
@@ -257,7 +257,7 @@ The frontend instance has its software installed but it can not yet be reached.
          <td>TCP</td>
          <td>Any</td>
          <td>0.0.0.0/0</td>
-         <td>Ports 22-22</td>
+         <td>Ports 80-80</td>
          <td>This rule allows connections from any IP address to the frontend web server.</td>
       </tr>
       <tr>
@@ -285,8 +285,8 @@ The frontend instance has its software installed but it can not yet be reached.
    <tbody>
       <tr>
          <td>TCP</td>
-         <td>Any</td>
-         <td>0.0.0.0/0</td>
+         <td>Security Group</td>
+         <td>vpc-pubpriv-backend-sg</td>
          <td>Ports 80-80</td>
          <td>This rule allows the frontend server to communicate with the backend server.</td>
       </tr>
