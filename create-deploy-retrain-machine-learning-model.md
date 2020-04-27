@@ -2,8 +2,8 @@
 subcollection: solution-tutorials
 copyright:
   years: 2018, 2019, 2020
-lastupdated: "2020-04-23"
-lasttested: "2020-04-22"
+lastupdated: "2020-04-27"
+lasttested: "2020-04-27"
 ---
 
 {:java: #java .ph data-hd-programlang='java'}
@@ -19,7 +19,7 @@ lasttested: "2020-04-22"
 
 # Build, deploy, test and monitor a predictive machine learning model
 {: #create-deploy-retrain-machine-learning-model}
-This tutorial walks you through the process of building a predictive machine learning model, deploying the generated model as an API to be used in applications and testing the model. Also, monitor the deployed model and retrain the model with feedback data, all of this happening in an integrated and unified self-service experience on {{site.data.keyword.Bluemix_notm}}.
+This tutorial walks you through the process of building a predictive machine learning model, deploying the generated model as an API to be used in applications and testing the model. You will also learn how to create a new machine learning model using a notebook, all of this happening in an integrated and unified self-service experience on {{site.data.keyword.Bluemix_notm}}. You will then monitor the deployed model (using a notebook) with {{site.data.keyword.aios_full_notm}}.
 {:shortdesc}
 
 In this tutorial, the **Iris flower data set** is used for creating a machine learning model to classify species of flowers.
@@ -69,7 +69,7 @@ You can create a project to add data and open a data asset in the data refiner f
 {: #create_project}
 
 1. Go to the [{{site.data.keyword.Bluemix_short}} catalog](https://{DomainName}/catalog) and create [{{site.data.keyword.DSX_short}}](https://{DomainName}/catalog/services/data-science-experience?taxonomyNavigation=app-services)
-  1. Select a **region**
+  1. Select a **region** preferably **Dallas**
   2. Select a **Lite** pricing plan
   3. Provide a **Service name**
   4. Select a **resource group** and click **Create**
@@ -184,7 +184,7 @@ Once the status changes to **Ready** (You may have to refresh the page):
    {:pre}
 8. Export the returned `instance_id` as `ML_INSTANCE_ID` for use in subsequent API requests
    ```sh
-   export ML_INSTANCE_ID='<ML_SERVICE_INSTANCE_ID>'
+   export ML_INSTANCE_ID='<INSTANCE_ID>'
    ```
    {:pre}
 
@@ -292,15 +292,15 @@ Provide information about your model so that {{site.data.keyword.aios_full_notm}
       ibmcloud resource service-key $(ibmcloud resource service-keys --instance-name "cloud-object-storage-tutorial" | awk '/WDP-Project-Management/ {print $1}')
       ```
       {:pre}
-   5. Copy and paste the credentials and click **Connect**
+   5. Copy and paste the credentials without any trailing spaces and click **Connect**
    6. Select the Bucket that starts with `irisproject-donotdelete-`
    7. Select `iris_initial.csv` from the Data set dropdown and click **Next**
-   8. Select **species** as your label column and click **Next**
-   9. Select **all** the four training features and click **Next**
-3.  Before clicking on **Check now**, let's generate scoring payload required for logging. To do this, Go to the tab where you have your notebook open, scroll to **Score data** section(`In [25]` in the notebook), select the code block and click **Run** on the top.
-4.  Click **Check now**. You should see `Logging is active Click Next` response. Click **Next**
-5.  Check both **prediction** and **probability** and click **Save**.
-6. On the left pane, click on **Quality** and click the **edit** icon on the Quality threshold tile
+3. Before clicking on **Check now**, let's generate scoring payload required for logging. To do this, Go to the tab where you have your notebook open, scroll to **Score data** section(`In [25]` in the notebook), select the code block and click **Run** on the top.
+4. Click **Check now**. You should see `Logging is active Click Next` response. Click **Next**
+   1.  Select **species** as your label column and click **Next**
+   2.  Select **all** the four training features and click **Next**
+   3.  Check both **prediction** and **probability** and click **Save**. The model details are now set.
+5. On the left pane, click on **Quality** and click the **edit** icon on the Quality threshold tile
     1. Threshold value: Accuracy - **0.98** and click **Next**
     2. Minimum sample size (number of transactions) - **10**, Maximum sample size (number of transactions) - **100** and click **Save**
     3. On the left pane, Click on **Go to model summary**
