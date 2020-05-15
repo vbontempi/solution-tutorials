@@ -98,7 +98,7 @@
             "Container Registry",
             "Node.js"
           ],
-          "lastUpdated": "2020-04-21"
+          "lastUpdated": "2020-05-13"
         },
         {
           "name": "Accelerate delivery of static files using Object Storage and CDN",
@@ -138,7 +138,7 @@
             "Message hub",
             "Cloud Object Storage"
           ],
-          "lastUpdated": "2019-12-13"
+          "lastUpdated": "2020-05-08"
         },
         {
           "name": "Web application on LAMP stack",
@@ -252,19 +252,6 @@
             "Availability Monitoring"
           ],
           "lastUpdated": "2020-02-12"
-        },
-        {
-          "name": "Isolated Cloud Foundry Enterprise Apps",
-          "url": "isolated-cloud-foundry-enterprise-apps.html",
-          "description": "Provide an innovation platform to your organization by deploying an isolated, enterprise-grade Cloud Foundry platform using Cloud Foundry Enterprise Environment.",
-          "imgSrc": "images/solution45-CFEE-apps/Architecture.png",
-          "tags": [
-            "Cloud Foundry",
-            "Cloud Foundry Enterprise Environment",
-            "Node.js",
-            "Kubernetes"
-          ],
-          "lastUpdated": "2019-12-10"
         }
       ]
     },
@@ -435,7 +422,7 @@
             "Infrastructure",
             "Virtual Private Cloud"
           ],
-          "lastUpdated": "2020-04-06"
+          "lastUpdated": "2020-05-11"
         },
         {
           "name": "Big data logs with streaming analytics and SQL",
@@ -488,7 +475,7 @@
             "Cloud Object Storage",
             "Db2 Warehouse"
           ],
-          "lastUpdated": "2020-04-23"
+          "lastUpdated": "2020-04-27"
         },
         {
           "name": "Analyze and visualize open data with Apache Spark",
@@ -673,9 +660,9 @@
         },
         {
           "name": "Linking secure private networks over the IBM network",
-          "url": "vlan-spanning.html",
+          "url": "linking-secure-network-enclosures.html",
           "description": "Deploy two private networks that are securely linked over the IBM Cloud private network using the VLAN Spanning service.",
-          "imgSrc": "images/solution43-vlan-spanning/vlan-spanning.png",
+          "imgSrc": "images/solution43-linking-secure-network-enclosures/vlan-spanning.png",
           "tags": [
             "Infrastructure",
             "Vyatta",
