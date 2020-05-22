@@ -1,7 +1,7 @@
 ---
 copyright:
   years: 2017, 2018, 2019, 2020
-lastupdated: "2020-05-19"
+lastupdated: "2020-05-22"
 ---
 
 {:shortdesc: .shortdesc}
@@ -14,7 +14,13 @@ Learn how to build, deploy and scale real-world solutions on IBM Cloud. These gu
 <style>
 <!--
     #tutorials { /* hide the page header */
-        display: none !important
+        display: none !important;
+    }
+    .docs--DocsContentPage__contentArea {
+        max-width: 100% !important;
+    }
+    .Toc {
+        display: none !important;
     }
     p.last-updated { /* hide the last updated */
         display: none !important;
@@ -97,6 +103,7 @@ Learn how to build, deploy and scale real-world solutions on IBM Cloud. These gu
         display: -webkit-box !important;
         -webkit-line-clamp: 2 !important;
         -webkit-box-orient: vertical !important;
+        -webkit-box-align: inherit !important;
     }
     .solutionBoxDescription {
         flex-grow: 1 !important;
@@ -992,6 +999,28 @@ Learn how to build, deploy and scale real-world solutions on IBM Cloud. These gu
                 </div>
                 <div class="architectureDiagramContainer">
                     <img class="architectureDiagram" src = "images/solution42-web-app-private-network/web-app-private.png" alt="Architecture diagram for the solution Hosting web applications from a secure private network"/>
+                </div>
+            </div>
+        </div>
+    </div>
+    </a>
+</div>
+
+## VMware Solutions
+{: #vmware }
+<div class = "solutionBoxContainer">
+    <a href = "/docs/solution-tutorials?topic=solution-tutorials-vmware-solutions-shared-getting-started#vmware-solutions-shared-getting-started">
+    <div class = "solutionBox">
+        <div class = "solutionBoxContent">
+            <h3 class="solutionBoxTitle">
+                Getting Started with IBM Cloud for VMware Solutions Shared
+            </h3>
+            <div class="solutionBoxDescription">
+                <div class="descriptionContainer">
+                    <p>Create a network for Internet and IBM Cloud private access inside of a VMware virtual data center and deploy a virtual machine.</p>
+                </div>
+                <div class="architectureDiagramContainer">
+                    <img class="architectureDiagram" src = "images/solution58-vmware-solutions-getting-started/Architecture.png" alt="Architecture diagram for the solution Getting Started with IBM Cloud for VMware Solutions Shared"/>
                 </div>
             </div>
         </div>
