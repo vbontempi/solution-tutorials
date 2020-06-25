@@ -66,7 +66,7 @@ This tutorial requires:
    * {{site.data.keyword.cos_full_notm}} plugin (`cloud-object-storage`),
 * `git` to clone source code repository.
 
-You will find instructions to download and install these tools for your operating environment in the [Getting started with tutorials](/docs/tutorials?topic=solution-tutorials-getting-started) guide.
+You will find instructions to download and install these tools for your operating environment in the [Getting started with tutorials](/docs/solution-tutorials?topic=solution-tutorials-getting-started) guide.
 
 In addition, [install Node.js](https://nodejs.org). 
 
@@ -466,7 +466,7 @@ The data pushed to cos can be also queried using Apache Spark that is part of th
 Congratulations, you have built a log analysis pipeline with {{site.data.keyword.cloud_notm}}. Below are additional suggestions to enhance your solution.
 
 * Use additional targets in Streams Designer to store data in [{{site.data.keyword.cloudant_short_notm}}](https://{DomainName}/catalog/services/cloudant) or execute code in [{{site.data.keyword.openwhisk_short}}](https://{DomainName}/openwhisk)
-* Follow the [Build a data lake using Object Storage](https://{DomainName}/docs/tutorials?topic=solution-tutorials-smart-data-lake#build-a-data-lake-using-object-storage) tutorial to add a dashboard to log data
+* Follow the [Build a data lake using Object Storage](https://{DomainName}/docs/solution-tutorials?topic=solution-tutorials-smart-data-lake#build-a-data-lake-using-object-storage) tutorial to add a dashboard to log data
 * Integrate additional systems with {{site.data.keyword.messagehub}} using [{{site.data.keyword.appconserviceshort}}](https://{DomainName}/catalog/services/app-connect).
 
 ## Remove services
