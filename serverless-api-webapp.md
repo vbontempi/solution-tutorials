@@ -4,8 +4,14 @@ copyright:
   years: 2017, 2019, 2020
 lastupdated: "2020-07-21"
 lasttested: "2020-06-03"
+
+content-type: tutorial
+services: openwhisk, api-gateway, Cloudant
+account-plan:
+completion-time: 2h
 ---
 
+{:step: data-tutorial-type='step'}
 {:shortdesc: .shortdesc}
 {:new_window: target="_blank"}
 {:codeblock: .codeblock}
@@ -16,6 +22,12 @@ lasttested: "2020-06-03"
 
 # Serverless web application and API
 {: #serverless-api-webapp}
+{: toc-content-type="tutorial"}
+{: toc-services="openwhisk, api-gateway, Cloudant"}
+{: toc-completion-time="2h"}
+
+This tutorial may incur costs. Use the [Cost Estimator](https://{DomainName}/estimator/review) to generate a cost estimate based on your projected usage.
+{: tip}
 
 In this tutorial, you will create a serverless web application by hosting static website content on GitHub Pages and implementing the application backend using {{site.data.keyword.openwhisk}}.
 
@@ -30,17 +42,6 @@ Any action (or function) in {{site.data.keyword.openwhisk_short}} can be turned 
 * Host a static website
 * Optional: Use a custom domain for the REST API
 
-## Services used
-{: #services}
-
-This tutorial uses the following runtimes and services:
-   * [{{site.data.keyword.cloudant_short_notm}}](https://{DomainName}/catalog/services/cloudantNoSQLDB)
-   * [{{site.data.keyword.openwhisk_short}}](https://{DomainName}/openwhisk)
-
-This tutorial may incur costs. Use the [Pricing Calculator](https://{DomainName}/estimator/review) to generate a cost estimate based on your projected usage.
-
-## Architecture
-{: #architecture}
 
 The application shown in this tutorial is a simple guestbook website where users can post messages.
 
@@ -61,6 +62,7 @@ The application shown in this tutorial is a simple guestbook website where users
 This guide uses GitHub Pages to host the static website. Make sure you have a public GitHub account.
 
 ## Create the Guestbook database
+{: step}
 
 Let's start by creating an {{site.data.keyword.cloudant_short_notm}} service instance. {{site.data.keyword.cloudant_short_notm}} is a fully managed JSON document database. {{site.data.keyword.cloudant_short_notm}} is built upon and compatible with Apache CouchDB.
 
@@ -81,6 +83,7 @@ Let's start by creating an {{site.data.keyword.cloudant_short_notm}} service ins
    4. Expand the newly created credentials and review them. We will need these credentials later to allow Cloud Functions actions to read/write to your Cloudant service.
 
 ## Create serverless actions
+{: step}
 
 In this section, you will create serverless actions (commonly termed as **Functions**). {{site.data.keyword.openwhisk}} (based on Apache OpenWhisk) is a Function-as-a-Service (FaaS) platform which executes functions in response to incoming events. Serverless functions only incur charges for the execution time.
 
@@ -201,6 +204,7 @@ Complete the sequence:
 1. Click on **Save** and then **Invoke**.
 
 ## Create an API
+{: step}
 1. Go to [Actions](https://{DomainName}/functions/actions).
 2. Select the **read-guestbook-entries-sequence** sequence. Next to the name, click on **Web Action**, check **Enable as Web Action** and **Save**.
 3. Do the same for the **save-guestbook-entry-sequence** sequence.
@@ -217,6 +221,7 @@ Complete the sequence:
 8. Scroll to the end of the page to **Create** the API. Make note of the provided route, as you will use it from your web application.
 
 ## Deploy the web app
+{: step}
 
 1. Fork the Guestbook user interface repository https://github.com/IBM-Cloud/serverless-guestbook to your public GitHub. You can do this by going to https://github.com/IBM-Cloud/serverless-guestbook in the browser, and then clicking the **Fork** button.
 2. In your forked version of the code, modify **docs/guestbook.js** and replace the value of **apiUrl** with the route given by API Gateway. You can do this by navigating to the **docs/guestbook.js** file, and then clicking the edit pencil.
@@ -229,6 +234,7 @@ Complete the sequence:
 ![](images/solution8/Guestbook.png)
 
 ## Optional: Use your own domain for the API
+{: step}
 
 Creating a managed API gives you a default endpoint like `https://1234abcd.us-south.apigw.appdomain.cloud/guestbook`. In this section, you will configure this endpoint to be able to handle requests coming from your custom subdomain.
 
@@ -281,6 +287,7 @@ Once the DNS changes have been propagated, you will be able to access your guest
 
 ## Remove resources
 {:#cleanup}
+{: step}
 
 To delete the created {{site.data.keyword.cloudant_short_notm}} service,
 1. Navigate to [resource list](https://{DomainName}/resources)

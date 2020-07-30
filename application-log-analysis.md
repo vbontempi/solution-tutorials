@@ -5,8 +5,14 @@ copyright:
 lastupdated: "2020-02-12"
 lasttested: "2019-10-04"
 
+content-type: tutorial
+services: containers, Log-Analysis-with-LogDNA, Registry, Monitoring-with-Sysdig
+account-plan:
+completion-time: 2h
+
 ---
 
+{:step: data-tutorial-type='step'}
 {:shortdesc: .shortdesc}
 {:new_window: target="_blank"}
 {:codeblock: .codeblock}
@@ -16,6 +22,12 @@ lasttested: "2019-10-04"
 
 # Analyze logs and monitor application health with LogDNA and Sysdig
 {: #application-log-analysis}
+{: toc-content-type="tutorial"}
+{: toc-services="containers, Log-Analysis-with-LogDNA, Registry, Monitoring-with-Sysdig"}
+{: toc-completion-time="2h"}
+
+This tutorial may incur costs. Use the [Cost Estimator](https://{DomainName}/estimator/review) to generate a cost estimate based on your projected usage.
+{: tip}
 
 This tutorial shows how the [{{site.data.keyword.la_full_notm}}](https://{DomainName}/observe/) service can be used to configure and access logs of a Kubernetes application that is deployed on {{site.data.keyword.Bluemix_notm}}. You will deploy a Python application to a cluster provisioned on {{site.data.keyword.containerlong_notm}}, configure a LogDNA agent, generate different levels of application logs and access worker logs, pod logs or network logs. Then, you will search, filter and visualize those logs through {{site.data.keyword.la_short}} Web UI.
 
@@ -28,19 +40,6 @@ Moreover, you will also setup the [{{site.data.keyword.mon_full_notm}}](https://
 * Access and analyze different types of logs to troubleshoot problems and pre-empt issues.
 * Gain operational visibility into the performance and health of your app and the cluster running your app.
 
-## Services used
-{: #services}
-
-This tutorial uses the following runtimes and services:
-* [{{site.data.keyword.containerlong_notm}}](https://{DomainName}/kubernetes/landing)
-* [{{site.data.keyword.registryshort_notm}}](https://{DomainName}/kubernetes/registry/main/start)
-* [{{site.data.keyword.la_full_notm}}](https://{DomainName}/observe/logging)
-* [{{site.data.keyword.mon_full_notm}}](https://{DomainName}/observe/monitoring)
-
-This tutorial may incur costs. Use the [Pricing Calculator](https://{DomainName}/estimator/review) to generate a cost estimate based on your projected usage.
-
-## Architecture
-{: #architecture}
 
   ![](images/solution12/Architecture.png)
 
@@ -73,6 +72,7 @@ In addition, make sure you:
 
 ## Create a Kubernetes cluster
 {: #create_cluster}
+{: step}
 
 {{site.data.keyword.containershort_notm}} provides an environment to deploy highly available apps in Docker containers that run in Kubernetes clusters.
 
@@ -85,6 +85,7 @@ A minimal cluster with one (1) zone, one (1) worker node and the smallest availa
 
 ## Provision a {{site.data.keyword.la_short}} instance
 {: #provision_logna_instance}
+{: step}
 
 Applications deployed to an {{site.data.keyword.containerlong_notm}} cluster in {{site.data.keyword.Bluemix_notm}} will likely generate some level of diagnostic output, i.e. logs. As a developer or an operator, you may want to access and analyze different types of logs such as worker logs, pod logs, app logs, or network logs to troubleshoot problems and pre-empt issues.
 
@@ -101,6 +102,7 @@ The service provides a centralized log management system where log data is hoste
 
 ## Deploy and configure a Kubernetes app to forward logs
 {: #deploy_configure_kubernetes_app}
+{: step}
 
 The ready-to-run [code for the logging app is located in this GitHub repository](https://github.com/IBM-Cloud/application-log-analysis). The application is written using [Django](https://www.djangoproject.com/), a popular Python server-side web framework. Clone or download the repository, then deploy the app to {{site.data.keyword.containershort_notm}} on {{site.data.keyword.Bluemix_notm}}.
 
@@ -236,6 +238,7 @@ To configure your Kubernetes cluster to send logs to your {{site.data.keyword.la
 
 ## Generate and access application logs
 {: generate_application_logs}
+{: step}
 
 In this section, you will generate application logs and review them in LogDNA.
 
@@ -258,6 +261,7 @@ You can access the application specific log in the LogDNA UI using the filters.
 
 ## Search and filter logs
 {: #search_filter_logs}
+{: step}
 
 The {{site.data.keyword.la_short}} UI, by default, shows all available log entries(Everything). Most recent entries are shown on the bottom through an automatic refresh.
 In this section, you will modify what and how much is displayed and save this as a **View** for future use.
@@ -310,6 +314,7 @@ In this section, you will create a board and then add a graph with a breakdown t
 
 ## Add {{site.data.keyword.mon_full_notm}} and monitor your cluster
 {: #monitor_cluster_sysdig}
+{: step}
 
 In the following, you are going to add {{site.data.keyword.mon_full_notm}} to the application. The service regularly checks the availability and response time of the app.
 
@@ -402,6 +407,7 @@ To create a dashboard:
 
 ## Remove resources
 {: #remove_resource}
+{: step}
 
 - Remove the LogDNA and Sysdig instances from [Observability](https://{DomainName}/observe) page.
 - Delete the cluster including worker node, app and containers. This action cannot be undone.

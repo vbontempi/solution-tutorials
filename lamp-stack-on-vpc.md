@@ -4,8 +4,14 @@ copyright:
   years: 2020
 lastupdated: "2020-07-23"
 lasttested: "2020-07-23"
+
+content-type: tutorial
+services: vpc
+account-plan:
+completion-time: 2h
 ---
 
+{:step: data-tutorial-type='step'}
 {:shortdesc: .shortdesc}
 {:new_window: target="_blank"}
 {:codeblock: .codeblock}
@@ -15,6 +21,12 @@ lasttested: "2020-07-23"
 
 # PHP web application on a LAMP Stack in VPC
 {: #lamp-stack-on-vpc}
+{: toc-content-type="tutorial"}
+{: toc-services="vpc"}
+{: toc-completion-time="2h"}
+
+This tutorial may incur costs. Use the [Cost Estimator](https://{DomainName}/estimator/review) to generate a cost estimate based on your projected usage.
+{: tip}
 
 This tutorial walks you through the creation of an Ubuntu **L**inux virtual server with **A**pache web server, **M**ySQL database and **P**HP scripting on {{site.data.keyword.Bluemix_notm}} [Virtual Private Cloud (VPC) Infrastructure](https://www.ibm.com/cloud/learn/vpc). This combination of software - more commonly called a LAMP stack - is often used to deliver websites and web applications. Using {{site.data.keyword.vpc_short}} you will quickly deploy your LAMP stack and if desired add logging and monitoring. To experience the LAMP server in action, you will also install and configure the free and open source [WordPress](https://wordpress.org/) content management system.
 
@@ -25,17 +37,6 @@ This tutorial walks you through the creation of an Ubuntu **L**inux virtual serv
 * Host a website or blog by installing and configuring WordPress.
 * Configure logging and monitoring to detect outages and monitor for slow performance (optional).
 
-## Services used
-
-This tutorial uses the following runtimes and services:
-
-* [{{site.data.keyword.vpc_short}}](https://{DomainName}/vpc-ext)
-* [{{site.data.keyword.vsi_is_short}}](https://{DomainName}/vpc-ext/provision/vs)
-
-This tutorial may incur costs. Use the [Pricing Calculator](https://{DomainName}/estimator/review) to generate a cost estimate based on your projected usage.
-
-## Architecture
-<p style="text-align: center;">
 ![Architecture diagram](images/solution56-lamp-stack-on-vpc/Architecture.png)
 </p>
 
@@ -57,6 +58,7 @@ You will find instructions to download and install these tools for your operatin
 {:tip}
 
 ## Create services
+{: step}
 
 In this section, you will provision a VPC, Subnet, Security Group and a Virtual Server Instance (VSI) using the [{{site.data.keyword.cloud-shell_notm}}](https://{DomainName}/shell) and the {{site.data.keyword.cloud_notm}} CLI. VSIs often address peaks in demand after which they can be [suspended or powered down](https://{DomainName}/docs/vpc?topic=vpc-suspend-billing#billing-details) so that the cloud environment perfectly fits your infrastructure needs.
    
@@ -159,6 +161,7 @@ If you prefer to use a Terraform template to generate these resources, you can u
   {:tip}
 
 ## Install Apache, MySQL, and PHP
+{: step}
 
 In this section, you'll run commands to update Ubuntu package sources and install Apache, MySQL and PHP with latest version. 
 
@@ -192,6 +195,7 @@ When the server is spun up for the first time, it is possible that it is already
    {: pre}
   
 ## Verify the installation and configuration
+{: step}
 
 In this section, you'll verify that Apache, MySQL and PHP are up to date and running on the Ubuntu image. You'll also implement the recommended security settings for MySQL.
 
@@ -225,6 +229,7 @@ In this section, you'll verify that Apache, MySQL and PHP are up to date and run
 ![PHP info](images/solution56-lamp-stack-on-vpc/PHPInfo.png)
 
 ## Install and configure WordPress
+{: step}
 
 Experience your LAMP stack by installing an application. The following steps install the open source WordPress platform, which is often used to create websites and blogs. For more information and settings for production installation, see the [WordPress documentation](https://codex.wordpress.org/Main_Page).
 
@@ -278,10 +283,12 @@ Experience your LAMP stack by installing an application. The following steps ins
    ![WordPress site running](images/solution56-lamp-stack-on-vpc/WordPressSiteRunning.png)
 
 ## Configure domain
+{: step}
 
 To use an existing domain name with your LAMP server, update the A record to point to the VSI's floating IP address.
 
 ## Server monitoring and log management
+{: step}
 
 To ensure server availability and the best user experience, monitoring should be enabled on every production server. Several options are available to monitor your VSI and capture logs in a central location for analysis.
 
@@ -300,6 +307,7 @@ If you would like to configure the logging service follow the steps outlined in 
 
 ## Configure a Bring-Your-Own-Key (BYOK) Encrypted Data Volume (Optional)
 {: #configure_data_volume}
+{: step}
 The VSI was created with a provider managed encrypted **Boot** volume of 100 GB, however if you delete that VSI any data you want to safeguard will need to get moved before you delete the VSI. An alternative is to create a **Data** volume which can be persisted even if the VSI is deleted and attached to a new VSI.  You can also encrypt the volume with your own key. If that is your desired outcome, follow the steps outlined below to create a data volume and attach it to your VSI.
 
 1. Create a data volume configuration file.
@@ -400,6 +408,7 @@ The VSI was created with a provider managed encrypted **Boot** volume of 100 GB,
 
 ## Remove resources
 {: #remove-resources}
+{: step}
 
 1. In the VPC [console](https://{DomainName}/vpc-ext), click on **Floating IPs**, then on the IP address for your VSIs, then in the action menu select **Release**. Confirm that you want to release the IP address.
 2. Next, switch to **Virtual server instances**, **Delete** your instance.

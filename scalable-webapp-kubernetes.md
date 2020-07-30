@@ -4,8 +4,14 @@ copyright:
   years: 2017, 2019
 lastupdated: "2019-11-22"
 lasttested: "2019-11-22"
+
+content-type: tutorial
+services: containers, Registry
+account-plan:
+completion-time: 2h
 ---
 
+{:step: data-tutorial-type='step'}
 {:shortdesc: .shortdesc}
 {:new_window: target="_blank"}
 {:codeblock: .codeblock}
@@ -15,6 +21,12 @@ lasttested: "2019-11-22"
 
 # Scalable web application on Kubernetes
 {: #scalable-webapp-kubernetes}
+{: toc-content-type="tutorial"}
+{: toc-services="containers, Registry"}
+{: toc-completion-time="2h"}
+
+This tutorial may incur costs. Use the [Cost Estimator](https://{DomainName}/estimator/review) to generate a cost estimate based on your projected usage.
+{: tip}
 
 This tutorial walks you through how to scaffold a web application, run it locally in a container, and then deploy it to a Kubernetes cluster created with [{{site.data.keyword.containershort_notm}}](https://{DomainName}/kubernetes/catalog/cluster). Additionally, you will learn how to bind a custom domain, monitor the health of the environment, and scale the application.
 {:shortdesc}
@@ -32,17 +44,6 @@ For developers looking to kickstart their projects, the {{site.data.keyword.dev_
 * Monitor the logs and health of the cluster.
 * Scale Kubernetes pods.
 
-## Services used
-{: #services}
-
-This tutorial uses the following runtimes and services:
-* [{{site.data.keyword.registrylong_notm}}](https://{DomainName}/kubernetes/registry/main/start)
-* [{{site.data.keyword.containershort_notm}}](https://{DomainName}/kubernetes/catalog/cluster)
-
-This tutorial may incur costs. Use the [Pricing Calculator](https://{DomainName}/estimator/review) to generate a cost estimate based on your projected usage.
-
-## Architecture
-{: #architecture}
 
 <p style="text-align: center;">
 
@@ -78,6 +79,7 @@ In addition, make sure you:
 
 ## Create a Kubernetes cluster
 {: #create_kube_cluster}
+{: step}
 
 {{site.data.keyword.containershort_notm}} delivers powerful tools by combining Docker and Kubernetes technologies, an intuitive user experience, and built-in security and isolation to automate the deployment, operation, scaling, and monitoring of containerized apps in a cluster of compute hosts.
 
@@ -95,6 +97,7 @@ A minimal cluster with one (1) zone, one (1) worker node and the smallest availa
 
 ## Create a starter application
 {: #create_application}
+{: step}
 
 The `ibmcloud dev` tooling greatly cuts down on development time by generating application starters with all the necessary boilerplate, build and configuration code so that you can start coding business logic faster.
 
@@ -119,6 +122,7 @@ This generates a starter application complete with the code and all the necessar
 
 ## Deploy application to cluster using helm chart
 {: #deploy}
+{: step}
 
 In this section, you first push the Docker image to the IBM Cloud private container registry, and then create a Kubernetes deployment pointing to that image.
 
@@ -234,6 +238,7 @@ In this section, you first push the Docker image to the IBM Cloud private contai
 
 ## Use the IBM-provided domain for your cluster
 {: #ibm_domain}
+{: step}
 
 In the previous step, the application was accessed with a not standard port. The service was exposed by way of Kubernetes NodePort feature.
 
@@ -285,6 +290,7 @@ Use Ingress to set up the cluster inbound connection to the service.
 
 ## Use your own custom domain
 {: #custom_domain}
+{: step}
 
 This section requires you to own a custom domain and to be able to modify the DNS records of the domain. You will need to create a `CNAME` record pointing to the IBM-provided domain.
 
@@ -357,6 +363,7 @@ If you were to try to access your application with HTTPS at this time `https://<
 
 ## Monitor application health
 {: #monitor_application}
+{: step}
 
 1. To check the health of your application, navigate to [clusters](https://{DomainName}/kubernetes/clusters) to see a list of clusters and click on your cluster.
 2. Click **Kubernetes Dashboard** to launch the dashboard in a new tab.
@@ -370,6 +377,7 @@ If you were to try to access your application with HTTPS at this time `https://<
 
 ## Scale Kubernetes pods
 {: #scale_cluster}
+{: step}
 
 As load increases on your application, you can manually increase the number of pod replicas in your deployment. Replicas are managed by a [ReplicaSet](https://kubernetes.io/docs/concepts/workloads/controllers/replicaset/). To scale the application to two replicas, run the following command:
 
@@ -394,6 +402,7 @@ Once the autoscaler is successfully created, you should see
 Refer to [scaling apps](https://{DomainName}/docs/containers?topic=containers-app#app_scaling) for prerequisites and additional info.
 
 ## Remove resources
+{: step}
 
 * Delete the Kubernetes artifacts created for this application:
    ```sh
