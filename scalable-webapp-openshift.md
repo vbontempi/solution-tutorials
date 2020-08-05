@@ -78,34 +78,42 @@ Note: To avoid the installation of these tools you can use the [{{site.data.keyw
 In addition, make sure you [set up a registry namespace](/docs/services/Registry?topic=registry-registry_setup_cli_namespace#registry_namespace_setup).
 
 
+<!--This section is identical in all openshift tutorials, copy/paste any changes-->
 ## Create an {{site.data.keyword.openshiftshort}} cluster
 {: #create_openshift_cluster}
 {: step}
 
 With {{site.data.keyword.openshiftlong_notm}}, you have a fast and secure way to containerize and deploy enterprise workloads in {{site.data.keyword.openshiftshort}} clusters. {{site.data.keyword.openshiftshort}} clusters build on Kubernetes container orchestration that offers consistency and flexibility for your development lifecycle operations.
 
-In this section, you will provision a {{site.data.keyword.openshiftlong_notm}} cluster with two worker nodes. A standard cluster with single availability zone, two (2) worker nodes and the smallest available size (**Flavor**) is sufficient for this tutorial.
+In this section, you will provision a {{site.data.keyword.openshiftlong_notm}} cluster in one (1) zone with two (2) worker nodes:
 
-- Create an {{site.data.keyword.openshiftshort}} cluster:
-  - For {{site.data.keyword.openshiftshort}} on VPC Gen 2 infrastructure, you are required to create a VPC on generation 2 compute with subnet(s) prior to creating the {{site.data.keyword.openshiftshort}} cluster. You may follow the instructions provided under [Creating a standard VPC Gen 2 compute cluster in the console](https://{DomainName}/docs/openshift?topic=openshift-clusters#clusters_vpcg2_ui).
-  - For {{site.data.keyword.openshiftshort}} on Classic Infrastructure, follow the [Creating a standard classic cluster in the console](https://{DomainName}/docs/openshift?topic=openshift-clusters#clusters_ui) instructions.
-
-<!--
 1. Create an {{site.data.keyword.openshiftshort}} cluster from the [{{site.data.keyword.Bluemix}} catalog](https://{DomainName}/kubernetes/catalog/create?platformType=openshift).
-2. Set the **Orchestration service** to **Latest**.
+2. Set the **Orchestration service** to **the Stable, Default version of {{site.data.keyword.openshiftshort}}**.
 3. Select your OCP entitlement.
-4. Under **Location**,
-   - Select a **Resource group**
-   - Select a **Geography**
-   - Select **Single zone** as **Availability**
-   - Choose a **Datacenter**
-5. Under **Worker pool**,
+4. Under **Infrastructure** choose Classic or VPC
+  - For Openshift on VPC infrastructure, you are required to create a VPC and one subnet prior to creating the Kubernetes cluster.  Create or inspect a desired VPC keeping in mind the following (see instructions provided under the [Creating a standard VPC Gen 2 compute cluster](https://{DomainName}/docs/openshift?topic=openshift-clusters#clusters_vpcg2)):
+      - One subnet that can be used for this tutorial, take note of the subnet's zone and name
+      - Public gateway is attached to the subnet
+      - [Opening required ports in the default security group](https://{DomainName}/docs/containers?topic=containers-vpc-network-policy#security_groups)
+  - Select the desired VPC
+  - Select an existing **Cloud Object Storage** service or create one if required and then select
+5. Under **Location**
+  - For Openshift on VPC infrastructure
+      - Select a **Resource group**
+      - Uncheck the inapplicable zones
+      - In the desired zone verify the desired subnet name and if not present click the edit pencil to select the desired subnet name
+  - For Openshift on Classic infrastructure follow the [Creating a standard classic cluster](https://{DomainName}/docs/openshift?topic=openshift-clusters#clusters_standard) instructions.
+      - Select a **Resource group**
+      - Select a **Geography**
+      - Select **Single zone** as **Availability**
+      - Choose a **Datacenter**
+6. Under **Worker pool**,
    - Select **4 vCPUs 16GB Memory** as the flavor
-   - Select **2** Worker nodes per data center for this tutorial and Leave **Encrypt local disk** On.
-6. Review **Infrastructure permissions checker** to verify the required permissions
+   - Select **2** Worker nodes per data center for this tutorial (classic only: Leave **Encrypt local disk**)
 7. Under **Resource details**,Set **Cluster name** to **myopenshiftcluster**.
 8. Click **Create** to provision an {{site.data.keyword.openshiftshort}} cluster.
--->
+Take a note of the resource group selected above.  This same resource group will be used for all resources in this lab.
+{:note}
 
 ### Configure CLI
 
@@ -158,14 +166,30 @@ In this step, you will create a private IBM Cloud Git repository and push the ge
 4. Follow the instructions under *Git global setup* and *Push an existing folder* sections to setup Git and to import the code you have generated with `ibmcloud dev`.
 5. Once you push the code to the private repository, you should see the scaffolded code in the project.
 
-### Create a Git deploy token
-In this step, you will create a deploy token to allow read-only access to your repository
-1. To create a **Deploy token**,
-      - On the left pane of the Git repo page, click **Settings** > **Repository**
-      - Click on **Expand** next to **Deploy Tokens**.
-      - Provide **foropenshift** as the name then check **read_repository** checkbox and click **create deploy token**.
-      - Save the generated **username** and **password** for future reference.
-2. Click on **Project** then click **Details**, click on **Clone** and copy **Clone with HTTPS** URL. Save the URL for future reference.
+### Create a Git authentication token
+
+In this section, you will create a Git token to allow read-only access to your repository. Two types of tokens can be used:
+   - a **Personal Access Token** to give access to the Git api and to all repositories in your account.
+   - a **Deploy token** to give access to a specific repository.
+
+To generate a personal access token:
+1. Access your personal Git **Settings** from the drop-down menu on the top right of the window. In `us-south` region, the link will point to https://us-south.git.cloud.ibm.com/profile.
+1. Select **Access Tokens** on the left sidedar.
+1. Create new **Personal Access Token**:
+   1. Set the **Name** to **foropenshift**.
+   1. Check **read_repository** as scope.
+   1. Click **Create personal access token**.
+1. Save the generated token for future reference.
+1. Make note of your Git username, visible in the drop-down menu on the top right of the window.
+1. Back to your Git project, click on **Project** then click **Details**, click on **Clone** and copy **Clone with HTTPS** URL. Save the URL for future reference.
+
+To generate a deploy token:
+1. On the left pane of the Git repo page, click **Settings** > **Repository**.
+1. Click on **Expand** next to **Deploy Tokens**.
+   1. Set the **Name** to **foropenshift**.
+   - Provide **foropenshift** as the name then check **read_repository** checkbox and click **create deploy token**.
+   - Save the generated **username** and **password** for future reference.
+1. Click on **Project** then click **Details**, click on **Clone** and copy **Clone with HTTPS** URL. Save the URL for future reference.
 
 ## Create a new {{site.data.keyword.openshiftshort}} application
 {: #create_openshift_app}
@@ -194,7 +218,7 @@ A Kubernetes namespace provides a mechanism to scope resources in a cluster. In 
    {:pre}
 1. Generate a yaml file `openshift.yaml` in the same folder as your starter kit code by replacing the placeholders and running the below command
    ```sh
-   oc new-app https://<DEPLOY_TOKEN_USERNAME>:<DEPLOY_TOKEN_PASSWORD>@<REPO_URL_WITHOUT_HTTPS> --name=$MYPROJECT --strategy=docker -o yaml > openshift.yaml
+   oc new-app https://<GIT_TOKEN_USERNAME>:<GIT_TOKEN_PASSWORD>@<REPO_URL_WITHOUT_HTTPS> --name=$MYPROJECT --strategy=docker -o yaml > openshift.yaml
    ```
    {:pre}
 
@@ -281,7 +305,7 @@ In this step, you will update the generated BuildConfig section of the generated
 5. Search for `containers` and update the image with
    ```yaml
    containers:
-       -image: '<$MYREGISTRY>/<$MYNAMESPACE?/<$MYPROJECT>:latest'
+       -image: '<$MYREGISTRY>/<$MYNAMESPACE>/<$MYPROJECT>:latest'
        name: <$MYPROJECT>
    ```
    {:codeblock}
