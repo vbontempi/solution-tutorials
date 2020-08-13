@@ -35,11 +35,11 @@ This tutorial may incur costs. Use the [Cost Estimator](https://{DomainName}/est
 {: tip}
 
 On {{site.data.keyword.Bluemix_notm}} there are a number of [deployment offerings](https://{DomainName}/docs/services/vmwaresolutions?topic=vmware-solutions-getting-started#getting-started-depl-offerings) for VMware that you can choose from, with each providing a different level of abstraction. VMware Cloud Director (VCD) is offered under the banner of {{site.data.keyword.vmwaresolutions_short}} Shared. It is a multi-tenant service with elasticity and two subscription types: 
-  - On-demand where vCPU and RAM are allocated as needed and priced on an hourly basis.
-  - Reserved where vCPU and RAM are pre-allocated and priced monthly. 
+   - On-demand where vCPU and RAM are allocated as needed and priced on an hourly basis.
+   - Reserved where vCPU and RAM are pre-allocated and priced monthly. 
 
-    VMware changed the name of VMware **vCloud** Director to VMware **Cloud** Director, you may see references in the UI and/or related documentation of one or the other, they are the same product.
-    {:tip}
+VMware changed the name of VMware **vCloud** Director to VMware **Cloud** Director, you may see references in the UI and/or related documentation of one or the other, they are the same product.
+{:tip}
 
 {:shortdesc}
 
@@ -71,8 +71,8 @@ On {{site.data.keyword.Bluemix_notm}} there are a number of [deployment offering
 This tutorial requires:
 * An {{site.data.keyword.cloud_notm}} [billable account](https://{DomainName}/docs/account?topic=account-accounts), 
 
-  A GitHub account is optional and only required if you plan on modifying the provided Terraform template beyond the steps outlined in this tutorial.
-  {:tip}
+A GitHub account is optional and only required if you plan on modifying the provided Terraform template beyond the steps outlined in this tutorial.
+{:tip}
 
 ## Create services
 {: #create_services}

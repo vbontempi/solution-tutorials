@@ -26,10 +26,8 @@ completion-time: 2h
 {: toc-services="containers, Log-Analysis-with-LogDNA, Registry, Monitoring-with-Sysdig"}
 {: toc-completion-time="2h"}
 
-<!--##istutorial#-->
 This tutorial may incur costs. Use the [Cost Estimator](https://{DomainName}/estimator/review) to generate a cost estimate based on your projected usage.
 {: tip}
-<!--#/istutorial#-->
 
 This tutorial shows how the [{{site.data.keyword.la_full_notm}}](https://{DomainName}/observe/) service can be used to configure and access logs of a Kubernetes application that is deployed on {{site.data.keyword.Bluemix_notm}}. You will deploy a Python application to a cluster provisioned on {{site.data.keyword.containerlong_notm}}, configure a LogDNA agent, generate different levels of application logs and access worker logs, pod logs or network logs. Then, you will search, filter and visualize those logs through {{site.data.keyword.la_short}} Web UI.
 
@@ -60,30 +58,16 @@ This tutorial requires:
 * `kubectl` to interact with Kubernetes clusters,
 * `git` to clone source code repository.
 
-<!--##istutorial#-->
 You will find instructions to download and install these tools for your operating environment in the [Getting started with tutorials](/docs/solution-tutorials?topic=solution-tutorials-getting-started) guide.
 
 Note: To avoid the installation of these tools you can use the [{{site.data.keyword.cloud-shell_short}}](https://{DomainName}/shell) from the {{site.data.keyword.cloud_notm}} console.
 {:tip}
 
-<!--#/istutorial#-->
 
-<!--##istutorial#-->
 In addition, make sure you:
 - [grant permissions to a user to view logs in LogDNA](/docs/services/Log-Analysis-with-LogDNA?topic=LogDNA-work_iam#user_logdna)
 * and [grant permissions to a user to view metrics in Sysdig](/docs/services/Monitoring-with-Sysdig?topic=Sysdig-iam#iam_users)
-<!--#/istutorial#-->
 
-<!--##istutorial#-->
-
-<!--##isworkshop#-->
-<!--
-## Start a new {{site.data.keyword.cloud-shell_notm}}
-{: step}
-1. From the {{site.data.keyword.cloud_notm}} console in your browser, click the button in the upper right corner to create a new [{{site.data.keyword.cloud-shell_short}}](https://{DomainName}/shell).
-
--->
-<!--#/isworkshop#-->
 
 ## Create a Kubernetes cluster
 {: #create_cluster}
@@ -96,39 +80,7 @@ A minimal cluster with one (1) zone, one (1) worker node and the smallest availa
 - For Kubernetes on VPC infrastructure, you are required to create a VPC and subnet(s) prior to creating the Kubernetes cluster. You may follow the instructions provided under the [Creating a standard VPC Gen 1 compute cluster](https://{DomainName}/docs/containers?topic=containers-clusters#clusters_vpc_standard) or [Creating a standard VPC Gen 2 compute cluster](https://{DomainName}/docs/containers?topic=containers-clusters#clusters_vpcg2)
   - Make sure to attach a Public Gateway for each of the subnet that you create as it is required for accessing cloud services.
 - For Kubernetes on Classic infrastructure follow the [Creating a standard classic cluster](https://{DomainName}/docs/containers?topic=containers-clusters#clusters_standard) instructions.
-<!--#/istutorial#-->
 
-<!--##isworkshop#-->
-<!--
-## Configure the access to your cluster
-{: #access-cluster}
-{: step}
-
-`ibmcloud` is the command line tool to interact with {{site.data.keyword.cloud_notm}}. It comes with plugins to work with {{site.data.keyword.cloud_notm}} services.
-
-1. Open a command prompt.
-1. Run the login command
-   ```sh
-   ibmcloud login
-   ```
-   {:pre}
-2. When prompted, select the region where your cluster was allocated.
-3. Enter your IBMid email and password.
-4. Select the account where you have been invited.
-
-### Log in to your cluster
-
-In this step, you'll configure `kubectl` to point to the cluster assigned to you.
-
-1. Navigate to your cluster from the [cluster list](https://{DomainName}/kubernetes/clusters) and click on the **Access** tab under the cluster name.
-1. Under **After your cluster provisions, gain access** section, follow instructions to log into your cluster on a terminal.
-1. Run the below command to see all the namespaces in your cluster:
-   ```sh
-   kubectl get namespaces
-   ```
-   {:pre}
--->
-<!--#/isworkshop#-->
 
 ## Deploy and configure a Kubernetes app to forward logs
 {: #deploy_configure_kubernetes_app}
@@ -268,16 +220,6 @@ To provision and connect a {{site.data.keyword.la_short}} service,
    logdna-agent-ls6dc   1/1     Running   0          39s
    ```
 
-<!--### Configure the cluster to send logs to your LogDNA instance
-
-To configure your Kubernetes cluster to send logs to your {{site.data.keyword.la_full_notm}} instance, you must install a *logdna-agent* pod on each node of your cluster. The LogDNA agent reads log files from the pod where it is installed, and forwards the log data to your LogDNA instance.
-
-1. Navigate to [Observability](https://{DomainName}/observe/) page and click **Logging**.
-2. Click on **Edit log resources** next to the service which you created earlier and select **Kubernetes**.
-3. Copy and run the first command on a terminal where you have targeted your cluster to create a Kubernetes secret with the LogDNA ingestion key for your service instance.
-4. Copy and run the second command to deploy a LogDNA agent on every worker node of your Kubernetes cluster. The LogDNA agent collects logs with the extension **.log** and extensionless files that are stored in the */var/log* directory of your pod. By default, logs are collected from all namespaces, including kube-system, and automatically forwarded to the {{site.data.keyword.la_full_notm}} service.
-5. After you configure a log source, launch the LogDNA UI by clicking **View LogDNA**. It may take a few minutes before you start seeing logs.-->
-
 ## Generate and access application logs
 {: generate_application_logs}
 {: step}
@@ -394,15 +336,6 @@ Note: The Sysdig agent installation as provided by the IBM Cloud script includes
 Finally, the application includes a Prometheus library `prometheus_client`, which is used by the sample app in this tutorial to generate custom metrics.  You can find a Prometheus client to use for most programming languages. See the [Sysdig Blog](https://sysdig.com/blog/prometheus-metrics/) for details.
 {: tip}
 
-
-<!--### Configure {{site.data.keyword.mon_short}}
-
-To Configure Sysdig to monitor health and performance of your cluster:
-1. Click **Launch** and you should see the Sysdig monitor UI. On the welcome page, click **Next**.
-2. Choose **Kubernetes** as your installation method under set up environment.
-3. Click **Go to Next step** next to the agent configuration success message and click **Let's Get started** on the next page.
-4. Click **Next** and then **Complete onboarding** to see the `Explore` tab of Sysdig UI.-->
-
 ### Monitor your cluster
 
 To check the health and performance of your app and cluster you can review the default (out-of-the-box) and/or custom application generated metrics that are captured.
@@ -470,13 +403,11 @@ To create a dashboard:
 {: step}
 
 - Remove the LogDNA and Sysdig instances from [Observability](https://{DomainName}/observe) page.
-<!--##istutorial#-->
 - Delete the cluster including worker node, app and containers. This action cannot be undone.
    ```sh
    ibmcloud ks cluster rm --cluster $MYCLUSTER -f
    ```
    {:pre}
-<!--#/istutorial#-->
 
 ## Expand the tutorial
 {: #expand_tutorial}
