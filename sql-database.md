@@ -3,7 +3,7 @@ subcollection: solution-tutorials
 copyright:
   years: 2017, 2020
 lastupdated: "2020-04-15"
-lasttested: "2020-04-15"
+lasttested: "2020-08-27"
 
 content-type: tutorial
 services: cloud-foundry-public, Db2whc
@@ -45,7 +45,6 @@ This tutorial shows how to provision a SQL (relational) database service, create
 
 This tutorial requires:
 * {{site.data.keyword.cloud_notm}} CLI,
-   * {{site.data.keyword.openwhisk}} plugin (`cloud-functions`),
 * `git` to clone source code repository.
 
 You will find instructions to download and install these tools for your operating environment in the [Getting started with tutorials](https://{DomainName}/docs/solution-tutorials?topic=solution-tutorials-getting-started) guide.
