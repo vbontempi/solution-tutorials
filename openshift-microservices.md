@@ -7,7 +7,7 @@ lasttested: "2020-08-05"
 
 content-type: tutorial
 services: openshift, Log-Analysis-with-LogDNA, Monitoring-with-Sysdig, containers, Cloudant
-account-plan:
+account-plan: paid
 completion-time: 3h
 ---
 
@@ -50,7 +50,7 @@ This tutorial demonstrates how to deploy applications to [{{site.data.keyword.op
 
 <p style="text-align: center;">
 
-  ![Architecture](images/solution55-openshift-microservices/openshift-microservices.drawio.png)
+  ![Architecture](images/solution55-openshift-microservices/Architecture.png)
 </p>
 
 1. A developer initializes an {{site.data.keyword.openshiftshort}} application with a repository URL resulting in a **Builder**, **Deployment**, and **Service**.
