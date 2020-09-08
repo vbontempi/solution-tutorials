@@ -27,7 +27,7 @@ This guide will help you set up your development environment to successfully fol
 {:shortdesc}
 
 ## Objectives
-{: #objectives}
+{: #getting-started-objectives}
 
 Install must-have tools to be productive with {{site.data.keyword.cloud_notm}}:
 
@@ -41,12 +41,12 @@ Install must-have tools to be productive with {{site.data.keyword.cloud_notm}}:
 * **Git** - a free and open source distributed version control system.
 
 ## Microsoft Windows
-{: #windows}
+{: #getting-started-windows}
 
 The following sections assume you are running Microsoft Windows 10 64-bit under a user with Administrator privileges. Once you're done with the specific sections, proceed to the configuration [common to all operating systems](#common).
 
 ### {{site.data.keyword.cloud_notm}} CLI
-{: #windows_cli}
+{: #getting-started-windows_cli}
 
 1. Download and install the {{site.data.keyword.cloud_notm}} CLI from https://github.com/IBM-Cloud/ibm-cloud-cli-release/releases/latest.
 1. Verify the installation with:
@@ -59,7 +59,7 @@ The following sections assume you are running Microsoft Windows 10 64-bit under 
    {:tip}
 
 ### Docker
-{: #windows_docker}
+{: #getting-started-windows_docker}
 
 1. If you don't have one, sign up for a free account at https://hub.docker.com/signup.
 1. Download and install Docker Desktop on Windows from https://docs.docker.com/docker-for-windows/install/.
@@ -74,7 +74,7 @@ The following sections assume you are running Microsoft Windows 10 64-bit under 
    {:tip}
 
 ### kubectl
-{: #windows_kubectl}
+{: #getting-started-windows_kubectl}
 
 1. Download `kubectl` from https://kubernetes.io/docs/tasks/tools/install-kubectl/#install-kubectl-on-windows.
 1. Move `kubectl.exe` binary to your PATH.
@@ -85,7 +85,7 @@ The following sections assume you are running Microsoft Windows 10 64-bit under 
    {:pre}
 
 ### oc
-{: #windows_oc}
+{: #getting-started-windows_oc}
 
 1. Download the latest 4.3 OpenShift CLI (`oc`) from https://mirror.openshift.com/pub/openshift-v4/clients/oc/4.3/.
 1. Move `oc.exe` binary to your PATH.
@@ -96,7 +96,7 @@ The following sections assume you are running Microsoft Windows 10 64-bit under 
    {:pre}
 
 ### Helm 3
-{: #windows_helm}
+{: #getting-started-windows_helm}
 
 1. Download `helm` from https://github.com/helm/helm/releases/latest.
 1. Uncompress the downloaded archive.
@@ -108,7 +108,7 @@ The following sections assume you are running Microsoft Windows 10 64-bit under 
    {:pre}
 
 ### Terraform
-{: #windows_terraform}
+{: #getting-started-windows_terraform}
 
 1. Download `terraform` from https://www.terraform.io/downloads.html.
 1. Uncompress the downloaded archive.
@@ -141,7 +141,7 @@ To manage {{site.data.keyword.cloud_notm}} resources with Terraform, you also ne
    {:pre}
 
 ### jq
-{: #windows_jq}
+{: #getting-started-windows_jq}
 
 1. Download jq from https://stedolan.github.io/jq/.
 1. Rename `jq-win64.exe` to `jq.exe`.
@@ -153,7 +153,7 @@ To manage {{site.data.keyword.cloud_notm}} resources with Terraform, you also ne
    {:pre}
 
 ### Git
-{: #windows_git}
+{: #getting-started-windows_git}
 
 1. Download and install `git` from https://github.com/git-for-windows/git/releases/latest.
 1. Verify the installation with:
@@ -165,12 +165,12 @@ To manage {{site.data.keyword.cloud_notm}} resources with Terraform, you also ne
 Proceed to the configuration [common to all operating systems](#common).
 
 ## Apple macOS
-{: #macos}
+{: #getting-started-macos}
 
 The following sections assume you are running macOS High Sierra or later under a user with Administrator privileges. Once you're done with the specific sections, proceed to the configuration [common to all operating systems](#common).
 
 ### {{site.data.keyword.cloud_notm}} CLI
-{: #macos_cli}
+{: #getting-started-macos_cli}
 
 1. Download and install the {{site.data.keyword.cloud_notm}} CLI from https://github.com/IBM-Cloud/ibm-cloud-cli-release/releases/latest.
 1. Verify the installation with:
@@ -180,7 +180,7 @@ The following sections assume you are running macOS High Sierra or later under a
    {:pre}
 
 ### Docker
-{: #macos_docker}
+{: #getting-started-macos_docker}
 
 1. If you don't have one, sign up for a free account at https://hub.docker.com/signup.
 1. Download and install Docker Desktop on Mac from https://docs.docker.com/docker-for-mac/install/.
@@ -192,7 +192,7 @@ The following sections assume you are running macOS High Sierra or later under a
    {:pre}
 
 ### kubectl
-{: #macos_kubectl}
+{: #getting-started-macos_kubectl}
 
 1. Download `kubectl` from https://kubernetes.io/docs/tasks/tools/install-kubectl/#install-kubectl-on-macos.
 1. Make the kubectl binary executable.
@@ -212,7 +212,7 @@ The following sections assume you are running macOS High Sierra or later under a
    {:pre}
 
 ### oc
-{: #macos_oc}
+{: #getting-started-macos_oc}
 
 1. Download the latest 4.3 OpenShift CLI (`oc`) from https://mirror.openshift.com/pub/openshift-v4/clients/oc/4.3/.
 1. Extract `oc.tar.gz`:
@@ -235,7 +235,7 @@ The following sections assume you are running macOS High Sierra or later under a
    {:tip}
 
 ### Helm 3
-{: #macos_helm}
+{: #getting-started-macos_helm}
 
 1. Download `helm` from https://github.com/helm/helm/releases/latest.
 1. Uncompress the downloaded archive.
@@ -254,7 +254,7 @@ The following sections assume you are running macOS High Sierra or later under a
    {:tip}
 
 ### Terraform
-{: #macos_terraform}
+{: #getting-started-macos_terraform}
 
 1. Download `terraform` from https://www.terraform.io/downloads.html.
 1. Uncompress the downloaded archive.
@@ -293,7 +293,7 @@ To manage {{site.data.keyword.cloud_notm}} resources with Terraform, you also ne
    {:tip}
 
 ### jq
-{: #macos_jq}
+{: #getting-started-macos_jq}
 
 1. Download `jq` from https://stedolan.github.io/jq/.
 1. Rename the downloaded file to `jq`.
@@ -309,7 +309,7 @@ To manage {{site.data.keyword.cloud_notm}} resources with Terraform, you also ne
    {:pre}
 
 ### Git
-{: #macos_git}
+{: #getting-started-macos_git}
 
 1. Check that `git` is installed:
    ```sh
@@ -323,12 +323,12 @@ To manage {{site.data.keyword.cloud_notm}} resources with Terraform, you also ne
 Proceed to the configuration [common to all operating systems](#common).
 
 ## Ubuntu Linux
-{: #ubuntu}
+{: #getting-started-ubuntu}
 
 The following sections assume you are running Ubuntu Linux as non-root user with access to root privileges. Once you're done with the specific sections, proceed to the configuration [common to all operating systems](#common).
 
 ### {{site.data.keyword.cloud_notm}} CLI
-{: #ubuntu_cli}
+{: #getting-started-ubuntu_cli}
 
 1. Download and install the {{site.data.keyword.cloud_notm}} CLI from https://github.com/IBM-Cloud/ibm-cloud-cli-release/releases/latest.
 1. Verify the installation with:
@@ -338,7 +338,7 @@ The following sections assume you are running Ubuntu Linux as non-root user with
    {:pre}
 
 ### Docker
-{: #ubuntu_docker}
+{: #getting-started-ubuntu_docker}
 
 1. If you don't have one, sign up for a free account at https://hub.docker.com/signup.
 1. Install Docker Engine - Community for Ubuntu following the instructions from https://docs.docker.com/install/linux/docker-ce/ubuntu/.
@@ -353,7 +353,7 @@ The following sections assume you are running Ubuntu Linux as non-root user with
    {:tip}
 
 ### kubectl
-{: #ubuntu_kubectl}
+{: #getting-started-ubuntu_kubectl}
 
 1. Download `kubectl` from https://kubernetes.io/docs/tasks/tools/install-kubectl/#install-kubectl-on-linux.
 1. Make the kubectl binary executable.
@@ -373,7 +373,7 @@ The following sections assume you are running Ubuntu Linux as non-root user with
    {:pre}
 
 ### oc
-{: #ubuntu_oc}
+{: #getting-started-ubuntu_oc}
 
 1. Download the latest 4.3 OpenShift CLI (`oc`) from https://mirror.openshift.com/pub/openshift-v4/clients/oc/4.3/.
 1. Extract `oc.tar.gz`:
@@ -393,7 +393,7 @@ The following sections assume you are running Ubuntu Linux as non-root user with
    {:pre}
 
 ### Helm 3
-{: #ubuntu_helm}
+{: #getting-started-ubuntu_helm}
 
 1. Download `helm` from https://github.com/helm/helm/releases/latest.
 1. Uncompress the downloaded archive.
@@ -409,7 +409,7 @@ The following sections assume you are running Ubuntu Linux as non-root user with
    {:pre}
 
 ### Terraform
-{: #ubuntu_terraform}
+{: #getting-started-ubuntu_terraform}
 
 1. Download `terraform` from https://www.terraform.io/downloads.html.
 1. Uncompress the downloaded archive.
@@ -445,7 +445,7 @@ To manage {{site.data.keyword.cloud_notm}} resources with Terraform, you also ne
    {:pre}
 
 ### jq
-{: #ubuntu_jq}
+{: #getting-started-ubuntu_jq}
 
 1. Install `jq` with:
    ```sh
@@ -459,7 +459,7 @@ To manage {{site.data.keyword.cloud_notm}} resources with Terraform, you also ne
    {:pre}
 
 ### Git
-{: #ubuntu_git}
+{: #getting-started-ubuntu_git}
 
 1. Install `git` with:
    ```sh
@@ -475,11 +475,12 @@ To manage {{site.data.keyword.cloud_notm}} resources with Terraform, you also ne
 Proceed to the configuration [common to all operating systems](#common).
 
 ## Common to all operating systems
-{: #common}
+{: #getting-started-common}
 
 The next sections are common to all operating systems.
 
 ### {{site.data.keyword.cloud_notm}} CLI plugins
+{: #getting-started-29}
 
 Plugins extend the capabilities of the {{site.data.keyword.cloud_notm}} CLI with commands specific to a service.
 
@@ -497,13 +498,13 @@ Plugins extend the capabilities of the {{site.data.keyword.cloud_notm}} CLI with
    {:tip}
 
 ### GitHub account
-{: #common_github}
+{: #getting-started-common_github}
 
 1. Sign up for a free account at https://github.com/.
 1. Create a new public repository at https://github.com/new to get familiar with GitHub.
 
 ### {{site.data.keyword.cloud_notm}} GitLab
-{: #common_gitlab}
+{: #getting-started-common_gitlab}
 
 {{site.data.keyword.cloud_notm}} provides you with hosted Git repositories built on GitLab Community Edition and accessible with the same credentials used to log in {{site.data.keyword.cloud_notm}}. It is recommended to configure your SSH public key to simplify the command line interactions with the Git repositories.
 

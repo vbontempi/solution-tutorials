@@ -35,7 +35,7 @@ This tutorial walks you through the process setting up a continuous integration 
 {: shortdesc}
 
 ## Objectives
-{: #objectives}
+{: #continuous-deployment-to-kubernetes-objectives}
 
 * Create development and production Kubernetes clusters.
 * Create a starter application, run it locally and push it to a Git repository.
@@ -52,7 +52,7 @@ This tutorial walks you through the process setting up a continuous integration 
 5. Notifications are sent to Slack to track the deployment activities.
 
 ## Before you begin
-{: #prereq}
+{: #continuous-deployment-to-kubernetes-prereq}
 
 This tutorial requires:
 * {{site.data.keyword.cloud_notm}} CLI,
@@ -72,7 +72,7 @@ In addition, make sure you:
 - and [understand the basics of Kubernetes](https://kubernetes.io/docs/tutorials/kubernetes-basics/).
 
 ## Create development Kubernetes cluster
-{: #create_kube_cluster}
+{: #continuous-deployment-to-kubernetes-create_kube_cluster}
 {: step}
 
 {{site.data.keyword.containershort_notm}} delivers powerful tools by combining Docker and Kubernetes technologies, an intuitive user experience, and built-in security and isolation to automate the deployment, operation, scaling, and monitoring of containerized apps in a cluster of compute hosts.
@@ -94,7 +94,7 @@ To complete this tutorial you would need to select the **Paid** cluster of type 
 
 
 ## Create a starter application
-{: #create_application}
+{: #continuous-deployment-to-kubernetes-create_application}
 {: step}
 
 {{site.data.keyword.containershort_notm}} offers a selection of starter applications, these starter applications can be created using the `ibmcloud dev create` command or the web console. In this tutorial, we are going to use the web console. The starter application greatly cuts down on development time by generating application starters with all the necessary boilerplate, build and configuration code so that you can start coding business logic faster.
@@ -105,7 +105,7 @@ To complete this tutorial you would need to select the **Paid** cluster of type 
 4. Enter a unique **name** for the application such as `<your-initial>-mynodestarter` and select a resource group. Then, click **Create**.
 
 ## Configure DevOps delivery pipeline
-{: #create_devops}
+{: #continuous-deployment-to-kubernetes-create_devops}
 {: step}
 
 Now that you successfully created the starter application, you can automate its deployment to the Kubernetes cluster.
@@ -127,6 +127,7 @@ The toolchain will build your application and deploy it to the cluster.
    ![Screenshot showing how to find the IP address](images/solution21/Logs.png)
 
 ## Modify the application and deploy the updates
+{: #continuous-deployment-to-kubernetes-6}
 {: step}
 
 1. Follow the breadcrumbs on the upper left of the screen and click on the first entry after of `<your-initial>-mynodestarter` after `Toolchains` 
@@ -147,7 +148,7 @@ If you don't see your application updating, check the logs of the DEPLOY and BUI
 **Note:** If you prefer to work locally for making and viewing updates to the application, you can  clone the repository to your own environment for editing and use `ibmcloud dev build` and `ibmcloud dev run` to view the changes locally before pushing them back to the repository. Once your changes are pushed to the repository they will also trigger a build in the **Delivery Pipeline**.
 
 ## Deploy to a production environment
-{: #deploytoproduction}
+{: #continuous-deployment-to-kubernetes-deploytoproduction}
 {: step}
 
 In this section, you will complete the deployment pipeline by deploying the application to development and production environments respectively.
@@ -167,7 +168,7 @@ You now have the full deployment setup. To deploy from dev to production, you mu
    ![Toolchain with dev and prod stages](images/solution21/full-deploy.png)
 
 ## Setup Slack notifications
-{: #setup_slack}
+{: #continuous-deployment-to-kubernetes-setup_slack}
 {: step}
 
 1. Go back to view the list of [toolchains](https://{DomainName}/devops/toolchains) and select your toolchain, then click on **Add a Tool**.
@@ -183,7 +184,7 @@ You now have the full deployment setup. To deploy from dev to production, you mu
     ![Slack app with notification](images/solution21/slack_channel.png)
 
 ## Remove resources
-{: #removeresources}
+{: #continuous-deployment-to-kubernetes-removeresources}
 {: step}
 
 In this step, you will clean up the resources to remove what you created above.
@@ -194,7 +195,7 @@ In this step, you will clean up the resources to remove what you created above.
 - Delete the Slack channel.
 
 ## Expand the Tutorial
-{: #expandTutorial}
+{: #continuous-deployment-to-kubernetes-expandTutorial}
 
 Do you want to learn more? Here are some ideas of what you can do next:
 
@@ -203,7 +204,7 @@ Do you want to learn more? Here are some ideas of what you can do next:
 - Deploy the production app [across multiple locations](https://{DomainName}/docs/solution-tutorials?topic=solution-tutorials-multi-region-webapp#multi-region-webapp).
 
 ## Related Content
-{: #related}
+{: #continuous-deployment-to-kubernetes-related}
 
 * End to end Kubernetes solution guide, [moving VM based apps to Kubernetes](https://{DomainName}/docs/solution-tutorials?topic=solution-tutorials-vm-to-containers-and-kubernetes#vm-to-containers-and-kubernetes).
 * [Security](https://{DomainName}/docs/containers?topic=containers-security#cluster) for IBM Cloud Container Service.
