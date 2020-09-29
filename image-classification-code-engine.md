@@ -2,7 +2,7 @@
 subcollection: solution-tutorials
 copyright:
   years: 2020
-lastupdated: "2020-09-23"
+lastupdated: "2020-09-29"
 lasttested: "2020-09-23"
 
 content-type: tutorial
@@ -27,7 +27,7 @@ completion-time: 2h
 {:note: .note}
 {:beta: .beta}
 
-# Image classification with {{site.data.keyword.codeengineshort}}
+# Visual recognition with {{site.data.keyword.codeengineshort}}
 {: #image_classification_code_engine}
 {: toc-content-type="tutorial"}
 {: toc-services="codeengine, containers, cloud-object-storage, visual-recognition"}
@@ -39,7 +39,7 @@ This tutorial may incur costs. Use the [Cost Estimator](https://{DomainName}/est
 {{site.data.keyword.codeenginefull_notm}} is available as a beta service. Beta runtimes and services might be unstable or change frequently. Be aware of [beta limitations](https://{DomainName}/docs/codeengine?topic=codeengine-limits).
 {:beta}
 
-In this tutorial, you will learn about {{site.data.keyword.codeenginefull}} by deploying an image classification application. You will create a {{site.data.keyword.codeengineshort}} project, select the project and deploy {{site.data.keyword.codeengineshort}} components - applications and jobs to the project. You will learn how to bind {{site.data.keyword.cloud_notm}} services to your {{site.data.keyword.codeengineshort}} components. You will also understand the auto-scaling capability of {{site.data.keyword.codeengineshort}} where instances are scaled up or down (to zero) based on incoming workload.
+In this tutorial, you will learn about {{site.data.keyword.codeenginefull}} by deploying an image classification (visual recognition) application. You will create a {{site.data.keyword.codeengineshort}} project, select the project and deploy {{site.data.keyword.codeengineshort}} components - applications and jobs to the project. You will learn how to bind {{site.data.keyword.cloud_notm}} services to your {{site.data.keyword.codeengineshort}} components. You will also understand the auto-scaling capability of {{site.data.keyword.codeengineshort}} where instances are scaled up or down (to zero) based on incoming workload.
 {:shortdesc}
 
 {{site.data.keyword.codeenginefull_notm}} provides a platform to unify the deployment of all of your container-based applications. Whether those applications are functions, traditional 12-factor apps, batch workloads(run-to-completion) or any other container-based workloads, if they can be bundled into a container image, then {{site.data.keyword.codeengineshort}} can host and manage them for you - all on a Kubernetes-based infrastructure. And {{site.data.keyword.codeengineshort}} does this without the need for you to learn, or even know about, Kubernetes. The {{site.data.keyword.codeengineshort}} experience is designed so that you can focus on writing code and not on the infrastructure needed to host it. It is delivered as a managed service on the cloud and built on open-source projects (Kubernetes, Istio, Knative, Tekton, etc.).
@@ -126,7 +126,7 @@ We've already built images for the two applications and pushed them to the publi
    ```
    {:pre}
 
-   After running this command, you should see some output with a URL to your application. It should look something like: `https://frontend.47e3a07f-2c7f.us-south.codeengine.appdomain.cloud`. Make note of this application URL for the next step. With just these two pieces of data (application name and image name), {{site.data.keyword.codeengineshort}} has deployed your application and will handle all of the complexities of configuring it and managing it for you.
+   After running this command, you should see some output with a URL to your application. It should look something like: `https://frontend.b7bb43f4-525e.us-south.codeengine.appdomain.cloud`. Make note of this application URL for the next step. With just these two pieces of data (application name and image name), {{site.data.keyword.codeengineshort}} has deployed your application and will handle all of the complexities of configuring it and managing it for you.
 
    The application source code used to build the container images - `ibmcom/*` is available in a [GitHub repo](https://github.com/IBM-Cloud/code-engine-image-classification) for your reference.
    {:tip}
@@ -151,8 +151,6 @@ Congratulations!! You've just deployed a web application to {{site.data.keyword.
 When you created the application with the `application create` command, you only passed in an image to use and a name for your application. While this is the minimum amount of information to deploy an application, there are a number of other knobs you have control over. Among others, you can set the number of requests that can be processed concurrently per instance, the amount of CPU for the instance of the application, the amount of memory set for the instance of the application, the environment variables for the application, the maximum and minimum number of instances that can be used for this application, and the port where the application listens for requests.
 
 Most of these values have a default set if nothing is provided as an option when creating the application. Because we did not provide a value, {{site.data.keyword.codeengineshort}} deployed our application with a default max scale of 10, meaning that it will only scale our application up to 10 instances. The default minimum scale is zero, so that when our application is no longer in use, it will scale itself back down to zero.
-
-Because {{site.data.keyword.codeengineshort}} is built on top of a Kubernetes stack, you should be able to access the additional Kubernetes cluster resources if you need to get more control or information.
 
 1. To check the autoscaling capabilities of {{site.data.keyword.codeengineshort}}, we can use a load generator to generate a load against our service. This load generator will simulate about 300 clients hitting the URL for 30 seconds. Navigate to the [load generator URL](https://load.fun.cloud.ibm.com/) and paste the frontend application URL from the step above.
 2. Click on **Generate load** to generate traffic.
