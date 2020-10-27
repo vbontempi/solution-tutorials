@@ -62,7 +62,7 @@ This tutorial requires:
 * {{site.data.keyword.cloud_notm}} CLI,
 * and `git` to clone source code repository.
 
-You will find instructions to download and install these tools for your operating environment in the [Getting started with tutorials](/docs/solution-tutorials?topic=solution-tutorials-getting-started) guide.
+You will find instructions to download and install these tools for your operating environment in the [Getting started with tutorials](/docs/solution-tutorials?topic=solution-tutorials-tutorials) guide.
 
 ## Create IoT Platform
 {: #gather-visualize-analyze-iot-data-iot_starter}

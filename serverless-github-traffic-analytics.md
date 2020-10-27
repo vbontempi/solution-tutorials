@@ -50,7 +50,7 @@ This tutorial requires:
 * `git` to clone source code repository,
 * a GitHub account.
 
-You will find instructions to download and install these tools for your operating environment in the [Getting started with tutorials](https://{DomainName}/docs/solution-tutorials?topic=solution-tutorials-getting-started) guide.
+You will find instructions to download and install these tools for your operating environment in the [Getting started with tutorials](https://{DomainName}/docs/solution-tutorials?topic=solution-tutorials-tutorials) guide.
 
 ## Service and Environment Setup (shell)
 {: #serverless-github-traffic-analytics-2}
