@@ -300,6 +300,11 @@ To [build the container image](https://{DomainName}/docs/Registry?topic=Registry
    ibmcloud ks cluster addon enable alb-oauth-proxy --cluster <your-cluster-name>
    ```
    {: codeblock}
+   You can check for existing add-ons with this command:
+   ```sh
+      ibmcloud ks cluster addon ls --cluster <your-cluster-name>
+   ```
+   {: codeblock}
 3. Only if deploying to a non-default namespace, ensure that the Ingress secret is available in that namespace. First, get the CRN of the Ingress secret for your custom domain or default Ingress subdomain. It should be named similar to your cluster.
    ```sh
    ibmcloud ks ingress secret ls -c <your-cluster-name>
