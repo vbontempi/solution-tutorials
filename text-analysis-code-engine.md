@@ -2,7 +2,7 @@
 subcollection: solution-tutorials
 copyright:
   years: 2020, 2021
-lastupdated: "2021-03-04"
+lastupdated: "2021-03-22"
 lasttested: "2020-12-01"
 
 content-type: tutorial
@@ -97,7 +97,7 @@ Putting entities into a single project enables you to manage access control more
    ibmcloud login
    ```
    {:pre}
-4. You will also need to target the resource group where you created your project.
+4. Target the resource group where you created your project.
    ```
    ibmcloud target -g <YOUR_RESOURCE_GROUP_NAME>
    ```
@@ -107,6 +107,7 @@ Putting entities into a single project enables you to manage access control more
    ibmcloud code-engine project select --name <PROJECT_NAME>
    ```
    {:pre}
+
 
 ## Deploy the frontend and backend apps as {{site.data.keyword.codeengineshort}} applications
 {: #text-analysis-code-engine-deploy_app}
@@ -222,7 +223,7 @@ With {{site.data.keyword.nlufull}}, developers can analyze semantic features of 
 
 1. Create an instance of [{{site.data.keyword.cos_short}}](https://{DomainName}/catalog/services/cloud-object-storage)
    1. Select the **Lite** plan or the **Standard** plan if you already have an {{site.data.keyword.cos_short}} service instance in your account.
-   2. Set **Service name** to **code-engine-cos** and select a resource group where you created the {{site.data.keyword.codeengineshort}} project.
+   2. Set **Service name** to **code-engine-cos** and select the resource group where you created the {{site.data.keyword.codeengineshort}} project.
    3. Click on **Create**.
 2. Under **Service credentials**, click on **New credential**
    1. Give it a name - `cos-for-code-engine` and select **Writer** as the role
@@ -241,6 +242,7 @@ With {{site.data.keyword.nlufull}}, developers can analyze semantic features of 
 7. Under **Service credentials**, click on **New credential**
    1. Give it a name - `nlu-for-code-engine` and select **Writer** as the role.
    2. Click **Add**.
+
 
 ### Bind the {{site.data.keyword.cos_short}} service to the backend application
 {: #text-analysis-code-engine-9}
