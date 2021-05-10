@@ -2,7 +2,7 @@
 subcollection: solution-tutorials
 copyright:
   years: 2017, 2019, 2020, 2021
-lastupdated: "2021-03-26"
+lastupdated: "2021-05-07"
 lasttested: "2021-03-22"
 
 content-type: tutorial
@@ -153,12 +153,6 @@ In this section, you first push the Docker image to the IBM Cloud private contai
 1. Define an environment variable named `MYPROJECT` and set the name of the application by replacing the placeholder with your initials:
    ```sh
    export MYPROJECT=<your-initials>kubenodeapp
-   ```
-   {: pre}
-
-1. Ensure your local Docker engine is started.
-   ```
-   docker ps
    ```
    {: pre}
 1. Build, tag (`-t`) and push the docker image to your container registry on IBM Cloud
