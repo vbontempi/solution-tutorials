@@ -327,7 +327,7 @@ To [build the container image](https://{DomainName}/docs/Registry?topic=Registry
    Set `$IMAGE_PULL_SECRET` environment variable only if you are using another Kubernetes namespace than the `default` one. This requires additional Kubernetes configuration (e.g. [creating a container registry secret in the new namespace](https://{DomainName}/docs/containers?topic=containers-registry#other)).
    {: tip}
 
-4. Run the below command to generate `secure-file-storage.yaml` by replacing the placeholders in the template file.
+4. Run the below command to generate `secure-file-storage.yaml`. It will use the environment variables you just configured together with the template file `secure-file-storage.template.yaml`.
    ```sh
    ./generate_yaml.sh
    ```
