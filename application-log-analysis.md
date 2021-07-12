@@ -2,7 +2,7 @@
 subcollection: solution-tutorials
 copyright:
   years: 2017, 2019, 2020, 2021
-lastupdated: "2021-04-26"
+lastupdated: "2021-07-02"
 lasttested: "2020-12-22"
 
 content-type: tutorial
@@ -62,7 +62,6 @@ You will find instructions to download and install these tools for your operatin
 
 Note: To avoid the installation of these tools you can use the [{{site.data.keyword.cloud-shell_short}}](https://{DomainName}/shell) from the {{site.data.keyword.cloud_notm}} console.
 {:tip}
-
 
 In addition, make sure you:
 - [grant permissions to a user to view logs](/docs/Log-Analysis-with-LogDNA?topic=Log-Analysis-with-LogDNA-work_iam#user_logdna)
