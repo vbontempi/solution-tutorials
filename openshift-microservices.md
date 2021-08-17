@@ -2,8 +2,8 @@
 subcollection: solution-tutorials
 copyright:
   years: 2020, 2021
-lastupdated: "2021-04-26"
-lasttested: "2021-03-15"
+lastupdated: "2021-07-30"
+lasttested: "2021-07-28"
 
 content-type: tutorial
 services: openshift, Log-Analysis-with-LogDNA, Monitoring-with-Sysdig, containers, Cloudant
@@ -48,10 +48,9 @@ This tutorial demonstrates how to deploy applications to [{{site.data.keyword.op
 * Observe the cluster using {{site.data.keyword.mon_full_notm}}
 
 
-<p style="text-align: center;">
+![Architecture](images/solution55-openshift-microservices/Architecture.png){: class="center"}
+{: style="text-align: center;"}
 
-  ![Architecture](images/solution55-openshift-microservices/Architecture.png)
-</p>
 
 1. A developer initializes an {{site.data.keyword.openshiftshort}} application with a repository URL resulting in a **Builder**, **DeploymentConfig**, and **Service**.
 1. The **Builder** clones the source, creates an image, pushes it to {{site.data.keyword.openshiftshort}} registry for **DeploymentConfig** provisioning.
@@ -64,6 +63,18 @@ This tutorial demonstrates how to deploy applications to [{{site.data.keyword.op
 
 There are [scripts](https://github.com/IBM-Cloud/patient-health-frontend/tree/master/scripts) that will perform some of the steps below.  It is described in the [README.md](https://github.com/IBM-Cloud/patient-health-frontend). If you run into trouble and want to start over just execute the `destroy.sh` script and sequentially go through the scripts that correspond to the steps to recover.
 
+## Before you begin
+{: #openshift-microservices-prereqs}
+
+This tutorial requires:
+* {{site.data.keyword.cloud_notm}} CLI,
+   * {{site.data.keyword.containerfull_notm}} plugin (`kubernetes-service`),
+* `oc` to interact with OpenShift.
+
+You will find instructions to download and install these tools for your operating environment in the [Getting started with tutorials](https://{DomainName}/docs/solution-tutorials?topic=solution-tutorials-tutorials) guide.
+
+To avoid the installation of these tools, you can use the [{{site.data.keyword.cloud-shell_short}}](https://{DomainName}/shell) from the {{site.data.keyword.cloud_notm}} console.
+{: note}
 
 <!--This section is identical in all openshift tutorials, copy/paste any changes-->
 ## Create an {{site.data.keyword.openshiftshort}} cluster
@@ -75,21 +86,19 @@ With {{site.data.keyword.openshiftlong_notm}}, you have a fast and secure way to
 In this section, you will provision a {{site.data.keyword.openshiftlong_notm}} cluster in one (1) zone with two (2) worker nodes:
 
 1. Create an {{site.data.keyword.openshiftshort}} cluster from the [{{site.data.keyword.Bluemix}} catalog](https://{DomainName}/kubernetes/catalog/create?platformType=openshift).
-2. Set the **Orchestration service** to **4.6.x version of {{site.data.keyword.openshiftshort}}**.
+2. Set the **Orchestration service** to **4.7.x version of {{site.data.keyword.openshiftshort}}**.
 3. Select your OCP entitlement.
 4. Under **Infrastructure** choose Classic or VPC
-  - For {{site.data.keyword.openshiftshort}} on VPC infrastructure, you are required to create a VPC and one subnet prior to creating the Kubernetes cluster.  Create or inspect a desired VPC keeping in mind the following (see instructions provided under the [Creating a standard VPC Gen 2 compute cluster](https://{DomainName}/docs/openshift?topic=openshift-clusters#clusters_vpcg2)):
+   - For {{site.data.keyword.openshiftshort}} on VPC infrastructure, you are required to have a VPC and one subnet prior to creating the {{site.data.keyword.openshiftshort}} cluster.  Create or inspect a desired VPC keeping in mind the following (see instructions provided under the [Creating a standard VPC Gen 2 compute cluster](https://{DomainName}/docs/openshift?topic=openshift-clusters#clusters_vpcg2)):
       - One subnet that can be used for this tutorial, take note of the subnet's zone and name
       - Public gateway is attached to the subnet
-      - [Opening required ports in the default security group](https://{DomainName}/docs/openshift?topic=openshift-vpc-network-policy#security_groups)
-  - Select the desired VPC
-  - Select an existing **Cloud Object Storage** service or create one if required and then select
+   - Select an existing **Cloud Object Storage** service or create one if required
 5. Under **Location**
-  - For {{site.data.keyword.openshiftshort}} on VPC infrastructure
+   - For {{site.data.keyword.openshiftshort}} on VPC infrastructure
       - Select a **Resource group**
       - Uncheck the inapplicable zones
       - In the desired zone verify the desired subnet name and if not present click the edit pencil to select the desired subnet name
-  - For {{site.data.keyword.openshiftshort}} on Classic infrastructure follow the [Creating a standard classic cluster](https://{DomainName}/docs/openshift?topic=openshift-clusters#clusters_standard) instructions.
+   - For {{site.data.keyword.openshiftshort}} on Classic infrastructure follow the [Creating a standard classic cluster](https://{DomainName}/docs/openshift?topic=openshift-clusters#clusters_standard) instructions.
       - Select a **Resource group**
       - Select a **Geography**
       - Select **Single zone** as **Availability**
@@ -100,7 +109,7 @@ In this section, you will provision a {{site.data.keyword.openshiftlong_notm}} c
 7. Under **Resource details**,Set **Cluster name** to **&lt;your-initials&gt;-myopenshiftcluster** by replacing `<your-initials>` with your own initials.
 8. Click **Create** to provision an {{site.data.keyword.openshiftshort}} cluster.
 Take a note of the resource group selected above.  This same resource group will be used for all resources in this lab.
-{:note}
+{: note}
 
 
 
@@ -109,6 +118,11 @@ Take a note of the resource group selected above.  This same resource group will
 {: #openshift-microservices-3}
 
 The [{{site.data.keyword.openshiftshort}} Container Platform CLI](https://docs.openshift.com/container-platform/4.6/cli_reference/openshift_cli/getting-started-cli.html) exposes commands for managing your applications, as well as lower level tools to interact with each component of your system. The CLI is available using the `oc` command.
+
+To avoid installing the command line tools, the recommended approach is to use the {{site.data.keyword.cloud-shell_notm}}. 
+
+{{site.data.keyword.Bluemix_notm}} Shell is a cloud-based shell workspace that you can access through your browser. It's preconfigured with the full {{site.data.keyword.Bluemix_notm}} CLI and many plug-ins and tools that you can use to manage apps, resources, and infrastructure.
+
 In this step, you'll use the {{site.data.keyword.Bluemix_notm}} shell and configure `oc` to point to the cluster assigned to you.
 
 1. When the cluster is ready, click the button (next to your account) in the upper right corner to launch a [Cloud shell](https://{DomainName}/shell). **_Make sure you don't close this window/tab_**.
@@ -118,18 +132,27 @@ In this step, you'll use the {{site.data.keyword.Bluemix_notm}} shell and config
    ```sh
    oc version
    ```
-   {:pre}
-2. Initialize the `oc` command environment by replacing the placeholder <your-cluster-name>:
+   {: pre}
+   
+   > The version needs to be at minimum 4.6.x, otherwise install the latest version by following [these instructions](https://{DomainName}/docs/solution-tutorials?topic=solution-tutorials-tutorials#getting-started-common_shell).
+
+2. Validate your cluster is shown when listing all clusters:
    ```sh
    ibmcloud oc clusters
+   ```
+   {: pre}   
+
+3. Initialize the `oc` command environment by replacing the placeholder <your-cluster-name>:
+   ```sh
    ibmcloud oc cluster config -c <your-cluster-name> --admin
    ```
-   {:pre}
-3. Verify the `oc` command is working:
+   {: pre}
+
+4. Verify the `oc` command is working:
    ```sh
    oc get projects
    ```
-   {:pre}
+   {: pre}
 
 
 ## Deploying an application
@@ -203,12 +226,14 @@ Create a script to simulate load.
    ```sh
    oc project example-health
    ```
-   {:pre}
+   {: pre}
+
 1. Retrieve the public route to access your application:
    ```
    oc get routes
    ```
-   {:pre}
+   {: pre}
+
    Output looks similar to this, note your value for Host:
    ```
    NAME         HOST/PORT                                                                                                 PATH      SERVICES     PORT       TERMINATION   WILDCARD
@@ -218,12 +243,14 @@ Create a script to simulate load.
    ```sh
    HOST=$(oc get routes -o json | jq -r '.items[0].spec.host')
    ```
-   {:pre}
+   {: pre}
+
 1. Verify access to the application. It outputs patient information:
    ```sh
    curl -s http://$HOST/info
    ```
-   {:pre}
+   {: pre}
+
    Output should look like:
    ```
    $ curl http://$HOST/info
@@ -231,12 +258,12 @@ Create a script to simulate load.
    ```
 1. Run the following script which will endlessly send requests to the application and generates traffic:
    ```bash
-   while sleep 0.2; do curl --max-time 2 -s http://$HOST/info; done
+   while sleep 0.2; do curl --max-time 2 -s http://$HOST/info >/dev/null; done
    ```
-   {:pre}
+   {: pre}
 
    To stop the script, hit `CTRL + c` on your keyboard
-   {:tip}
+   {: tip}
 
 ### {{site.data.keyword.openshiftshort}} Logging
 {: #openshift-microservices-10}
@@ -244,8 +271,8 @@ Create a script to simulate load.
 Since there is only one pod, viewing the application logs will be straight forward.
 
 1. Ensure that you're in the **Topology** view of the **Developer** perspective.
-2. Navigate to your Pod by selecting your app, then clicking the name of the Pod under **Pods**.
-3. Click on **View Logs** next to your Pods to see streaming logs from your running application. If you're still generating traffic, you should see log messages for every request being made.
+2. Navigate to your Pod by selecting your app.
+3. Click on **View Logs** next to the name of the Pod under **Pods** to see streaming logs from your running application. If you're still generating traffic, you should see log messages for every request being made.
 
    ![Pod Logs](images/solution55-openshift-microservices/ocp45-pod-logs.png)
 
@@ -287,13 +314,11 @@ Red Hat {{site.data.keyword.openshiftshort}} on IBM Cloud comes with [Grafana](h
 
 1. Get started by switching from the **Developer** perspective to the **Administrator** perspective:
 2. Navigate to **Monitoring > Dashboards** in the left-hand bar. You can either view the dashboard inline or by clicking **Grafana UI** to launch the dashboard in a new tab.
-   - If inline, select **Kubernetes / Compute Resources / Namespace (Pods)** from the dropdown (initially set to etcd) and Namespace to **example-health**
+   - If inline, select **Kubernetes / Compute Resources / Namespace (Pods)** from the dropdown and Namespace to **example-health**
    - If you have clicked **Grafana UI** link, You'll be asked to login with {{site.data.keyword.openshiftshort}} and then click through some permissions.You should then see your Grafana dashboard. Hit **Home** on the top left, click on **Default** and choose **Kubernetes / Compute Resources / Namespace (Pods)**. For the **Namespace** field, choose `example-health` which is the name of the project your app resides in.
 3. Notice the CPU and Memory usage for your application. In production environments, this is helpful for identifying the average amount of CPU or Memory your application uses, especially as it can fluctuate through the day.  Auto-scaling is one way to handle fluctuations and will be demonstrated a little later.
-   <p style="width: 50%;">
-
    ![Grafana CPU view](images/solution55-openshift-microservices/ocp45-grafana-cpu.png)
-   </p>
+   
 
 ### Prometheus
 {: #openshift-microservices-15}
@@ -311,12 +336,11 @@ Navigating back to the {{site.data.keyword.openshiftshort}} console, you can als
    ```
    sum(container_cpu_usage_seconds_total{container="patient-health-frontend"})
    ```
-   {:codeblock}
-4. Click on the **Graph** tab.  Run the traffic generator script on for a while and then stop it.  Note that the times are GMT:
-   <p style="width: 50%;">
+   {: codeblock}
 
+4. Click on the **Graph** tab.  Run the traffic generator script on for a while and then stop it.  Note that the times are GMT:
    ![Prometheus Graph](images/solution55-openshift-microservices/prometheus-01-ocp45.png)
-   </p>
+
 5. There is a lot more to investigate with Prometheus, but instead the fully managed {{site.data.keyword.mon_short}} service will be covered later.
 
 ## Scaling the application
@@ -335,7 +359,7 @@ Grafana earlier showed you that the load was consuming anywhere between ".002" t
 1. Make sure the script to generate traffic is running. 
 1. Switch to the **Administrator** perspective and then navigate to **Workloads > Deployment Configs** in the left-hand bar. Choose the `patient-health-frontend` Deployment Configs, then choose **Actions menu (three vertical dots) > Edit Deployment Config**.
    ![Deployments](images/solution55-openshift-microservices/ocp45-deployments.png)
-2. In the YAML editor, find the section **spec > template > spec > containers** (not **spec > strategies**), add the following resource limits into the empty resources. Replace the `resources {}`, and ensure the spacing is correct -- YAML uses strict indentation.
+2. In the YAML editor, find the section **spec > template > spec > containers**, add the following resource limits into the empty resources. Replace the `resources {}`, and ensure the spacing is correct -- YAML uses strict indentation.
 
    ```yaml
              resources:
@@ -346,7 +370,8 @@ Grafana earlier showed you that the load was consuming anywhere between ".002" t
                  cpu: 3m
                  memory: 40Mi
    ```
-   {:codeblock}
+   {: codeblock}
+
    Here is a snippet after you have made the changes:
    ```yaml
           ports:
@@ -399,7 +424,8 @@ By default, the autoscaler allows you to scale based on CPU or Memory. Pods are 
              averageUtilization: 1
              type: Utilization
    ```
-   {:codeblock}
+   {: codeblock}
+
 2. Click **Create**.
 
 ### Test Autoscaler
@@ -407,15 +433,12 @@ By default, the autoscaler allows you to scale based on CPU or Memory. Pods are 
 
 If you're not running the script to simulate load, the number of pods should stay at 1.
 
-1. Check by opening the **Overview** page of the deployment config.  Click **Workloads** > **Deployment Config** and click **patient-health-frontend** and make sure the **Details** panel is selected.
+1. Check by opening the **Overview** page of the deployment config.  Click **Workloads** > **DeploymentConfigs** and click **patient-health-frontend** and make sure the **Details** panel is selected.
 2. Start simulating load (see previous section to simulate load on the application).
-   <p style="width: 50%;">
-
    ![Scaled to 4/10 pods](images/solution55-openshift-microservices/ocp-hpa-after.png)
-   </p>
-
+   
    It can take a few minutes for the autoscaler to make adjustments.
-   {:note}
+   {: note}
 
 That's it! You now have a highly available and automatically scaled front-end Node.js application. {{site.data.keyword.openshiftshort}} is automatically scaling your application pods since the CPU usage of the pods greatly exceeded `1`% of the resource limit, `30` millicores.
 
@@ -428,22 +451,26 @@ You can also can delete and create resources like autoscalars with the command l
    ```
    oc project example-health
    ```
-   {:pre}
+   {: pre}
+
 1. Get the autoscaler that was created earlier:
    ```
    oc get hpa
    ```
-   {:pre}
+   {: pre}
+
 1. Delete the autoscaler made earlier:
    ```
    oc delete hpa/patient-hpa
    ```
-   {:pre}
+   {: pre}
+
 1. Create a new autoscaler with a max of 9 pods:
    ```
    oc autoscale deploymentconfig/patient-health-frontend --name patient-hpa --min 1 --max 9 --cpu-percent=1
    ```
-   {:pre}
+   {: pre}
+
 2. Revisit the **Workloads > Deployment Configs** Details page for `patient-health-frontend` deployment and watch it work.
 
 ## Using the IBM Cloud Operator to create a Cloudant DB
@@ -475,10 +502,10 @@ An API key with the appropriate permissions to create a {{site.data.keyword.clou
    ```sh
    ibmcloud target -g <resource_group> -r <region>
    ```
-   {:pre}
+   {: pre}
 
    To see the the resource groups in your account, run `ibmcloud resource groups` command
-   {:tip}
+   {: tip}
 
 2. Verify that it looks something like this.  CF API endpoint, Org and Space can be empty, Resource group matches your cluster:
    ```sh
@@ -501,7 +528,7 @@ An API key with the appropriate permissions to create a {{site.data.keyword.clou
    ```sh
    curl -sL https://raw.githubusercontent.com/IBM/cloud-operators/master/hack/configure-operator.sh | bash
    ```
-   {:pre}
+   {: pre}
 
 4. Back in the {{site.data.keyword.openshiftshort}} web console, click the **Create Service** under the **Service** tab on the **Installed Operators** of the **IBM Cloud Operator** page and select **YAML view** to bring up the yaml editor.
 5. Make the suggested substitutions where the serviceClass is **cloudantnosqldb** and the plan can be **lite** or **standard** (only one lite plan is allowed per account). Replace `<your-initials>`:
@@ -517,7 +544,8 @@ An API key with the appropriate permissions to create a {{site.data.keyword.clou
      serviceClass: cloudantnosqldb
      plan: standard
    ```
-   {:codeblock}
+   {: codeblock}
+
 6. Click **Create** to create a {{site.data.keyword.cloudant_short_notm}} database instance.
    Your context should be **Operators** > **Installed Operators**  > **IBM Cloud Operator** in the **Administrator** perspective with Project: example-health in the **Service** panel.
 7. Click on the service just created, **&lt;your-initials&gt;-cloudant-service** and over time the **State** field will change from **provisioning** to **Online** meaning it is good to go.
@@ -531,13 +559,14 @@ An API key with the appropriate permissions to create a {{site.data.keyword.clou
    spec:
      serviceName: <your-initials>-cloudant-service
    ```
-   {:codeblock}
+   {: codeblock}
+
 9. Optionally dig a little deeper to understand the relationship between the {{site.data.keyword.openshiftshort}} resources: **Service**, service **Binding**, binding **Secret** and the {{site.data.keyword.cloud_notm}} resources: **Service**, service **Instance** and the instance's **Service credentials**. Using the cloud shell:
 
    ```sh
    ibmcloud resource service-instances --service-name cloudantnosqldb
    ```
-   {:pre}
+   {: pre}
 
    ```
    YOURINITIALS=<your-initials>
@@ -546,13 +575,12 @@ An API key with the appropriate permissions to create a {{site.data.keyword.clou
    ```sh
    ibmcloud resource service-instance $YOURINITIALS-cloudant-service
    ```
-   {:pre}
+   {: pre}
 
    ```sh
    ibmcloud resource service-keys --instance-name $YOURINITIALS-cloudant-service --output json
    ```
-   {:pre}
-
+   {: pre}
 
    Output looks something like this:
    ```
@@ -582,6 +610,7 @@ An API key with the appropriate permissions to create a {{site.data.keyword.clou
                        Status       create succeeded
                        Message      Provisioning is complete
                        Updated At   2020-05-06 22:40:03.04469305 +0000 UTC
+
    youyou@cloudshell:~$ ibmcloud resource service-keys --instance-name $YOURINITIALS-cloudant-service --output json
    [
        {
@@ -624,12 +653,14 @@ Now you'll create the Node.js app that will populate your Cloudant DB with patie
    ```sh
    oc project example-health
    ```
-   {:pre}
+   {: pre}
+
 1. The following new-app commmand will make a build configuration and Deployment Configuration.  The following demonstrates the CLI invocation of the add application (remember using the GUI console for the frontend):
    ```sh
    oc new-app --name=patient-health-backend --as-deployment-config centos/nodejs-10-centos7~https://github.com/IBM-Cloud/patient-health-backend
    ```
-   {:pre}
+   {: pre}
+
 3. Back in the console, and in the **Topology** view of the **Developer** perspective, open the **patient-health-backend** app and wait for the build to complete. Notice that the **Pod** is failing to start.  Click on the **Pod** logs to see:
    ```
    > node app.js
@@ -657,7 +688,7 @@ The `patient-health-frontend` application has an environment variable for the ba
    ```
    oc describe dc/patient-health-backend
    ```
-   {:pre}
+   {: pre}
 
 Your application is now backed by the mock patient data in the Cloudant DB! You can log-in using any user-id/password in the Cloudant DB, for example "**opall:opall**".
 
@@ -672,19 +703,19 @@ It can take a few minutes for logging and metric data to flow through the analys
 
 
 
-1. Navigate to [{{site.data.keyword.openshiftshort}} clusters](https://{DomainName}/kubernetes/clusters?platformType=openshift) and notice the {{site.data.keyword.openshiftshort}} clusters
+1. Navigate to [{{site.data.keyword.openshiftshort}} clusters](https://{DomainName}/kubernetes/clusters?platformType=openshift)
 2. Click on your cluster and verify the **Overview** tab on the left is selected
 3. Click the Logging **Connect** button.  Use an existing {{site.data.keyword.la_short}} instance or create a new instance as shown below:
-   1. Click **Create and connect**.
-   2. Select a region where your cluster is created.
+   1. Click **Create an instance**.
+   2. Select same location as to where your cluster is created.
    3. Select **7 day Log Search** as your plan.
-   4. Create a unique **Service name** such as `<your-initials>-logging`.
+   4. Enter a unique **Service name** such as `<your-initials>-logging`.
    5. Use the resource group associated with your cluster and click **Create**.
 4. Back on the cluster **Overview** tab, click the Monitoring **Connect** button. Use an existing {{site.data.keyword.mon_short}} instance or create a new instance as shown below:
-   1. Click **Create and connect**.
-   2. Select a region where your cluster is created.
+   1. Click **Create an instance**.
+   2. Select the same location as to where your cluster is created.
    3. Select **Graduated Tier** as your plan.
-   4. Create a unique **Service name** such as `<your-initials>-monitoring`.
+   4. Enter a unique **Service name** such as `<your-initials>-monitoring`.
    5. Use the resource group associated with your cluster.
    6. Leave IBM platform metrics to Disable and click **Create**.
 
@@ -695,7 +726,7 @@ It can take a few minutes for logging and metric data to flow through the analys
 {{site.data.keyword.la_full_notm}} is a cloud native service that you can include as part of your IBM Cloud architecture to add log management capabilities. You can use {{site.data.keyword.la_short}} to manage system and application logs in IBM Cloud. [Learn more](https://{DomainName}/docs/Log-Analysis-with-LogDNA?topic=Log-Analysis-with-LogDNA-getting-started).
 
 This section of the tutorial goes deep into the IBM logging service.  You can stop this section at any time and successfully begin the next section.
-{:note}
+{: note}
 
 ### Verify that the {{site.data.keyword.la_short}} agent is deployed successfully
 {: #openshift-microservices-28}
@@ -704,7 +735,7 @@ Verify that the `{{site.data.keyword.la_short}}-agent` pods on each node are in 
 ```sh
 oc get pods -n ibm-observe
 ```
-{:pre}
+{: pre}
 
 The deployment is successful when you see one or more {{site.data.keyword.la_short}} pods:
 ```
@@ -725,7 +756,8 @@ To check the logs that are generated by a {{site.data.keyword.la_short}} agent, 
    ```sh
    oc logs logdna-agent-<ID> -n ibm-observe
    ```
-   {:pre}
+   {: pre}
+
    Where *ID* is the ID for a {{site.data.keyword.la_short}} agent pod.
 
 For example,
@@ -738,7 +770,7 @@ For example,
 
 Launch the web UI within the context of a {{site.data.keyword.la_short}} instance, from the IBM Cloud UI.
 
-1. Navigate to [{{site.data.keyword.openshiftshort}} clusters](https://{DomainName}/kubernetes/clusters?platformType=openshift) and notice the {{site.data.keyword.openshiftshort}} clusters
+1. Navigate to [{{site.data.keyword.openshiftshort}} clusters](https://{DomainName}/kubernetes/clusters?platformType=openshift)
 2. Click on your cluster and verify the **Overview** tab on the left is selected
 3. Next to **Logging**, click the **Launch** button.
 
@@ -751,10 +783,45 @@ In {{site.data.keyword.la_short}}, you can configure custom views to monitor a s
 
 In the {{site.data.keyword.la_short}} web UI notice the log entries are displayed with a predefined format. You can modify in the **User Preferences** section how the information in each log line is displayed. You can also filter logs and modify search settings, then bookmark the result as a _view_. You can attach and detach one or more alerts to a view. You can define a custom format for how your lines are shown in the view. You can expand a log line and see the data parsed.
 
+### Simulate Load on the Application
+{: #openshift-microservices-46}
+
+With the application now connected to a database for its data, to simulate load we will generate requests to the database using a patient id that we added to the database `ef5335dd-db17-491e-8150-20ce24712b06`.
+
+1. Make sure you're connected to the project where you deployed your app.
+   ```sh
+   oc project example-health
+   ```
+   {: pre}
+
+1. Define a variable with the host:
+   ```sh
+   HOST=$(oc get routes -o json | jq -r '.items[0].spec.host')
+   ```
+   {: pre}
+
+1. Verify access to the application. It outputs patient information:
+   ```sh
+   curl -s http://$HOST/info?id=ef5335dd-db17-491e-8150-20ce24712b06
+   ```
+   {: pre}
+
+   Output should look like:
+   ```
+   $ curl http://$HOST/info?id=ef5335dd-db17-491e-8150-20ce24712b06
+   {"personal":{"name":"Opal Larkin","age":22,"street":"805 Bosco Vale","city":"Lincoln","zipcode":"68336"},"medications":["Cefaclor ","Amoxicillin ","Ibuprofen ","Trinessa ","Mirena ","Naproxen sodium "],"appointments":["2009-01-29 10:46 - GENERAL PRACTICE","1999-07-01 10:46 - GENERAL PRACTICE","2001-12-27 10:46 - GENERAL PRACTICE","2005-01-06 10:46 - GENERAL PRACTICE","2004-01-01 10:46 - GENERAL PRACTICE","1999-09-30 10:46 - GENERAL PRACTICE","2018-10-29 10:46 - GENERAL PRACTICE","2012-02-16 10:46 - GENERAL PRACTICE","2015-11-23 10:46 - GENERAL PRACTICE","2000-03-30 10:46 - GENERAL PRACTICE","1999-04-29 10:46 - GENERAL PRACTICE","2015-01-07 10:46 - GENERAL PRACTICE","1999-02-25 10:46 - GENERAL PRACTICE","2010-07-23 10:46 - GENERAL PRACTICE","2008-01-24 10:46 - GENERAL PRACTICE","2004-05-24 10:46 - GENERAL PRACTICE","1999-01-21 10:46 - GENERAL PRACTICE","2015-03-05 10:46 - GENERAL PRACTICE","2002-06-27 10:46 - GENERAL PRACTICE","2000-06-29 10:46 - GENERAL PRACTICE","2005-01-06 10:46 - GENERAL PRACTICE","2015-01-10 10:46 - GENERAL PRACTICE","2000-12-28 10:46 - GENERAL PRACTICE","2016-06-02 10:46 - GENERAL PRACTICE","2016-03-10 10:46 - GENERAL PRACTICE","2013-09-08 10:46 - GENERAL PRACTICE","2011-02-10 10:46 - GENERAL PRACTICE","2013-02-21 10:46 - GENERAL PRACTICE","2003-04-30 10:46 - GENERAL PRACTICE","2004-07-23 10:46 - GENERAL PRACTICE","2006-01-12 10:46 - GENERAL PRACTICE","2002-12-26 10:46 - GENERAL PRACTICE","1999-12-30 10:46 - GENERAL PRACTICE","2017-01-04 10:46 - GENERAL PRACTICE","2018-03-22 10:46 - GENERAL PRACTICE","2010-02-04 10:46 - GENERAL PRACTICE","2009-11-29 10:46 - GENERAL PRACTICE","2013-02-26 10:46 - GENERAL PRACTICE","2003-02-04 10:46 - GENERAL PRACTICE","2003-03-01 10:46 - GENERAL PRACTICE","2000-04-15 10:46 - GENERAL PRACTICE","2001-06-28 10:46 - GENERAL PRACTICE","2007-01-18 10:46 - GENERAL PRACTICE","2018-08-30 10:46 - GENERAL PRACTICE","2017-03-16 10:46 - GENERAL PRACTICE","2014-02-27 10:46 - GENERAL PRACTICE","2000-09-27 10:46 - GENERAL PRACTICE"]}
+   ```
+1. Run the following script which will endlessly send requests to the application and generates traffic:
+   ```bash
+   while sleep 0.2; do curl --max-time 2 -s http://$HOST/info?id=ef5335dd-db17-491e-8150-20ce24712b06 >/dev/null; done
+   ```
+   {: pre}
+
+   To stop the script, hit `CTRL + c` on your keyboard
+   {: tip}
+
 ### View events with the default format
 {: #openshift-microservices-31}
-
-Generate load on the application with the `curl` loop used earlier.
 
 1. In the {{site.data.keyword.la_short}} web UI, click the **Views** icon ![Views icon](images/solution55-openshift-microservices/views.png).
 2. Select **Everything** to see all the events.  It can take a few minutes for the load on the application to be visible.
@@ -775,20 +842,19 @@ In the **USER PREFERENCES** section, you can modify the order of the data fields
 ### Create a custom view to monitor logs
 {: #openshift-microservices-33}
 
-You can select the events that are displayed through a view by applying a search query in the search bar, selecting values in the search area, or a combination of both. You can save that view for reuse later.
+You can select the events that are displayed through a view by applying a search query in the search bar, selecting values in the search area, or a combination of both. You can save that view for reuse later. 
 
-1. In the {{site.data.keyword.la_short}} web UI, filter out the logs for the sample app that you have deployed in the cluster in previous steps.
-2. Click in the search bar at the bottom and enter the following query: `app:patient-health-frontend`.
-3. Filter out log lines to display only lines that are tagged as debug lines.
-   Add in the search bar the following query: `level:debug` and click enter. The view will show lines that meet the filter and search criteria.
+1. In the {{site.data.keyword.la_short}} web UI, filter out the logs for the sample app that you have deployed in the cluster in previous steps. Click in the search bar at the bottom and enter the following query: `app:patient-health-frontend`.
+2. Filter out log lines to display only lines that are tagged as debug lines.
+   Add in the search bar the following query: `level:debug` and hit enter. The view will show lines that meet the filter and search criteria.
 
    ![View Debug Logs](images/solution55-openshift-microservices/views-img3.png)
-4. Click **Unsaved view**. Select **Save view**.
+3. Click **Unsaved view**. Select **Save as new view**.
    ![Save View](images/solution55-openshift-microservices/views-img-6.png)
    1. Enter the name of the view. Use the following format: `<Enter your user name> patientUI`. For example, `yourname patientui`.
    1. Enter a category. Use the following format: `<Enter your user name>`. For example, `yourname` Then click **Add this as a new view category**.
    1. Click **Save view**.
-5. A new view appears on the left navigation panel.
+4. A new view appears on the left navigation panel.
 
 #### Generate application log data
 {: #openshift-microservices-34}
@@ -848,7 +914,7 @@ You might get the error message: `Your request is taking longer than expected`, 
 You can create a dashboard to monitor your app graphically through interactive graphs. For example, you can use graphs to analyze patterns and trends over a period of time.
 
 Index fields are created on a regular schedule.   Currently it is done at 00:01 UTC (midnight). The following steps that require fields will not be possible until this process completes.
-{:note}
+{: note}
 
 Complete the following steps to create a dashboard to monitor logs from the lab's sample app:
 
@@ -926,11 +992,12 @@ Complete the following steps to create a dashboard to monitor logs from the lab'
 5. Drag the table to improve the presentation.  Verify the screen resembles the following:
     ![Another widget](images/solution55-openshift-microservices/screen-img-15.png)
 6. Save the screen. Select **Save Screen**.
+
    If you do not save the screen, you lose all your widgets.
-   {:important}
+   {: important}
 
 Find more about {{site.data.keyword.la_short}} in the [IBM Cloud documentation](https://{DomainName}/docs/Log-Analysis-with-LogDNA/index.html#getting-started).
-{:note}
+{: note}
 
 ## Configure {{site.data.keyword.mon_short}}
 {: #openshift-microservices-configure-sysdig}
@@ -948,7 +1015,7 @@ Run the following command:
 ```sh
 oc get pods -n ibm-observe
 ```
-{:pre}
+{: pre}
 
 Example output:
 ```
@@ -991,16 +1058,16 @@ Initial data may NOT be available on newly created **Monitoring** instances.
 - After a few minutes, raw data will be displayed
 - After about an hour, indexing will provides the detail required to proceed with this tutorial
 
-1. Under the **EXPLORE** section,select **Containerized Apps** to view raw metrics for all workloads running on the cluster.
+1. Under the **Explore** section,select **Hosts & Containers** to view raw metrics for all workloads running on the cluster.
 
-   If the drop down is not fully populated and indicates some inapplicable items double check that you have chosen **EXPLORE** on the upper left and clicked on the **Hosts & Containers** drop down.  If so you will need to wait until the indexing step mentioned above is complete before continuing
-   {:note}
+   If the drop down is not fully populated and indicates some inapplicable items double check that you have chosen **Explore** on the upper left and clicked on the **Hosts & Containers** drop down.  If so you will need to wait until the indexing step mentioned above is complete before continuing
+   {: note}
 
    ![Hosts and Containers](images/solution55-openshift-microservices/sysdig-select-app.png)
-3. Under **EXPLORE**, select **Nodes**, search `patient-health-frontend` in the **Search environment**. Look for the patient-health-frontend pod entry by navigating through the cluster and Node IPs. You may have to select **Overview by Host** (under Troubleshooting Views > Hosts & Containers) from the Top dropdown
+3. Under **Explore**, select **Nodes**, search `patient-health-frontend` in the **Search environment**. Look for the patient-health-frontend pod entry by navigating through the cluster and Node IPs. You may have to select **Overview by Host** (under Troubleshooting Views > Hosts & Containers) from the Top dropdown
    ![Explore Nodes](images/solution55-openshift-microservices/sysdig-explore-node.png)
-4. Under **DASHBOARD** on the left pane, expand **Applications** in **Dashboard Templates**. Then select **HTTP** to get a global view of the cluster HTTP load.
-1. From the **EXPLORE** tab, select **Deployments**.
+4. Under **Dashboards** on the left pane, expand **Applications** in **Dashboard Templates**. Then select **HTTP** to get a global view of the cluster HTTP load.
+1. From the **Explore** tab, select **Deployments**.
 2. Search for `example-health` namespace.
 3. Select the `patient-health-frontend` to select all pods for the frontend.
    ![Overview by Host](images/solution55-openshift-microservices/explore-img-9.png)
@@ -1008,10 +1075,11 @@ Initial data may NOT be available on newly created **Monitoring** instances.
 ### Explore the cluster and the node capacity
 {: #openshift-microservices-44}
 
-5. Select **DASHBOARD**, check out the two dashboard templates:
+1. Select **Dashboards**, check out the two dashboard templates:
    * **Containers > Container Resource Usage**
    * **Host Infrastructure > Host Resource Usage**
-5. Select the **Kubernetes > Kubernetes Cluster and Node Capacity** template:
+
+2. Select the **Kubernetes > Kubernetes Cluster and Node Capacity** template:
    - Check the **CPU Capacity**. This is the CPU capacity that has been reserved for the node including system daemons
    - Check the **Allocatable CPU**. This is the CPU which is available for pods excluding system daemons
    - Check the **CPU Limits (for all pods)**. It should be less than the allocatable CPU of the node or cluster
@@ -1021,7 +1089,7 @@ Initial data may NOT be available on newly created **Monitoring** instances.
 ### Explore the Network
 {: #openshift-microservices-45}
 
-1. Select **DASHBOARD** and the template **Host Infrastructure > Network Traffic & Bandwidth**.
+1. Select **Dashboards** and the template **Host Infrastructure > Network Traffic & Bandwidth**.
 
    The following dashboard is displayed. It shows information about all resources that are monitored through the instance.
 
@@ -1052,7 +1120,7 @@ In the [Resource List](https://{DomainName}/resources) locate and delete the res
    oc delete all --all --namespace example-health
    oc delete project/example-health
    ```
-   {:pre}
+   {: pre}
 * Delete {{site.data.keyword.la_short}} instance
 * Delete {{site.data.keyword.mon_full_notm}}
 * Delete {{site.data.keyword.cloudant_short_notm}} and bind to a microservice

@@ -2,7 +2,7 @@
 subcollection: solution-tutorials
 copyright:
   years: 2017, 2018, 2019, 2020, 2021
-lastupdated: "2021-02-18"
+lastupdated: "2021-08-11"
 lasttested: "2020-12-17"
 
 ---
@@ -26,7 +26,7 @@ lasttested: "2020-12-17"
 Solution tutorials provide step-by-step instructions on how to use IBM Cloud to implement common patterns based on best practices and proven technologies.
 
 Before going through the tutorials collection, this guide will help you set up your development environment to successfully follow the instructions of the guides found in this collection.
-{:shortdesc}
+{: shortdesc}
 
 ## Objectives
 {: #getting-started-objectives}
@@ -43,7 +43,7 @@ Install must-have tools to be productive with {{site.data.keyword.cloud_notm}}:
 * **Git** - a free and open source distributed version control system.
 
 To avoid the installation of these tools, you can also use the [{{site.data.keyword.cloud-shell_short}}](https://{DomainName}/shell) from the {{site.data.keyword.cloud_notm}} console.
-{:tip}
+{: tip}
 
 ## Microsoft Windows
 {: #getting-started-windows}
@@ -55,13 +55,14 @@ The following sections assume you are running Microsoft Windows 10 64-bit under 
 
 1. Download and install the {{site.data.keyword.cloud_notm}} CLI from https://github.com/IBM-Cloud/ibm-cloud-cli-release/releases/latest.
 2. Verify the installation with:
+
    ```sh
    ibmcloud version
    ```
-   {:pre}
+   {: pre}
 
    You may need to restart your machine after the installation.
-   {:tip}
+   {: tip}
 
 ### Docker
 {: #getting-started-windows_docker}
@@ -69,14 +70,15 @@ The following sections assume you are running Microsoft Windows 10 64-bit under 
 1. If you don't have one, sign up for a free account at https://hub.docker.com/signup.
 1. Download and install Docker Desktop on Windows from https://docs.docker.com/docker-for-windows/install/.
 1. Verify the installation with:
+
    ```sh
    docker --version
    docker run hello-world
    ```
-   {:pre}
+   {: pre}
 
    You may need to log out and wait for the Docker daemon to be started.
-   {:tip}
+   {: tip}
 
 ### kubectl
 {: #getting-started-windows_kubectl}
@@ -87,7 +89,7 @@ The following sections assume you are running Microsoft Windows 10 64-bit under 
    ```sh
    kubectl version --client=true
    ```
-   {:pre}
+   {: pre}
 
 ### oc
 {: #getting-started-windows_oc}
@@ -95,14 +97,14 @@ The following sections assume you are running Microsoft Windows 10 64-bit under 
 1. Download the latest 4.x OpenShift CLI (`oc`) from https://mirror.openshift.com/pub/openshift-v4/x86_64/clients/ocp/stable-4.6/.
 
    Replace `4.6` in the URL with the version number you wish to install
-   {:tip}
+   {: tip}
 
 1. Move `oc.exe` binary to your PATH.
 1. Verify the installation with:
    ```sh
    oc version
    ```
-   {:pre}
+   {: pre}
 
 ### Helm 3
 {: #getting-started-windows_helm}
@@ -114,7 +116,7 @@ The following sections assume you are running Microsoft Windows 10 64-bit under 
    ```sh
    helm version
    ```
-   {:pre}
+   {: pre}
 
 ### Terraform
 {: #getting-started-windows_terraform}
@@ -126,7 +128,7 @@ The following sections assume you are running Microsoft Windows 10 64-bit under 
    ```sh
    terraform version
    ```
-   {:pre}
+   {: pre}
 
 To manage {{site.data.keyword.cloud_notm}} resources with Terraform, you also need to install the {{site.data.keyword.cloud_notm}} Provider. Starting with Terraform 0.13, the provider can be automatically downloaded from Terraform plugin registry. Follow the instructions in the [provider documentation](https://{DomainName}/docs/terraform?topic=terraform-setup_cli#install_cli) to configure the `required_providers` property in your Terraform templates.
 
@@ -140,7 +142,7 @@ To manage {{site.data.keyword.cloud_notm}} resources with Terraform, you also ne
    ```sh
    jq --version
    ```
-   {:pre}
+   {: pre}
 
 ### Git
 {: #getting-started-windows_git}
@@ -150,7 +152,7 @@ To manage {{site.data.keyword.cloud_notm}} resources with Terraform, you also ne
    ```sh
    git --version
    ```
-   {:pre}
+   {: pre}
 
 Proceed to the configuration [common to all operating systems](#getting-started-common).
 
@@ -167,7 +169,7 @@ The following sections assume you are running macOS High Sierra or later under a
    ```sh
    ibmcloud version
    ```
-   {:pre}
+   {: pre}
 
 ### Docker
 {: #getting-started-macos_docker}
@@ -179,7 +181,7 @@ The following sections assume you are running macOS High Sierra or later under a
    docker --version
    docker run hello-world
    ```
-   {:pre}
+   {: pre}
 
 ### kubectl
 {: #getting-started-macos_kubectl}
@@ -189,17 +191,19 @@ The following sections assume you are running macOS High Sierra or later under a
    ```sh
    chmod +x ./kubectl
    ```
-   {:pre}
+   {: pre}
+
 1. Move the binary to your PATH.
    ```sh
    sudo mv ./kubectl /usr/local/bin/kubectl
    ```
-   {:pre}
+   {: pre}
+
 1. Verify the installation with:
    ```sh
    kubectl version --client=true
    ```
-   {:pre}
+   {: pre}
 
 ### oc
 {: #getting-started-macos_oc}
@@ -207,26 +211,28 @@ The following sections assume you are running macOS High Sierra or later under a
 1. Download the latest 4.x OpenShift CLI (`oc`) from https://mirror.openshift.com/pub/openshift-v4/x86_64/clients/ocp/stable-4.6/.
 
    Replace `4.6` in the URL with the version number you wish to install
-   {:tip}
+   {: tip}
 
 2. Extract `openshift-client-mac.tar.gz`:
    ```sh
    tar zxvf openshift-client-mac.tar.gz
    ```
-   {:pre}
+   {: pre}
+
 3. Move the `oc` binary to your PATH.
    ```sh
    sudo mv ./oc /usr/local/bin/oc
    ```
-   {:pre}
+   {: pre}
+
 4. Verify the installation with:
    ```sh
    oc version
    ```
-   {:pre}
+   {: pre}
 
    macOS Catalina may prompt you with a message saying the developer cannot be verified. To allow `oc` to be executed anyway, run `sudo xattr -r -d com.apple.quarantine /usr/local/bin/oc`.
-   {:tip}
+   {: tip}
 
 ### Helm 3
 {: #getting-started-macos_helm}
@@ -237,15 +243,16 @@ The following sections assume you are running macOS High Sierra or later under a
    ```sh
    sudo mv ./darwin-amd64/helm /usr/local/bin/helm
    ```
-   {:pre}
+   {: pre}
+
 1. Verify the installation with:
    ```sh
    helm version
    ```
-   {:pre}
+   {: pre}
 
    macOS Catalina may prompt you with a message saying the developer cannot be verified. To allow `helm` to be executed anyway, run `sudo xattr -r -d com.apple.quarantine /usr/local/bin/helm`.
-   {:tip}
+   {: tip}
 
 ### Terraform
 {: #getting-started-macos_terraform}
@@ -256,12 +263,13 @@ The following sections assume you are running macOS High Sierra or later under a
    ```sh
    sudo mv ./terraform /usr/local/bin/terraform
    ```
-   {:pre}
+   {: pre}
+
 1. Verify the installation with:
    ```sh
    terraform version
    ```
-   {:pre}
+   {: pre}
 
 To manage {{site.data.keyword.cloud_notm}} resources with Terraform, you also need to install the {{site.data.keyword.cloud_notm}} Provider. Starting with Terraform 0.13, the provider can be automatically downloaded from Terraform plugin registry. Follow the instructions in the [provider documentation](https://{DomainName}/docs/terraform?topic=terraform-setup_cli#install_cli) to configure the `required_providers` property in your Terraform templates.
 
@@ -274,12 +282,13 @@ To manage {{site.data.keyword.cloud_notm}} resources with Terraform, you also ne
    ```sh
    sudo mv ./jq /usr/local/bin/jq
    ```
-   {:pre}
+   {: pre}
+
 1. Verify the installation with:
    ```sh
    jq --version
    ```
-   {:pre}
+   {: pre}
 
 ### Git
 {: #getting-started-macos_git}
@@ -288,10 +297,10 @@ To manage {{site.data.keyword.cloud_notm}} resources with Terraform, you also ne
    ```sh
    git --version
    ```
-   {:pre}
+   {: pre}
 
    macOS may prompt you to install the developer tools. These tools include the `git` command line.
-   {:tip}
+   {: tip}
 
 Proceed to the configuration [common to all operating systems](#getting-started-common).
 
@@ -308,7 +317,7 @@ The following sections assume you are running Ubuntu Linux as non-root user with
    ```sh
    ibmcloud version
    ```
-   {:pre}
+   {: pre}
 
 ### Docker
 {: #getting-started-ubuntu_docker}
@@ -320,10 +329,10 @@ The following sections assume you are running Ubuntu Linux as non-root user with
    docker --version
    sudo docker run hello-world
    ```
-   {:pre}
+   {: pre}
 
    To run Docker under your own user instead of root, perfom the [post install](https://docs.docker.com/install/linux/linux-postinstall/) steps.
-   {:tip}
+   {: tip}
 
 ### kubectl
 {: #getting-started-ubuntu_kubectl}
@@ -333,17 +342,19 @@ The following sections assume you are running Ubuntu Linux as non-root user with
    ```sh
    chmod +x ./kubectl
    ```
-   {:pre}
+   {: pre}
+
 1. Move the binary to your PATH.
    ```sh
    sudo mv ./kubectl /usr/local/bin/kubectl
    ```
-   {:pre}
+   {: pre}
+
 1. Verify the installation with:
    ```sh
    kubectl version --client=true
    ```
-   {:pre}
+   {: pre}
 
 ### oc
 {: #getting-started-ubuntu_oc}
@@ -351,23 +362,25 @@ The following sections assume you are running Ubuntu Linux as non-root user with
 1. Download the latest 4.x OpenShift CLI (`oc`) from https://mirror.openshift.com/pub/openshift-v4/x86_64/clients/ocp/stable-4.6/.
 
    Replace `4.6` in the URL with the version number you wish to install
-   {:tip}
+   {: tip}
 
 1. Extract `openshift-client-linux.tar.gz`:
    ```sh
    tar zxvf openshift-client-linux.tar.gz
    ```
-   {:pre}
+   {: pre}
+
 1. Move the `oc` binary to your PATH.
    ```sh
    sudo mv ./oc /usr/local/bin/oc
    ```
-   {:pre}
+   {: pre}
+
 1. Verify the installation with:
    ```sh
    oc version
    ```
-   {:pre}
+   {: pre}
 
 ### Helm 3
 {: #getting-started-ubuntu_helm}
@@ -378,12 +391,13 @@ The following sections assume you are running Ubuntu Linux as non-root user with
    ```sh
    sudo mv ./linux-amd64/helm /usr/local/bin/helm
    ```
-   {:pre}
+   {: pre}
+
 1. Verify the installation with:
    ```sh
    helm version
    ```
-   {:pre}
+   {: pre}
 
 ### Terraform
 {: #getting-started-ubuntu_terraform}
@@ -394,12 +408,13 @@ The following sections assume you are running Ubuntu Linux as non-root user with
    ```sh
    sudo mv ./terraform /usr/local/bin/terraform
    ```
-   {:pre}
+   {: pre}
+
 1. Verify the installation with:
    ```sh
    terraform version
    ```
-   {:pre}
+   {: pre}
 
 To manage {{site.data.keyword.cloud_notm}} resources with Terraform, you also need to install the {{site.data.keyword.cloud_notm}} Provider. Starting with Terraform 0.13, the provider can be automatically downloaded from Terraform plugin registry. Follow the instructions in the [provider documentation](https://{DomainName}/docs/terraform?topic=terraform-setup_cli#install_cli) to configure the `required_providers` property in your Terraform templates.
 
@@ -410,12 +425,13 @@ To manage {{site.data.keyword.cloud_notm}} resources with Terraform, you also ne
    ```sh
    sudo apt install jq
    ```
-   {:pre}
+   {: pre}
+
 1. Verify the installation with:
    ```sh
    jq --version
    ```
-   {:pre}
+   {: pre}
 
 ### Git
 {: #getting-started-ubuntu_git}
@@ -424,12 +440,13 @@ To manage {{site.data.keyword.cloud_notm}} resources with Terraform, you also ne
    ```sh
    sudo apt install git
    ```
-   {:pre}
+   {: pre}
+
 1. Verify the installation with:
    ```sh
    git --version
    ```
-   {:pre}
+   {: pre}
 
 Proceed to the configuration [common to all operating systems](#getting-started-common).
 
@@ -451,10 +468,10 @@ Plugins extend the capabilities of the {{site.data.keyword.cloud_notm}} CLI with
    ibmcloud plugin install kubernetes-service
    ibmcloud cf install
    ```
-   {:pre}
+   {: pre}
 
    To see all the available plugins, run `ibmcloud plugin repo-plugins` and to install a plugin `ibmcloud plugin install <PLUGIN_NAME>`
-   {:tip}
+   {: tip}
 
 ### GitHub account
 {: #getting-started-common_github}
@@ -468,7 +485,7 @@ Plugins extend the capabilities of the {{site.data.keyword.cloud_notm}} CLI with
 {{site.data.keyword.cloud_notm}} provides you with hosted Git repositories built on GitLab Community Edition and accessible with the same credentials used to log in {{site.data.keyword.cloud_notm}}. It is recommended to configure your SSH public key to simplify the command line interactions with the Git repositories.
 
 1. [Use these instructions](https://us-south.git.cloud.ibm.com/help/ssh/README#generating-a-new-ssh-key-pair) to generate a new SSH key pair if you don't have one.
-1. [Add your SSH public key](https://us-south.git.cloud.ibm.com/help/gitlab-basics/create-your-ssh-keys) to your Git settings in the region where you plan to host your Git repositories, such as [Dallas (us-south.git.cloud.ibm.com)](https://us-south.git.cloud.ibm.com/profile/keys), [London (eu-gb.git.cloud.ibm.com)](https://eu-gb.git.cloud.ibm.com/profile/keys) or [Frankfurt (eu-de.git.cloud.ibm.com)](https://eu-de.git.cloud.ibm.com/profile/keys).
+1. [Add your SSH public key](https://us-south.git.cloud.ibm.com/help/ssh/README.md#add-an-ssh-key-to-your-gitlab-account) to your Git settings in the region where you plan to host your Git repositories, such as [Dallas (us-south.git.cloud.ibm.com)](https://us-south.git.cloud.ibm.com/profile/keys), [London (eu-gb.git.cloud.ibm.com)](https://eu-gb.git.cloud.ibm.com/profile/keys) or [Frankfurt (eu-de.git.cloud.ibm.com)](https://eu-de.git.cloud.ibm.com/profile/keys).
 
 To verify the configuration:
 1. Create a new private project in GitLab, select the option to initialize the repository with a README.
@@ -487,23 +504,25 @@ Follow these steps if you need to use another version of the OpenShift CLI than 
    ```sh
    curl https://mirror.openshift.com/pub/openshift-v4/x86_64/clients/ocp/stable-4.6/openshift-client-linux.tar.gz --output oc.tar.gz
    ```
-   {:pre}
+   {: pre}
 
    Replace `4.6` in the URL with the version number you wish to update to
-   {:tip}
+   {: tip}
 
 2. Extract `oc.tar.gz`:
    ```sh
    tar zxvf oc.tar.gz
    ```
-   {:pre}
+   {: pre}
+
 3. Add your current directory to `PATH`
    ```sh
    export PATH=$PWD:$PATH
    ```
-   {:pre}
+   {: pre}
+   
 4. Verify the installation with:
    ```sh
    oc version
    ```
-   {:pre}
+   {: pre}
