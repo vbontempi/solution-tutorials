@@ -2,7 +2,7 @@
 subcollection: solution-tutorials
 copyright:
   years: 2017, 2019, 2020, 2021
-lastupdated: "2021-07-02"
+lastupdated: "2021-09-07"
 lasttested: "2021-03-22"
 
 content-type: tutorial
@@ -157,9 +157,19 @@ In this section, you first push the Docker image to the IBM Cloud private contai
    ```
    {: pre}
 
-1. Build, tag (`-t`) and push the docker image to your container registry on IBM Cloud
+1. Login, build, tag (`-t`) and push the docker image to your container registry on IBM Cloud
    ```sh
-   ibmcloud cr build -t $MYREGISTRY/$MYNAMESPACE/$MYPROJECT:v1.0.0 .
+   ibmcloud cr login
+   ```
+   {: pre}
+
+   ```sh
+   docker build -t $MYREGISTRY/$MYNAMESPACE/$MYPROJECT:v1.0.0 .
+   ```
+   {: pre}
+
+   ```sh
+   docker push $MYREGISTRY/$MYNAMESPACE/$MYPROJECT:v1.0.0
    ```
    {: pre}
 
@@ -266,6 +276,7 @@ Use Ingress to set up the cluster inbound connection to the service.
    Ingress secret:    mycluster
    ```
    {: screen}
+
 2. Define environment variables `INGRESS_SUBDOMAIN` and `INGRESS_SECRET` to hold the values 
    ```sh
    export INGRESS_SUBDOMAIN=<INGRESS_SUBDOMAIN_FROM_ABOVE_STEP>
