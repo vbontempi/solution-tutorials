@@ -2,7 +2,7 @@
 subcollection: solution-tutorials
 copyright:
   years: 2018-2021
-lastupdated: "2021-08-24"
+lastupdated: "2021-09-20"
 lasttested: "2021-07-09"
 
 content-type: tutorial
@@ -48,7 +48,7 @@ The tutorial features a sample application that enables groups of users to uploa
 
 This tutorial will work with a Kubernetes cluster running in Classic Infrastructure or VPC Infrastructure.
 
-![Architecture](images/solution34-cloud-e2e-security/architecture_diagram.svg){: class="center"}
+![Architecture](images/solution34-cloud-e2e-security/Architecture.png){: class="center"}
 {: style="text-align: center;"}
 
 
@@ -259,35 +259,6 @@ All services have been configured. In this section you will deploy the tutorial 
    ```
    {: codeblock}
 
-### Build the container image
-{: #cloud-e2e-security-14}
-
-To [build the container image](https://{DomainName}/docs/Registry?topic=Registry-registry_images_#registry_images_creating) in {{site.data.keyword.registryshort_notm}}:
-
-1. Identify your {{site.data.keyword.registryshort_notm}} URL, such as **us**.icr.io or **uk**.icr.io:
-   ```sh
-   ibmcloud cr region
-   ```
-   {: pre}
-   
-2. Pick one of your existing registry namespaces or create a new one. To list existing namespaces, use:
-   ```sh
-   ibmcloud cr namespaces
-   ```
-   {: pre}
-
-   To create a new namespace:
-   ```sh
-   ibmcloud cr namespace-add <your-namespace>
-   ```
-   {: pre}
-
-3. Build the image with a unique name such as **secure-file-storage** :
-   ```sh
-   ibmcloud cr build -t <your-registry-url>/<your-namespace>/<your-image-name>:latest .
-   ```
-   {: codeblock}
-
 ### Fill in credentials and configuration settings
 {: #cloud-e2e-security-15}
 
@@ -318,9 +289,9 @@ To [build the container image](https://{DomainName}/docs/Registry?topic=Registry
       ```
       {: pre}
 
-   3. Set the image repository name e.g., `us.icr.io/namespace/image-name`:
+   3. Set the image repository name e.g., if you are using your private container registry `icr.io/namespace/image-name` or use the pre-built one `ibmcom/tutorial-cloud-e2e-security`:
       ```sh
-      export IMAGE_REPOSITORY=<REGISTRY_NAME>.<NAMESPACE>.<IMAGE_NAME>
+      export IMAGE_REPOSITORY=ibmcom/tutorial-cloud-e2e-security
       ```
       {: pre}
 
@@ -331,7 +302,7 @@ To [build the container image](https://{DomainName}/docs/Registry?topic=Registry
       ```
       {: pre}
 
-   Set `$IMAGE_PULL_SECRET` environment variable only if you are using another Kubernetes namespace than the `default` one. This requires additional Kubernetes configuration (e.g. [creating a container registry secret in the new namespace](https://{DomainName}/docs/containers?topic=containers-registry#other)).
+   Set `$IMAGE_PULL_SECRET` environment variable only if you are using another Kubernetes namespace than the `default` one and the {{site.data.keyword.registryfull_notm}}. This requires additional Kubernetes configuration (e.g. [creating a container registry secret in the new namespace](https://{DomainName}/docs/containers?topic=containers-registry#other)).
    {: tip}
 
 4. Run the below command to generate `secure-file-storage.yaml`. It will use the environment variables you just configured together with the template file `secure-file-storage.template.yaml`.
@@ -345,7 +316,7 @@ To [build the container image](https://{DomainName}/docs/Registry?topic=Registry
 | Variable | Value | Description |
 | -------- | ----- | ----------- |
 | `$IMAGE_PULL_SECRET` | Keep the lines commented in the .yaml | A secret to access the registry.  |
-| `$IMAGE_REPOSITORY` | *us.icr.io/namespace/image-name* | The URL-like identifier for the built image based on the registry URL, namespace and image name from the previous section. |
+| `$IMAGE_REPOSITORY` | *ibmcom/tutorial-cloud-e2e-security* or *icr.io/namespace/image-name* | The URL-like identifier for the built image based on the registry URL, namespace and image name from the previous section. |
 | `$TARGET_NAMESPACE` | *default* | the Kubernetes namespace where the app will be pushed. |
 | `$INGRESS_SUBDOMAIN` | *secure-file-stora-123456.us-south.containers.appdomain.cloud* | Retrieve from the cluster overview page or with `ibmcloud ks cluster get --cluster <your-cluster-name>`. |
 | `$INGRESS_SECRET` | *secure-file-stora-123456* | Retrieve with `ibmcloud ks cluster get --cluster <your-cluster-name>`. |
