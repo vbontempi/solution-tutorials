@@ -1,8 +1,8 @@
 ---
 subcollection: solution-tutorials
 copyright:
-  years: 2018, 2019
-lastupdated: "2021-08-26"
+  years: 2018-2021
+lastupdated: "2021-09-28"
 lasttested: "2019-04-23"
 
 content-type: tutorial
@@ -35,6 +35,7 @@ This tutorial describes the use of **Classic Infrastructure**.  Most workloads c
 
 This tutorial may incur costs. Use the [Cost Estimator](https://{DomainName}/estimator/review) to generate a cost estimate based on your projected usage.
 {: tip}
+
 
 In today’s world of web based IT applications and services, few applications exist in isolation. Developers have come to expect access to services on the Internet, whether it is open-source application code and updates or ‘third party’ services providing application functionality via REST APIs. Network Address Translation (NAT) masquerade, is a commonly used approach to securing the access to Internet hosted service from  private networks. In NAT masquerade, private IP addresses are translated to the IP address of the out-bound public interface in a many-to-one relationship, shielding the private IP address from public view.
 
@@ -81,14 +82,16 @@ Verify if the third party service supports defining a list of allowed source add
 Follow the instructions here to configure external Internet access for hosts in the APP zone using NAT masquerade.
 
 1.	SSH into VRA and enter \[edit\] (config) mode.
+
    ```bash
    SSH vyatta@<VRA Private IP Address>
    configure
    ```
    {: codeblock}
 
-2.	Create the SNAT rules on the VRA, specifying the same `<Subnet Gateway IP>/<CIDR>` as determined for the APP zone subnet/VLAN in the prior VRA provisioning tutorial.
-   ```
+2.	Create the SNAT rules on the VRA, specifying the same &lt;Subnet Gateway IP&gt;/&lt;CIDR&gt; as determined for the APP zone subnet/VLAN in the prior VRA provisioning tutorial.
+
+   ```bash
    set service nat source rule 1000 description 'pass traffic to the Internet'
    set service nat source rule 1000 outbound-interface 'dp0bond1'
    set service nat source rule 1000 source address <Subnet Gateway IP>/<CIDR>
@@ -102,7 +105,8 @@ Follow the instructions here to configure external Internet access for hosts in 
 {: step}
 
 1.	Create firewall rules for APP-TO-OUTSIDE
-   ```
+
+   ```bash
    set security firewall name APP-TO-OUTSIDE default-action drop
    set security firewall name APP-TO-OUTSIDE description 'APP traffic to the Internet'
    set security firewall name APP-TO-OUTSIDE default-log
@@ -122,8 +126,9 @@ Follow the instructions here to configure external Internet access for hosts in 
    ```
    {: codeblock}
 
-1.	Create firewall rules OUTSIDE-TO-APP
-   ```
+2.	Create firewall rules OUTSIDE-TO-APP
+
+   ```bash
    set security firewall name OUTSIDE-TO-APP default-action drop
    set security firewall name OUTSIDE-TO-APP description 'Internet traffic to APP'
    set security firewall name OUTSIDE-TO-APP default-log
@@ -148,7 +153,8 @@ Follow the instructions here to configure external Internet access for hosts in 
 {: step}
 
 1.	Create zone OUTSIDE to control access to the external Internet.
-   ```
+
+   ```bash
    set security zone-policy zone OUTSIDE default-action drop
    set security zone-policy zone OUTSIDE interface dp0bond1
    set security zone-policy zone OUTSIDE description 'External Internet'
@@ -156,14 +162,16 @@ Follow the instructions here to configure external Internet access for hosts in 
    {: codeblock}
 
 2.	Assign firewalls to control traffic to and from the Internet.
-   ```
+
+   ```bash
    set security zone-policy zone APP to OUTSIDE firewall APP-TO-OUTSIDE
    set security zone-policy zone OUTSIDE to APP firewall OUTSIDE-TO-APP
    commit
    ```
    {: codeblock}
-
+   
 3.	Validate the VSI in the APP zone can now access services on the Internet. Login to the local VSI using SSH:
+
    ```bash
    ssh root@<VSI Private IP>
    ```
@@ -180,6 +188,7 @@ Follow the instructions here to configure external Internet access for hosts in 
 {: #nat-config-private-6}
 {: removeresources}
 {: step}
+
 Steps to take to remove the resources created in this tutorial.
 
 The VRA is on a monthly paid plan. Cancellation does not result in a refund. It is suggested to only cancel if this VRA will not be required again in the next month. If a dual VRA High-Availability cluster is required, this single VRA can be upgraded on the [Gateway Details](https://{DomainName}/classic/network/gatewayappliances) page.

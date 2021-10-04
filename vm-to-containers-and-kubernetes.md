@@ -2,7 +2,7 @@
 subcollection: solution-tutorials
 copyright:
   years: 2017, 2019, 2020, 2021
-lastupdated: "2021-09-10"
+lastupdated: "2021-10-04"
 lasttested: "2020-12-08"
 
 ---
@@ -19,6 +19,7 @@ lasttested: "2020-12-08"
 
 This tutorial may incur costs. Use the [Cost Estimator](https://{DomainName}/estimator/review) to generate a cost estimate based on your projected usage.
 {: tip}
+
 
 This tutorial walks you through the process of moving a VM based app to a Kubernetes cluster by using {{site.data.keyword.containershort_notm}}. [{{site.data.keyword.containershort_notm}}](https://{DomainName}/docs/containers?topic=containers-getting-started) delivers powerful tools by combining container and Kubernetes technologies, an intuitive user experience, and built-in security and isolation to automate the deployment, operation, scaling, and monitoring of containerized apps in a cluster of compute hosts.
 {: shortdesc}
@@ -47,7 +48,7 @@ Depending on the type of app that you have, the steps to migrate your app might 
 
 The following diagram shows an example of a traditional app architecture that is based on virtual machines.
 
-![Architecture diagram](images/solution30/traditional_architecture.png){: class="center"}
+![Diagram of traditional app architecture](images/solution30/traditional_architecture.png){: class="center"}
 {: style="text-align: center;"}
 
 
@@ -60,7 +61,7 @@ The following diagram shows an example of a traditional app architecture that is
 
 The following diagram shows an example of a modern container architecture that runs in a Kubernetes cluster.
 
-![Architecture diagram](images/solution30/modern_architecture.png){: class="center"}
+![Diagram of a modern container architecture](images/solution30/modern_architecture.png){: class="center"}
 {: style="text-align: center;"}
 
 
@@ -171,7 +172,7 @@ To copy data from your local machine to your persistent storage, you must mount 
 
 1. To copy date, first, you would need to create a configuration that looks like something like this:
 
-   ```
+   ```yaml
    kind: Pod
    apiVersion: v1
    metadata:
@@ -236,7 +237,7 @@ It's never good practice to store credentials within the app code. Instead, Kube
 One way of using secrets in Kubernetes in by doing something like this:
 
 1. Create a file called `cloud-secrets.txt` and store the service credentials of any cloud service inside it.
-   ```
+   ```json
    {
        "url": "<SERVICE_URL>",
        "api_key": <API_Key>
@@ -274,7 +275,7 @@ Images are typically stored in a registry that can either be accessible by the p
 To containerize an app and store it in {{site.data.keyword.registrylong_notm}}:
 
 1. You would need to create a Dockerfile, below is an example of a Dockerfile.
-   ```
+   ```sh
    # Build JPetStore war
    FROM openjdk:8 as builder
    COPY . /src

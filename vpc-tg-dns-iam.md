@@ -2,7 +2,7 @@
 subcollection: solution-tutorials
 copyright:
   years: 2019,2020,2021
-lastupdated: "2021-06-03"
+lastupdated: "2021-09-30"
 lasttested: "2020-12-28"
 
 content-type: tutorial
@@ -29,6 +29,7 @@ completion-time: 2h
 
 This tutorial may incur costs. Use the [Cost Estimator](https://{DomainName}/estimator/review) to generate a cost estimate based on your projected usage.
 {: tip}
+
 
 Microservices are popular because they allow an enterprise to organize their development teams around the services they deliver.  This tutorial walks you through the steps of creating infrastructure for a {{site.data.keyword.vpc_full}} (VPC) based micro-service architecture. In this architecture, VPCs are connected to each other using the {{site.data.keyword.tg_full}}. A set of shared micro-services is accessed through host names registered in the {{site.data.keyword.dns_full}}. Each VPC is managed by a separate team isolated by {{site.data.keyword.iamlong}}. Optionally a {{site.data.keyword.loadbalancer_full}} can be used to scale out the shared micro-service.
 {: shortdesc}
@@ -60,6 +61,18 @@ The following architecture implements the isolation and connectivity requirement
 
 ## Before you begin
 {: #vpc-tg-dns-iam-prereqs}
+
+This tutorial requires:
+* {{site.data.keyword.cloud_notm}} CLI,
+   * {{site.data.keyword.tg_short}} plugin (`tg`)
+   * {{site.data.keyword.vpc_short}} plugin (`vpc-infrastructure`)
+   * {{site.data.keyword.dns_short}} (`dns`)
+* `git` to clone source code repository.
+* `Terraform CLI` to run the Terraform commands.
+
+You will find instructions to download and install these tools for your operating environment in the [Getting started with tutorials](https://{DomainName}/docs/solution-tutorials?topic=solution-tutorials-tutorials) guide.
+
+In addition:
 
 - Check for user permissions. Be sure that your user account has sufficient permissions to create and manage VPC resources, create a {{site.data.keyword.tg_full}} and create a {{site.data.keyword.tg_full}} services. See the list of [required permissions](https://{DomainName}/docs/vpc?topic=vpc-managing-user-permissions-for-vpc-resources) for VPC.
 - You need an SSH key to connect to the virtual servers. If you don't have an SSH key, see [the instructions](/docs/vpc?topic=vpc-ssh-keys) for creating a key for VPC. 
@@ -157,7 +170,7 @@ To avoid the installation of these tools you can use the [{{site.data.keyword.cl
 
 1. Git clone the following [repository](https://github.com/IBM-Cloud/vpc-tg-dns-iam):
 
-   ```
+   ```sh
    git clone https://github.com/IBM-Cloud/vpc-tg-dns-iam
    cd vpc-tg-dns-iam
    ```
@@ -170,12 +183,12 @@ To avoid the installation of these tools you can use the [{{site.data.keyword.cl
     - application1/
 
 1. Create and edit the terraform.tfvars file:
-   ```
+   ```sh
    cp terraform.tfvars.template terraform.tfvars
    ```
    {: pre}
 
-   ```
+   ```sh
    edit terraform.tfvars
    ```
    {: pre}
@@ -185,7 +198,7 @@ To avoid the installation of these tools you can use the [{{site.data.keyword.cl
     - basename - replace the default value, **widget0**, with a name that is 7 characters or less, if required.  Most resources created will use this as a name prefix.
 
 1. Windows users only: If git does not create the symbolic link on your Windows computer it is required to copy the file contents to the team folders:
-   ```
+   ```sh
    cp variables.tf terraform.tfvars admin
    cp variables.tf terraform.tfvars network
    cp variables.tf terraform.tfvars shared
@@ -197,14 +210,14 @@ To avoid the installation of these tools you can use the [{{site.data.keyword.cl
 {: #vpc-tg-dns-iam-iam_become}
 
 It is possible to populate each team's access group with users.  In this example you are the administrator and will **become** a member of the different access groups by using the api key for the team.  The service ID names are `${basename}-x` where x is network, shared, application1 and application2.  Later you will populate a `local.env` file in each team's directory with contents similar to this:
-   ```
+   ```sh
    export TF_VAR_ibmcloud_api_key=0thisIsNotARealKeyALX0vkLNSUFC7rMLEWYpVtyZaS9
    ```
 In each step when you cd into a team directory you will be reminded to execute: `source local.env`
 
 Terraform will be used to create the resources.  Open `admin/main.tf` and notice the `provider ibm` clause and the reference to the `ibmcloud_api_key` initialized from the environment variable:
 
-   ```
+   ```terraform
    provider ibm {
     ibmcloud_api_key = var.ibmcloud_api_key # initialized with the TF_VAR_ibmcloud_api_key
    }
@@ -218,14 +231,14 @@ Terraform will be used to create the resources.  Open `admin/main.tf` and notice
 The admin team will need to have Admin access to the IAM-enabled resources in the account used in this tutorial.  See [How do I assign a user full access as an account administrator?](https://{DomainName}/docs/account?topic=account-iamfaq#account-administrator).  The admin team will be responsible for creating the IAM-enabled resources. The instructions below use the `ibmcloud iam api-key-create` command to create an api key for the admin.  This is the same as a password to your account and it will be used by terraform to perform tasks on your behalf.  Keep the api key safe.
 
 1. Initialize and verify the basename shell variable.  Verify it matches the basename in the terraform.tfvars file:
-   ```
+   ```sh
    eval $(grep basename terraform.tfvars | sed -e 's/  *//g' -e 's/#.*//')
    echo basename=$basename
    ```
    {: pre}
 
 1. Change directory, generate and source your personal API key in local.env.  When terraform is invoked it will become you.  Terraform will be the administrator:
-   ```
+   ```sh
    cd admin
    echo export TF_VAR_ibmcloud_api_key=$(ibmcloud iam api-key-create $basename-admin --output json | jq .apikey) > local.env
    cat local.env
@@ -239,36 +252,36 @@ The admin team will need to have Admin access to the IAM-enabled resources in th
    - Access group policies for the resource groups
    - Access group policies for the resources
 
-   ```
+   ```sh
    terraform init
    terraform apply
    ```
    {: pre}
 
 1. Verify some of the resources were created:
-   ```
+   ```sh
    ibmcloud resource groups | grep $basename
    ```
    {: pre}
 
-   ```
+   ```sh
    ibmcloud iam access-groups | grep $basename
    ```
    {: pre}
 
-   ```
+   ```sh
    ibmcloud iam service-ids | grep $basename
    ```
    {: pre}
 
-   ```
+   ```sh
    ibmcloud iam access-group-policies $basename-network
    ```
    {: pre}
 
    Output will resemble this:
 
-   ```
+   ```sh
    $ ibmcloud resource groups | grep $basename
    widget0-application2   36b06a303f224f28ad42aebbb491cc44   false           ACTIVE
    widget0-shared         91518c45e47a427fa4f63edb58e4f227   false           ACTIVE
@@ -305,6 +318,7 @@ The admin team will need to have Admin access to the IAM-enabled resources in th
                 Memo                  Policy applies to the resource(s) within the resource group
    ...
    ```
+   {: screen}
 
 1. Optionally navigate to the account [Resource groups](https://{DomainName}/account/resource-groups ) and find the resource groups.
 1. Optionally navigate to [Access groups](https://{DomainName}/iam/groups) to see the access groups, click an access group, then click the **Service IDs** panel at the top to see the service ID created.
@@ -319,7 +333,7 @@ The Admin team has provided them just the right amount of permissions to create 
 
 1. Change directory, generate an API key in the local.env and become a member of the network access group:
 
-   ```
+   ```sh
    team=network
    cd ../$team
    echo export TF_VAR_ibmcloud_api_key=$(ibmcloud iam service-api-key-create $team $basename-$team --output json | jq .apikey) > local.env
@@ -330,7 +344,7 @@ The Admin team has provided them just the right amount of permissions to create 
 
 1. Optionally open the `variables_network.tf` file and notice the CIDR block specification and the zone layout.  In the snippet below notice that shared and application1 are specified without overlapping IP addresses:
 
-   ```
+   ```terraform
    variable network_architecture {
      default = {
        shared = {
@@ -363,7 +377,7 @@ The Admin team has provided them just the right amount of permissions to create 
 
 
 1. Create the resources:
-   ```
+   ```sh
    terraform init
    terraform apply
    ```
@@ -373,7 +387,7 @@ The Admin team has provided them just the right amount of permissions to create 
 {: #network_vpc}
 
    The VPC resources created is summarized by the output of the subnets command, shown below, edited for brevity.  Notice the three VPCs, the non overlapping CIDR blocks, and the resource groups membership:
-   ```
+   ```sh
    ibmcloud target -r $(grep ibm_region terraform.tfvars | sed -e 's/  *//g' -e 's/#.*//' -e 's/.*=//' -e 's/"//g')
    ibmcloud is target --gen 2
    ibmcloud is subnets --all-resource-groups | grep $basename
@@ -382,7 +396,7 @@ The Admin team has provided them just the right amount of permissions to create 
 
    Output will resemble this:
 
-   ```
+   ```sh
    $ ibmcloud is subnets --all-resource-groups | grep $basename
    widget0-shared-z1           available   10.0.0.0/24    widget0-shared           us-south-1   widget0-shared
    widget0-shared-z2           available   10.0.1.0/24    widget0-shared           us-south-2   widget0-shared
@@ -394,11 +408,12 @@ The Admin team has provided them just the right amount of permissions to create 
    widget0-application2-z2     available   10.2.1.0/24    widget0-application2     us-south-2   widget0-application2
    widget0-application2-z3     available   10.2.2.0/24    widget0-application2     us-south-3   widget0-application2
    ```
+   {: screen}
 
 1. Optionally navigate to the [Virtual Private Clouds](https://{DomainName}/vpc-ext/network/vpcs) and find the VPCs, subnets and all of the other resources created above.
 
 1. Optionally investigate the terraform configuration in `main.tf` to understand the the {{site.data.keyword.dns_short}} initialization.  The {{site.data.keyword.dns_short}} instance and zone were created with the terraform snippet:
-   ```
+   ```terraform
    resource "ibm_resource_instance" "dns" {
      name              = "${var.basename}-dns"
      resource_group_id = data.ibm_resource_group.shared.id
@@ -416,7 +431,7 @@ The Admin team has provided them just the right amount of permissions to create 
    ```
 
    The zone is then added to a VPC as a permitted network:
-   ```
+   ```terraform
    resource "ibm_dns_permitted_network" "shared" {
      instance_id = ibm_resource_instance.dns.guid
      zone_id     = ibm_dns_zone.widgets_com.zone_id
@@ -428,17 +443,17 @@ The Admin team has provided them just the right amount of permissions to create 
 
 1. List the DNS configuration.  A {{site.data.keyword.dns_short}} instance was created.  The **widgets.com** zone was created.   Finally the zone was added to all of the VPCs.
 
-   ```
+   ```sh
    ibmcloud dns instances
    ```
    {: pre}
 
-   ```
+   ```sh
    ibmcloud dns zones -i $basename-dns
    ```
    {: pre}
 
-   ```
+   ```sh
    zone_id=$(ibmcloud dns zones -i $basename-dns --output json | jq -r '.[] | .id')
    ibmcloud dns permitted-networks $zone_id -i $basename-dns
    ```
@@ -446,7 +461,7 @@ The Admin team has provided them just the right amount of permissions to create 
 
    Output will resemble this:
 
-   ```
+   ```sh
    $ ibmcloud dns instances
    Retrieving service instances for service 'dns-svcs' ...
    OK
@@ -466,6 +481,7 @@ The Admin team has provided them just the right amount of permissions to create 
    widget0-application1   r006-287258c6-2eb3-4908-b326-6f03c3e47aa6   vpc    crn:v1:bluemix:public:is:us-south:a/713c783d9a507a53135fe6793c37cc74::vpc:r006-287258c6-2eb3-4908-b326-6f03c3e47aa6   ACTIVE   
    widget0-application2   r006-fa51e99e-bd93-4451-a4eb-76eed9939d3c   vpc    crn:v1:bluemix:public:is:us-south:a/713c783d9a507a53135fe6793c37cc74::vpc:r006-fa51e99e-bd93-4451-a4eb-76eed9939d3c   ACTIVE   
    ```
+   {: screen}
 
 1. Optionally navigate to the [resource list](https://{DomainName}/resources) and find the **{{site.data.keyword.dns_short}}**, click on it and investigate.
 
@@ -475,7 +491,7 @@ The Admin team has provided them just the right amount of permissions to create 
 
 1. Change directory, generate an API key in the local.env and become a member of the shared access group:
 
-   ```
+   ```sh
    team=shared
    cd ../$team
    echo export TF_VAR_ibmcloud_api_key=$(ibmcloud iam service-api-key-create $team $basename-$team --output json | jq .apikey) > local.env
@@ -487,7 +503,7 @@ The Admin team has provided them just the right amount of permissions to create 
 1. Optionally dig deeper at this point into some of the terraform source code.  The *shared* team is going to provide micro-services.  Although the *network* team has already created the shared VPC and some network resources the *shared* team will create the instance and choose the instance profile.  A Linux configuration script and simple demo application is provided in the user_data attribute and discussed in the **Application Team** section below.
 
    In `main.tf` notice these two resources:
-   ```
+   ```terraform
    locals {
      network_context = data.terraform_remote_state.network.outputs.shared
    }
@@ -526,7 +542,7 @@ The Admin team has provided them just the right amount of permissions to create 
    The `local.network_context` above is the output generated by the *network* team specifically for the *shared* team.
 
 1. Create the shared resources:
-   ```
+   ```sh
    terraform init
    terraform apply
    ```
@@ -544,7 +560,7 @@ The Admin team has provided them just the right amount of permissions to create 
 
 1. Change directory, generate an API key in the local.env and become a member of the application1 access group:
 
-   ```
+   ```sh
    team=application1
    cd ../$team
    echo export TF_VAR_ibmcloud_api_key=$(ibmcloud iam service-api-key-create $team $basename-$team --output json | jq .apikey) > local.env
@@ -558,7 +574,7 @@ The Admin team has provided them just the right amount of permissions to create 
 1. Optionally investigate the source code that initializes the CentOS instance.  It is has been captured in a terraform module shared by all the teams during this exploratory stage.
 
    **../common/user_data_app/main.tf**:
-   ```
+   ```terraform
    locals {
      shared_app_user_data_centos = <<EOS
    #!/bin/sh
@@ -587,7 +603,7 @@ The Admin team has provided them just the right amount of permissions to create 
 
 1. Optionally investigate the app.js contents.  It has two particularly interesting sections.  First there is a /info link that returns a description of the instance running the app.
    **../common/user_data_app/app.js**:
-   ```
+   ```js
    const server = http.createServer((req, res) => {
      switch(req.url) {
      case '/info':
@@ -604,7 +620,7 @@ The Admin team has provided them just the right amount of permissions to create 
        break
    ```
    Second the /remote link calls to a remote server IP and returns a the description of that remote along with the remote_url and remote_ip addresses used to access the remote.
-   ```
+   ```js
    const IP='REMOTE_IP'
    
    function getRemote(req, res) {
@@ -621,7 +637,7 @@ The Admin team has provided them just the right amount of permissions to create 
            res.end(JSON.stringify({remote_url: remote_url, remote_ip: resp.connection.remoteAddress, remote_info: rawObj}, null, 3))
    ```
     In our case the REMOTE_IP will be `shared.widget.com` because of the following in common/user_data_app/main.tf:
-   ```
+   ```terraform
    output user_data_centos {
      value = replace(local.shared_app_user_data_centos, "REMOTE_IP", var.remote_ip)
    }
@@ -629,21 +645,21 @@ The Admin team has provided them just the right amount of permissions to create 
 
    And back in application1/main.tf:
 
-   ```
+   ```terraform
    module user_data_app {
      source    = "../common/user_data_app"
      remote_ip = "shared.widgets.com"
    }
    ```
 1. Create the resources:
-   ```
+   ```sh
    terraform init
    terraform apply
    ```
    {: pre}
 
    Results look something like this:
-   ```
+   ```sh
    $ terraform apply
    ...
    Apply complete! Resources: 2 added, 0 changed, 0 destroyed.
@@ -655,10 +671,11 @@ The Admin team has provided them just the right amount of permissions to create 
    test_info = curl 52.116.140.202:3000/info
    test_remote = curl 52.116.140.202:3000/remote
    ```
+   {: screen}
 
    Try the curl commands suggested.  See something like what was captured below:
 
-   ```
+   ```sh
    $ curl 52.116.140.202:3000/info
 
    {
@@ -673,6 +690,7 @@ The Admin team has provided them just the right amount of permissions to create 
 
    $ curl 52.116.140.202:3000/remote # DOES NOT WORK
    ```
+   {: screen}
 
    Wait, that second curl command did not work! let's fix that in the next step.  Remember these curl commands, you will use them again shortly
 
@@ -684,7 +702,7 @@ The Admin team has provided them just the right amount of permissions to create 
 
 1. Change directory and become a member of the network group (use the existing API key):
 
-   ```
+   ```sh
    cd ../network
    source local.env
    ```
@@ -692,7 +710,7 @@ The Admin team has provided them just the right amount of permissions to create 
 
 1. Optionally investigate the terraform files.  Open the main.tf file and you will notice the {{site.data.keyword.tg_short}} resources (ibm_tg).  Each has a `count = var.transit_gateway ? 1 : 0`.  This is a terraform construct that creates an array of resources of length 1 or 0 based on the value of `transit_gateway`.  An array of length 0 will result in no resource.  For example:
 
-   ```
+   ```terraform
    resource "ibm_tg_gateway" "tgw"{
      count = var.transit_gateway ? 1 : 0
      name              = "${var.basename}-tgw"
@@ -705,20 +723,20 @@ The Admin team has provided them just the right amount of permissions to create 
 
 1. Edit the terraform.tfvars file and uncomment the line `transit_gateway = true` to enable the provisioning of {{site.data.keyword.tg_short}}
 
-   ```
+   ```sh
    edit terraform.tfvars
    ```
    {: pre}
 
 1. Apply the change
-   ```
+   ```sh
    terraform apply
    ```
    {: pre}
 
 1. Print the {{site.data.keyword.tg_short}} using the commands below.
 
-   ```
+   ```sh
    ibmcloud tg gateways
    GATEWAY_ID=$(ibmcloud tg gateways --output json | sed -e '/^OK$/d' | jq -r '.[]|select(.name=="'$basename-tgw'")|.id')
    ibmcloud tg connections $GATEWAY_ID
@@ -727,7 +745,7 @@ The Admin team has provided them just the right amount of permissions to create 
 
    Notice the three VPC connections in the output.  It will resemble this:
 
-   ```
+   ```sh
    $ ibmcloud tg gateways
    Listing gateways under account 
    OK
@@ -764,12 +782,13 @@ The Admin team has provided them just the right amount of permissions to create 
    Connection ID   208c00cc-aee2-498e-8b1c-37ddc276f200
    Status          attached
    ```
+   {: screen}
 
 1. Optionally navigate the [{{site.data.keyword.tg_short}}](https://{DomainName}/interconnectivity/transit) and find the gateway created above.
 
 1. Execute the curl command that failed earlier to verify there is a path from the application1 VPC to the shared VPC.  It will look something like this:
 
-   ```
+   ```sh
    $ curl 169.48.152.220:3000/remote
    
    {
@@ -786,6 +805,7 @@ The Admin team has provided them just the right amount of permissions to create 
       }
    }
    ```
+   {: screen}
 
 ## Insert a {{site.data.keyword.loadbalancer_short}} and replace the DNS record
 {: #vpc-tg-dns-iam-shared_lb}
@@ -796,7 +816,7 @@ The Admin team has provided them just the right amount of permissions to create 
 
 1. Change directory and become a member of the shared access group (use the existing API key):
 
-   ```
+   ```sh
    cd ../shared
    source local.env
    ```
@@ -804,7 +824,7 @@ The Admin team has provided them just the right amount of permissions to create 
 
 1. Optionally investigate the terraform configuration files.  The {{site.data.keyword.loadbalancer_short}} for VPC service distributes traffic among multiple server instances within the same region of your VPC.  The *shared* team can balance load between multiple instances.  For now the load balancer pool will only have the single instance created earlier.  See the lb.tf for the implementation.  The dns record is this snippet:
 
-   ```
+   ```terraform
    # shared.widgets.com
    resource ibm_dns_resource_record "shared_lb" {
      count = var.shared_lb ? 1 : 0 # shared load balancer?
@@ -821,19 +841,19 @@ The Admin team has provided them just the right amount of permissions to create 
 
 1. Edit the terraform.tfvars file and uncomment `shared_lb = true`
 
-   ```
+   ```sh
    edit terraform.tfvars
    ```
    {: pre}
 
-   ```
+   ```sh
    terraform apply
    ```
    {: pre}
 
 1. Execute the curl .../remote command from the previous application1 section (ignore the output just generated for the shared micro-service).  Notice that the remote_ip is 10.0.1.4, the load balancer, and the remote_info is 10.0.0.4, the instance.  Curl a few more times and notice the remote_ip for the load balancer may change.
 
-   ```
+   ```sh
    $ curl 169.48.152.220:3000/remote
    
    {
@@ -850,6 +870,7 @@ The Admin team has provided them just the right amount of permissions to create 
       }
    }
    ```
+   {: screen}
 
 ## Create a publicly facing micro-service for an application (Application2 Team)
 {: #vpc-tg-dns-iam-application2}
@@ -858,7 +879,7 @@ The Admin team has provided them just the right amount of permissions to create 
 The second *application* team environment is identical to the first.  Optionally create application2 by modifying application1.
 
 1. Enter the ./application1 directory and create the application2 directory
-   ```
+   ```sh
    cd ../application1
    mkdir ../application2
    sed -e 's/application1/application2/g' main.tf > ../application2/main.tf
@@ -868,7 +889,7 @@ The second *application* team environment is identical to the first.  Optionally
 
 1. Change directory, generate an API key in the local.env and become a member of the application2 access group:
 
-   ```
+   ```sh
    team=application2
    cd ../$team
    echo export TF_VAR_ibmcloud_api_key=$(ibmcloud iam service-api-key-create $team $basename-$team --output json | jq .apikey) > local.env
@@ -879,7 +900,7 @@ The second *application* team environment is identical to the first.  Optionally
 
 1. Create the resources:
 
-   ```
+   ```sh
    terraform init
    terraform apply
    ```
@@ -893,7 +914,7 @@ The second *application* team environment is identical to the first.  Optionally
 
 1. Destroy the resources.  You can cd to the team directories in order, and execute `source local.env; terraform destroy`.  The order is application2, application1, shared, network, admin. There is also a script that will do this for you:
 
-   ```
+   ```sh
    cd ..
    ./bin/destroy.sh
    ```

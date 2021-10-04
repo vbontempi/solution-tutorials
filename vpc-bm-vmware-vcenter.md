@@ -2,7 +2,7 @@
 subcollection: solution-tutorials
 copyright:
   years: 2021
-lastupdated: "2021-09-10"
+lastupdated: "2021-10-04"
 lasttested: ""
 
 # services is a comma-separated list of doc repo names as taken from https://github.ibm.com/cloud-docs/
@@ -37,6 +37,7 @@ completion-time: 2h
 
 This tutorial may incur costs. Use the [Cost Estimator](https://{DomainName}/estimator/review) to generate a cost estimate based on your projected usage.
 {: tip}
+
 
 This is a Beta feature that requires special approval. Contact your IBM Sales representative if you are interested in getting access.
 {: beta}
@@ -76,6 +77,21 @@ When advised to use Web browser, use the Jump machine provisioned in the [{{site
 The used variables e.g. $VMWARE_SUBNET_MGMT, $VMWARE_BMS001 and $VMWARE_DNS_ZONE are defined in the previous steps of this tutorial.
 {: note}
 
+### Order a vCenter License from IBM Cloud
+{: #vpc-bm-vmware-vcenter-order-license}
+
+As a customer on IBM Cloud, you can bring your own license or you can obtain a license from IBM Cloud as a monthly fee.
+
+Use the following steps to order licenses for the VMware products
+
+1. From the {{site.data.keyword.Bluemix}} Portal
+2. Click **Devices** > **Managed** > **VMware Licenses** > **Order VMware licenses**.
+3. Click the drop-down list under **Add License**... to list the VMware products and number of CPUs for the licenses that you want to order.
+4. Select **VMware vCenter Server Appliance 7.x (x CPU)** .
+5. Click **Continue** to order the licenses or you can click **Add License** to add more licenses.
+6. After you click Continue, you are taken back to the VMware Licenses page, which displays your VMware products and license keys.
+7. Copy the VMware vCenter license key and can be added to the vCenter after the installation.
+
 ## Provision VLAN NIC for vCenter
 {: #vpc-bm-vmware-vcenter-vlannic}
 {: step}
@@ -88,7 +104,7 @@ vlan-nic-vcenter | $VMWARE_SUBNET_MGMT | 100      | yes         | provided by VP
 
 
 While {{site.data.keyword.vpc_short}} provides both IP and MAC addresses, you only need to use the IP address here when configuring the vCenter to use a static IP.
-{:note}
+{: note}
 
 1. Create VLAN NIC for vCenter and record its IP address:
 
@@ -122,7 +138,7 @@ While {{site.data.keyword.vpc_short}} provides both IP and MAC addresses, you on
 
 You need to create a temporary port group for vCenter's networking for the Standard Switch, i.e. add a Port Group for VLAN ID `100`. 
 
-1. Login to host BMS001 / esx-001 as user `root` with a Web browser (https://<ip address>) using the hosts PCI interface IP address (`echo $VMWARE_BMS001_MGMT_IP`).
+1. Login to host BMS001 / esx-001 as user `root` with a Web browser (`https://&lt;ip address&gt;`) using the hosts PCI interface IP address (`echo $VMWARE_BMS001_MGMT_IP`).
 2. Select **Networking**.
 3. On **Port Groups** tab, click `Add port group`.
 4. For Virtual switch 0, add a Name **pg-mgmt** and select **VLAN ID 100**.
@@ -145,7 +161,7 @@ The vCenter appliance will be deployed next. You can do this via the Jump host's
 vCenter installation is split into two phases. In the first phase, the appliance is installed into the ESXi host.
 
 Verify that `vcenter.vmware.ibmcloud.local` resolves to the correct IP address prior continuing.
-{:important}
+{: important}
 
 1. Before continuing further with vCenter deployment, verify that `vcenter.vmware.ibmcloud.local` resolves to the correct IP address. List information about configured records in your DNS instance `dns-vmware` and zone `vmware.ibmcloud.local`, use the following command.
 
@@ -159,12 +175,12 @@ Verify that `vcenter.vmware.ibmcloud.local` resolves to the correct IP address p
    ```sh
    nslookup vcenter.vmware.ibmcloud.local
    ```
-  {: codeblock}
+   {: codeblock}
   
    ```sh
    nslookup esx-001.vmware.ibmcloud.local
    ```
-  {: codeblock}
+   {: codeblock}
 
 3. Start the VCSA UI installer (e.g. <drive_letter>:\vcsa-ui-installer\win32\installer.exe).
   
@@ -358,7 +374,7 @@ With {{site.data.keyword.bm_is_short}}, a single uplink (PCI NIC) is used. To be
 In this step, you need to migrate the management network (vmk0) and its associated uplink (vmnic0) from the standard vSwitch to the distributed vSwitch (vDS) for `VMWARE_BMS002` and `VMWARE_BMS003`.
 
 Perform this **only** for `VMWARE_BMS002` / esx-002 and `VMWARE_BMS003` / esx-003 at this point.
-{:note}
+{: note}
 
 Configure the distributed vSwitch as follows:
 
@@ -403,7 +419,7 @@ ibmcloud is bm-nics $VMWARE_BMS002
 In this step, you need to migrate the management network (vmk0) and its associated uplink (vmnic0) from the standard vSwitch to the distributed vSwitch (vDS) for `VMWARE_BMS001`.
 
 Perform this **only** for `VMWARE_BMS001` / esx-001 at this point.
-{:note}
+{: note}
 
 Configure the distributed vSwitch as follows:
 
@@ -432,6 +448,32 @@ Delete `vSwitch0` on all hosts using the following method
 4. Click Networking, **Virtual Switches**.
 5. Expand the standard switch.
 6. Click the '...' and select **Remove**.
+
+## Assign VMWare vCenter License
+{: #vpc-bm-vmware-vcenter-assign-lic}
+{: step}
+
+Assign the VMware vCenter BYO or IBM Cloud License.
+
+1. Log into the vCenter Server using vSphere Client via Web Browser on the Jump machine.
+2. Click **Menu** > **Home**.
+3. Click **Administration**.
+4. Select Licenses in the left column, then select Licenses Tab.
+5. Click **Add New Licenses**.
+6. Enter the license keys. Click **Next**.
+7. Edit license names, then click **Next**.
+8. Click **Finish**.
+The license is now added.
+
+To assign the license to a vCenter.
+
+1. Select the **Asset** tab.
+2. Select vCenter Server Systems tab.
+3. Select the vCenter you want to license.
+4. Click **Assign License**.
+5. Select the license you want to use.
+6. Click **OK**.
+The vCenter is now licensed.
 
 ## Next Steps
 {: #vpc-bm-vmware-vcenter-next-steps}

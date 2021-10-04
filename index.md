@@ -23,6 +23,7 @@ lasttested: "2020-12-17"
 # Getting started with solution tutorials
 {: #tutorials}
 
+
 Solution tutorials provide step-by-step instructions on how to use IBM Cloud to implement common patterns based on best practices and proven technologies.
 
 Before going through the tutorials collection, this guide will help you set up your development environment to successfully follow the instructions of the guides found in this collection.

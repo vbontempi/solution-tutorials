@@ -36,6 +36,7 @@ This tutorial describes the use of **Classic Infrastructure**.  Most workloads c
 This tutorial may incur costs. Use the [Cost Estimator](https://{DomainName}/estimator/review) to generate a cost estimate based on your projected usage.
 {: tip}
 
+
 Hosting web applications is a common deployment pattern for public cloud, where resources can be scaled on demand to meet short term and long term usage demands. Security for the application workloads is a fundamental prerequisite, to complement the resilience and scalability afforded by public cloud.
 
 This tutorial takes you through the creation of a scalable and secure Internet facing web application hosted in private network secured using a virtual router appliance (VRA), VLANs, NAT and firewalls. The application comprises a load balancer, two web application servers and a MySQL database server. It combines three tutorials to illustrate how web applications can be securely deployed on the {{site.data.keyword.Bluemix_notm}} IaaS platform using classic networking.

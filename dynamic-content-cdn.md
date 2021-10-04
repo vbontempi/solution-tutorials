@@ -2,7 +2,7 @@
 subcollection: solution-tutorials
 copyright:
   years: 2019, 2021
-lastupdated: "2021-08-17"
+lastupdated: "2021-09-27"
 lasttested: "2020-12-18"
 
 content-type: tutorial
@@ -35,6 +35,7 @@ completion-time: 2h
 This tutorial may incur costs. Use the [Cost Estimator](https://{DomainName}/estimator/review) to generate a cost estimate based on your projected usage.
 {: tip}
 
+
 Web applications are composed of static content like text, images, cascading style sheets, and JavaScript files. This tutorial [Accelerate delivery of static files using a CDN](/docs/solution-tutorials?topic=solution-tutorials-static-files-cdn) shows how to host and serve static assets (images, videos, and documents) of a website from {{site.data.keyword.cos_full_notm}} with [{{site.data.keyword.cdn_full}} (CDN)](https://{DomainName}/catalog/infrastructure/cdn-powered-by-akamai).
 {: shortdesc}
 
@@ -62,7 +63,7 @@ To stop these dynamic contents from being a performance bottleneck, you can util
 3. The application is deployed to {{site.data.keyword.containershort_notm}}.
 4. User accesses the application.
 5. The application is accelerated through the Dynamic Content Acceleration capability of {{site.data.keyword.cdn_full}}.
-5. {{site.data.keyword.cdn_full}} interacts with the application to fetch dynamic contents.
+6. {{site.data.keyword.cdn_full}} interacts with the application to fetch dynamic contents.
 
 ## Before you begin
 {: #dynamic-content-cdn-prereqs}
@@ -184,20 +185,21 @@ This [sample application](https://github.com/IBM-Cloud/cdn-with-cda-todolist) is
 Before you create a {{site.data.keyword.cdn_full}} instance, you should have registered a domain name for your application.
 
 1. Go to the cloud catalog, and select [{{site.data.keyword.cdn_full}}](https://{DomainName}/catalog/infrastructure/cdn-powered-by-akamai) from the Network section. Click **Create**.
-   1. Set **Hostname** to the custom domain of your application, for example, `todo.exampledomain.net`.
-   1. Set **Custom CNAME** prefix to a unique value, for example, `todo-sample`.
-   1. Leave **Host header** and **Path** empty.
-   1. Click the **Server** tab and specify the application ingress subdomain as **Origin server address**, for example  `cdn-with-cda-todolist.<ingress-subdomain>`.
-   1. Uncheck HTTP port.
-   1. Check HTTPS port and select **Wildcard** SSL certificate.
+   * Set **Hostname** to the custom domain of your application, for example, `todo.exampledomain.net`.
+   * Set **Custom CNAME** prefix to a unique value, for example, `todo-sample`.
+   * Leave **Host header** and **Path** empty.
+   * Click the **Server** tab and specify the application ingress subdomain as **Origin server address**, for example  `cdn-with-cda-todolist.<ingress-subdomain>`.
+   * Uncheck HTTP port.
+   * Check HTTPS port and select **Wildcard** SSL certificate.
 
       With the **Wildcard** certificate, you will access your app through the IBM provided CNAME.
       {: note}
+
 1. Accept the **Master Service Agreement** and click **Create**.
 
 After you have successfully created the CDN mapping:
-   * To view your CDN instance, select the CDN instance [in the list](https://{DomainName}/classic/network/cdn). The **Details** panel shows both the **Hostname** and the **CNAME** for your CDN.
-   * You application is now accessible through the CNAME only: `https://<CNAME>`.
+* To view your CDN instance, select the CDN instance [in the list](https://{DomainName}/classic/network/cdn). The **Details** panel shows both the **Hostname** and the **CNAME** for your CDN.
+* You application is now accessible through the CNAME only: `https://<CNAME>`.
 
 ## Enable Dynamic Content Acceleration (DCA)
 {: #dynamic-content-cdn-6}
@@ -212,7 +214,8 @@ To activate DCA:
 2. Under the **Optimized for** section, select **Dynamic Content Acceleration** from the drop-down list.
 3. Under the **Detection path** section, specify the path `/test-dca` as the detection path, and click **Test** to verify the path is set correctly. This detection path will be used periodically by {{site.data.keyword.cdn_full}} to determine the fastest path to the origin.
 4. Make sure **Prefetching** and **Image compression** are both set to **On**.
-   ![Configure DCA](images/solution52-cdn-dca/detection_path.png)
+
+   ![Configure DCA](images/solution52-cdn-dca/detection_path.png){: class="center"}
 5. Click **Save**. You have successfully accelerated your application deployed in {{site.data.keyword.containershort_notm}} cluster with **Dynamic Content Acceleration**.
 
 ## Verify DCA performance
