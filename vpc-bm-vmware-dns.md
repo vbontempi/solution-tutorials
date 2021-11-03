@@ -32,7 +32,7 @@ completion-time: 1h
 # Provision {{site.data.keyword.dns_full_notm}} for VMware deployment
 {: #vpc-bm-vmware-dns}
 {: toc-content-type="tutorial"}
-{: toc-services="vmwaresolutions, vpc"}
+{: toc-services="vpc, vmwaresolutions, dns-svcs"}
 {: toc-completion-time="1h"}
 
 This tutorial may incur costs. Use the [Cost Estimator](https://{DomainName}/estimator/review) to generate a cost estimate based on your projected usage.
