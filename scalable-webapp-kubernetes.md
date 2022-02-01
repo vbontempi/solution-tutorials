@@ -2,7 +2,7 @@
 subcollection: solution-tutorials
 copyright:
   years: 2021
-lastupdated: "2021-12-09"
+lastupdated: "2022-02-01"
 lasttested: "2021-12-08"
 
 content-type: tutorial
@@ -172,7 +172,7 @@ Note: If you wish to build and push the application to your own container regist
 
 1. Install the Helm chart:
    ```sh
-   helm install $MYPROJECT --namespace $KUBERNETES_NAMESPACE . --set image.repository=ibmcom/tutorial-scalable-webapp-kubernetes
+   helm install $MYPROJECT --namespace $KUBERNETES_NAMESPACE . --set image.repository=icr.io/solution-tutorials/tutorial-scalable-webapp-kubernetes
    ```
    {: pre}
 
