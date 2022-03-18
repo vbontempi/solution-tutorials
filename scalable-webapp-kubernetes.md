@@ -2,7 +2,7 @@
 subcollection: solution-tutorials
 copyright:
   years: 2022
-lastupdated: "2022-03-17"
+lastupdated: "2022-03-18"
 lasttested: "2022-03-14"
 
 content-type: tutorial
@@ -421,18 +421,17 @@ Once the autoscaler is successfully created, you should see
    ```
    {: pre}
 
-* Delete the Kubernetes secret:
-   ```sh
-   kubectl -n $KUBERNETES_NAMESPACE delete secret kubernetesnodeapp-api-key 
-   ```
-   {: pre}
-
 * Delete the Kubernetes artifacts created for this application:
    ```sh
    helm uninstall $MYPROJECT --namespace $KUBERNETES_NAMESPACE
    ```
    {: pre}
 
+* Delete the Kubernetes secret:
+   ```sh
+   kubectl -n $KUBERNETES_NAMESPACE delete secret kubernetesnodeapp-api-key 
+   ```
+   {: pre}
 * Delete the External Secrets Operator:
    ```sh
    helm uninstall external-secrets
@@ -444,7 +443,6 @@ Once the autoscaler is successfully created, you should see
    ibmcloud iam service-id-delete $SERVICE_ID
    ```
    {: pre}
-
 
 * Delete the cluster.
 
