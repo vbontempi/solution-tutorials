@@ -2,7 +2,7 @@
 subcollection: solution-tutorials
 copyright:
   years: 2022
-lastupdated: "2022-04-11"
+lastupdated: "2022-04-26"
 lasttested: "2022-04-04"
 
 content-type: tutorial
@@ -64,6 +64,7 @@ Let's start by creating a [{{site.data.keyword.cloudant_short_notm}}](https://{D
    1. Under **Multitenant** select a region.
    1. Under **Configure Cloudant instance** pick a **unique** name for the service, such as `<yourinitials>-guestbook-db`.
    1. Select a resource group.
+
    1. Select **IAM** as authentication method.
    1. Select the **Lite** plan. If you already have a Lite plan in your account, select another service plan.
    1. Click **Create**.
@@ -87,7 +88,7 @@ In this section, you will create the serverless backend app with {{site.data.key
 {: #serverless-webapp-4}
 
 1. Navigate to [{{site.data.keyword.codeenginefull_notm}} Overview](https://{DomainName}/codeengine/overview) page.
-2. On the left pane, click on **Projects** and then click **Create project**,
+2. On the left pane, click on **Projects** and then click **Create**,
    - Select a location.
    - Use `<yourinitials>-guestbook` as project name and select the same resource group as before.
    - Click on **Create**.
@@ -120,8 +121,9 @@ Instead of using the pre-built container image, you could build the image on you
 Create a {{site.data.keyword.cos_short}} bucket configured with static website hosting containing the files for the guestbook JavaScript application that uses the {{site.data.keyword.cloudant_short_notm}} database.
 
 Create a {{site.data.keyword.cos_short}} instance:
-1. Select [Cloud Object Storage](https://{DomainName}/objectstorage/create) from the catalog
-1. Chose a **unique** service name for the insrtance, such as `<yourinitials>-guestbook-cos`
+1. Select [Object Storage](https://{DomainName}/objectstorage/create) from the catalog.
+1. Select **IBM Cloud** for the Infrastructure and **Standard** for the plan. 
+1. Enter a **unique** service name for the instance, such as `<yourinitials>-guestbook-cos`.
 1. Select a resource group.
 1. Click **Create**
 
@@ -130,9 +132,9 @@ Create a bucket configured for static website hosting:
 1. Click **Customize your bucket**.
 1. Enter a bucket name that is unique across all IBM accounts. Try `<yourinitials>-guestbook`.
 1. Select resiliency as **Regional**.
-1. Select a **Location** and choose a region consistent with the {{site.data.keyword.cloudant_short_notm}} instance.
+1. Select a **Location** consistent with the {{site.data.keyword.cloudant_short_notm}} instance.
 1. Keep the **Storage class** default
-1. Scroll down to the **Static website hosting** and click **Add rule**.
+1. Scroll down to the **Static website hosting** and click **Add+**.
 1. Keep the Routing rules (individual) selected and add the Index document **index.html**.
 1. Click Public access to **On**
 1. Click **Save**
