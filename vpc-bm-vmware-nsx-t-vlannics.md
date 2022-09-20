@@ -2,7 +2,7 @@
 subcollection: solution-tutorials
 copyright:
   years: 2022
-lastupdated: "2022-01-27"
+lastupdated: "2022-09-20"
 lasttested: ""
 
 # services is a comma-separated list of doc repo names as taken from https://github.ibm.com/cloud-docs/
@@ -108,7 +108,7 @@ vlan-nic-nsx-vip      | vlan           | 100     | vpc-mgmt-subnet     | true   
    {: codeblock}
 
    ```sh
-   VMWARE_VNIC_NSX_T_MANAGER_1_IP=$(ibmcloud is bm-nic $VMWARE_BMS001 $VMWARE_VNIC_NSX_T_MANAGER_1 --output json | jq -r .primary_ipv4_address)
+   VMWARE_VNIC_NSX_T_MANAGER_1_IP=$(ibmcloud is bm-nic $VMWARE_BMS001 $VMWARE_VNIC_NSX_T_MANAGER_1 --output json | jq -r .primary_ip.address)
    ```
    {: codeblock}
 
@@ -125,7 +125,7 @@ vlan-nic-nsx-vip      | vlan           | 100     | vpc-mgmt-subnet     | true   
    {: codeblock}
 
    ```sh
-   VMWARE_VNIC_NSX_T_MANAGER_2_IP=$(ibmcloud is bm-nic $VMWARE_BMS001 $VMWARE_VNIC_NSX_T_MANAGER_2 --output json | jq -r .primary_ipv4_address)
+   VMWARE_VNIC_NSX_T_MANAGER_2_IP=$(ibmcloud is bm-nic $VMWARE_BMS001 $VMWARE_VNIC_NSX_T_MANAGER_2 --output json | jq -r .primary_ip.address)
    ```
    {: codeblock}
 
@@ -142,7 +142,7 @@ vlan-nic-nsx-vip      | vlan           | 100     | vpc-mgmt-subnet     | true   
    {: codeblock}
 
    ```sh
-   VMWARE_VNIC_NSX_T_MANAGER_3_IP=$(ibmcloud is bm-nic $VMWARE_BMS001 $VMWARE_VNIC_NSX_T_MANAGER_3 --output json | jq -r .primary_ipv4_address)
+   VMWARE_VNIC_NSX_T_MANAGER_3_IP=$(ibmcloud is bm-nic $VMWARE_BMS001 $VMWARE_VNIC_NSX_T_MANAGER_3 --output json | jq -r .primary_ip.address)
    ```
    {: codeblock}
 
@@ -161,7 +161,7 @@ vlan-nic-nsx-vip      | vlan           | 100     | vpc-mgmt-subnet     | true   
    {: codeblock}
 
    ```sh
-   VMWARE_VNIC_NSX_T_MANAGER_VIP_IP=$(ibmcloud is bm-nic $VMWARE_BMS001 $VMWARE_VNIC_NSX_T_MANAGER_VIP --output json | jq -r .primary_ipv4_address)
+   VMWARE_VNIC_NSX_T_MANAGER_VIP_IP=$(ibmcloud is bm-nic $VMWARE_BMS001 $VMWARE_VNIC_NSX_T_MANAGER_VIP --output json | jq -r .primary_ip.address)
    ```
    {: codeblock}
 
@@ -232,7 +232,7 @@ vlan-nic-tep-vmk10    | vlan           | 400     | vpc-tep-subnet      | false  
    {: codeblock}
 
    ```sh
-   VMWARE_BMS001_TEP_IP=$(ibmcloud is bare-metal-server-network-interface $VMWARE_BMS001 $VMWARE_BMS001_TEP --output json | jq -r .primary_ipv4_address)
+   VMWARE_BMS001_TEP_IP=$(ibmcloud is bare-metal-server-network-interface $VMWARE_BMS001 $VMWARE_BMS001_TEP --output json | jq -r .primary_ip.address)
    ```
    {: codeblock}
 
@@ -249,7 +249,7 @@ vlan-nic-tep-vmk10    | vlan           | 400     | vpc-tep-subnet      | false  
    {: codeblock}
 
    ```sh
-   VMWARE_BMS002_TEP_IP=$(ibmcloud is bare-metal-server-network-interface $VMWARE_BMS002 $VMWARE_BMS002_TEP --output json | jq -r .primary_ipv4_address)
+   VMWARE_BMS002_TEP_IP=$(ibmcloud is bare-metal-server-network-interface $VMWARE_BMS002 $VMWARE_BMS002_TEP --output json | jq -r .primary_ip.address)
    ```
    {: codeblock}
 
@@ -266,7 +266,7 @@ vlan-nic-tep-vmk10    | vlan           | 400     | vpc-tep-subnet      | false  
    {: codeblock}
    
    ```sh
-   VMWARE_BMS003_TEP_IP=$(ibmcloud is bare-metal-server-network-interface $VMWARE_BMS003 $VMWARE_BMS003_TEP --output json | jq -r .primary_ipv4_address)
+   VMWARE_BMS003_TEP_IP=$(ibmcloud is bare-metal-server-network-interface $VMWARE_BMS003 $VMWARE_BMS003_TEP --output json | jq -r .primary_ip.address)
    ```
    {: codeblock}
 
@@ -301,7 +301,7 @@ vlan-nic-tep-edge-2   | vlan           | 400     | vpc-tep-subnet      | true   
    {: codeblock}
 
    ```sh
-   VMWARE_VNIC_NSX_T_EDGE_MGMT_1_IP=$(ibmcloud is bm-nic $VMWARE_BMS001 $VMWARE_VNIC_NSX_T_EDGE_MGMT_1 --output json | jq -r .primary_ipv4_address)
+   VMWARE_VNIC_NSX_T_EDGE_MGMT_1_IP=$(ibmcloud is bm-nic $VMWARE_BMS001 $VMWARE_VNIC_NSX_T_EDGE_MGMT_1 --output json | jq -r .primary_ip.address)
    ```
    {: codeblock}
 
@@ -318,7 +318,7 @@ vlan-nic-tep-edge-2   | vlan           | 400     | vpc-tep-subnet      | true   
    {: codeblock}
 
    ```sh
-   VMWARE_VNIC_NSX_T_EDGE_MGMT_2_IP=$(ibmcloud is bm-nic $VMWARE_BMS001 $VMWARE_VNIC_NSX_T_EDGE_MGMT_2 --output json | jq -r .primary_ipv4_address)
+   VMWARE_VNIC_NSX_T_EDGE_MGMT_2_IP=$(ibmcloud is bm-nic $VMWARE_BMS001 $VMWARE_VNIC_NSX_T_EDGE_MGMT_2 --output json | jq -r .primary_ip.address)
    ```
    {: codeblock}
 
@@ -337,7 +337,7 @@ vlan-nic-tep-edge-2   | vlan           | 400     | vpc-tep-subnet      | true   
    {: codeblock}
 
    ```sh
-   VMWARE_VNIC_NSX_T_EDGE_TEP_1_IP=$(ibmcloud is bm-nic $VMWARE_BMS001 $VMWARE_VNIC_NSX_T_EDGE_TEP_1 --output json | jq -r .primary_ipv4_address)
+   VMWARE_VNIC_NSX_T_EDGE_TEP_1_IP=$(ibmcloud is bm-nic $VMWARE_BMS001 $VMWARE_VNIC_NSX_T_EDGE_TEP_1 --output json | jq -r .primary_ip.address)
    ```
    {: codeblock}
 
@@ -354,7 +354,7 @@ vlan-nic-tep-edge-2   | vlan           | 400     | vpc-tep-subnet      | true   
    {: codeblock}
 
    ```sh
-   VMWARE_VNIC_NSX_T_EDGE_TEP_2_IP=$(ibmcloud is bm-nic $VMWARE_BMS001 $VMWARE_VNIC_NSX_T_EDGE_TEP_2 --output json | jq -r .primary_ipv4_address)
+   VMWARE_VNIC_NSX_T_EDGE_TEP_2_IP=$(ibmcloud is bm-nic $VMWARE_BMS001 $VMWARE_VNIC_NSX_T_EDGE_TEP_2 --output json | jq -r .primary_ip.address_address)
    ```
    {: codeblock}
 
