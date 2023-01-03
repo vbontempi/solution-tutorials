@@ -2,7 +2,7 @@
 subcollection: solution-tutorials
 copyright:
   years: 2022
-lastupdated: "2022-12-08"
+lastupdated: "2022-12-22"
 lasttested: "2022-12-08"
 
 content-type: tutorial
@@ -66,7 +66,7 @@ This tutorial requires:
    * {{site.data.keyword.containerfull_notm}} plugin (`kubernetes-service`),
 * `kubectl` to interact with Kubernetes clusters,
 
-You will find instructions to download and install these tools for your operating environment in the [Getting started with tutorials](/docs/solution-tutorials?topic=solution-tutorials-tutorials) guide.
+You will find instructions to download and install these tools for your operating environment in the [Getting started with solution tutorials](/docs/solution-tutorials?topic=solution-tutorials-tutorials) guide.
 
 In addition, make sure you:
 - own a custom domain so you can configure the DNS for this domain to point to {{site.data.keyword.cis_full_notm}} name servers.
