@@ -1,8 +1,8 @@
 ---
 subcollection: solution-tutorials
 copyright:
-  years: 2022
-lastupdated: "2022-12-28"
+  years: 2022, 2023
+lastupdated: "2023-01-17"
 lasttested: "2022-12-28"
 
 content-type: tutorial
@@ -90,7 +90,7 @@ Putting entities into a single project enables you to manage access control more
 2. On the left pane, click on **Projects** and then click **Create**.
    - Select a location.
    - Provide a project name.
-   - Select resource group where you will create your project and also the cloud services required in the later steps. Resource groups are a way for you to organize your account resources into customizable groupings.
+   - Select the resource group where you will create your project and also the cloud services required in the later steps. Resource groups are a way for you to organize your account resources into customizable groupings.
    - Click on **Create**.
    - Wait until the project `status` changes to **Active**.
 3. Switch to the {{site.data.keyword.cloud-shell_short}} session that you started earlier and use it in this tutorial when you are asked to run CLI commands.
@@ -118,7 +118,7 @@ Putting entities into a single project enables you to manage access control more
 {: #text-analysis-code-engine-deploy_app}
 {: step}
 
-{{site.data.keyword.codeengineshort}} Applications run your code to serve HTTP requests, autoscale up and back down to zero, and offer traffic routing to multiple revisions. In this section, you will deploy your frontend and backend applications to the {{site.data.keyword.codeengineshort}} project. The **frontend** web application will allow users to upload text files, while the **backend** application will write the file to {{site.data.keyword.cos_full_notm}}.
+{{site.data.keyword.codeengineshort}} Applications run your code to serve HTTP requests, automatically scale up and back down to zero, and offer traffic routing to multiple revisions. In this section, you will deploy your frontend and backend applications to the {{site.data.keyword.codeengineshort}} project. The **frontend** web application will allow users to upload text files, while the **backend** application will write the file to {{site.data.keyword.cos_full_notm}}.
 
 We've already built images for the two applications and pushed them to the public {{site.data.keyword.registryshort_notm}}. You will use these pre-built container images to deploy the respective applications. Creation of your own applications will be covered in a later step.
 
@@ -250,14 +250,11 @@ With {{site.data.keyword.nlufull}}, developers can analyze semantic features of 
    ```
    {: pre}
 
-2. Under **Service credentials**, click on **New credential**
-   1. Give it a name - `cos-for-code-engine` and select **Writer** as the role
-   2. Click **Add**.
 3. Click **Buckets** then **Customize your bucket**
 
    _When you create buckets or add objects, be sure to avoid the use of Personally Identifiable Information (PII).Note: PII is information that can identify any user (natural person) by name, location, or any other means._
    1. Enter **Unique bucket name**:  `<yourInitials>-bucket-code-engine`.
-   3. Select a **Location**, region, where you created the {{site.data.keyword.codeengineshort}} project.
+   3. Select a **Location**, where you created the {{site.data.keyword.codeengineshort}} project.
    2. Select **Smart Tier** Storage class.
    3. Click **Create bucket**.
    4. Capture the bucket name in a shell variable:
@@ -283,6 +280,7 @@ With {{site.data.keyword.nlufull}}, developers can analyze semantic features of 
    NLU_INSTANCE_NAME=YourServiceName
    ```
    {: pre}
+
 
 ### Bind the {{site.data.keyword.cos_short}} service to the backend application
 {: #text-analysis-code-engine-9}
@@ -427,7 +425,7 @@ echo $BACKEND_PRIVATE_URL
 ```
 {: pre}
 
-You can change some of the source code to verify.  The second occurrance of `Text analysis with Code Engine` in the **body** of public/index.html and public/501.html can be changed to add in your name.  Create the container image in a code engine namespace and create the application in one command:
+You can change some of the source code to verify.  The second occurrence of `Text analysis with Code Engine` in the **body** of public/index.html and public/501.html can be changed to add in your name.  Create the container image in a code engine namespace and create the application in one command:
 ```sh
 ibmcloud ce application create --name frontend-fromsource --build-source . --env BACKEND_URL=$BACKEND_PRIVATE_URL
 ```
