@@ -16,7 +16,7 @@
           "url": "index.html",
           "description": "Configure your development environment to be productive with IBM Cloud.",
           "imgSrc": "images/gettingstarted/logo.jpg",
-          "lastUpdated": "2022-10-18"
+          "lastUpdated": "2022-12-21"
         }
       ]
     },
@@ -39,7 +39,7 @@
           "repos": [
             "https://github.com/IBM-Cloud/kubernetes-node-app"
           ],
-          "lastUpdated": "2022-11-07"
+          "lastUpdated": "2023-01-02"
         },
         {
           "name": "Move a VM based application to Kubernetes",
@@ -58,7 +58,7 @@
           "repos": [
             "https://github.com/IBM-Cloud/jpetstore-kubernetes"
           ],
-          "lastUpdated": "2022-10-04"
+          "lastUpdated": "2022-12-22"
         },
         {
           "name": "Continuous Deployment to Kubernetes",
@@ -74,7 +74,7 @@
             "Node.js",
             "Vulnerability Advisor"
           ],
-          "lastUpdated": "2022-10-04"
+          "lastUpdated": "2023-01-02"
         },
         {
           "name": "Scalable web app on OpenShift",
@@ -120,7 +120,7 @@
             "https://github.com/IBM-Cloud/patient-health-backend",
             "https://github.com/IBM-Cloud/patient-health-frontend"
           ],
-          "lastUpdated": "2022-11-01"
+          "lastUpdated": "2022-11-30"
         },
         {
           "name": "Accelerate delivery of static files using Object Storage and CDN",
@@ -135,7 +135,7 @@
           "repos": [
             "https://github.com/IBM-Cloud/webapp-with-cos-and-cdn"
           ],
-          "lastUpdated": "2022-11-07"
+          "lastUpdated": "2022-12-20"
         },
         {
           "name": "Accelerate a dynamic website using Dynamic Content Acceleration",
@@ -151,7 +151,7 @@
           "repos": [
             "https://github.com/IBM-Cloud/cdn-with-cda-todolist"
           ],
-          "lastUpdated": "2021-12-07"
+          "lastUpdated": "2022-12-22"
         },
         {
           "name": "Plan, create and update deployment environments",
@@ -166,21 +166,7 @@
           "repos": [
             "https://github.com/IBM-Cloud/multiple-environments-as-code"
           ],
-          "lastUpdated": "2022-11-01"
-        },
-        {
-          "name": "Use Virtual Servers to build highly available and scalable web app",
-          "url": "highly-available-and-scalable-web-application.html",
-          "description": "Create a load balancer, two application servers running on Ubuntu with NGINX and PHP installed, one MySQL database server, and durable file storage to store application files and backups.",
-          "imgSrc": "images/solution14/Architecture.png",
-          "tags": [
-            "Infrastructure",
-            "Virtual Servers",
-            "Load Balancer",
-            "PHP",
-            "File Storage"
-          ],
-          "lastUpdated": "2022-04-21"
+          "lastUpdated": "2022-12-22"
         },
         {
           "name": "Modern web application using MEAN stack",
@@ -195,7 +181,7 @@
           "repos": [
             "https://github.com/IBM-Cloud/nodejs-MEAN-stack"
           ],
-          "lastUpdated": "2022-11-07"
+          "lastUpdated": "2022-12-22"
         },
         {
           "name": "SQL Database for Cloud Data",
@@ -210,7 +196,7 @@
           "repos": [
             "https://github.com/IBM-Cloud/cloud-sql-database"
           ],
-          "lastUpdated": "2022-11-07"
+          "lastUpdated": "2022-12-29"
         },
         {
           "name": "Serverless web application and API with Code Engine",
@@ -225,7 +211,7 @@
           "repos": [
             "https://github.com/IBM-Cloud/serverless-guestbook"
           ],
-          "lastUpdated": "2022-10-18"
+          "lastUpdated": "2022-12-20"
         },
         {
           "name": "Analyze logs and monitor application health with LogDNA and Sysdig",
@@ -241,7 +227,7 @@
           "repos": [
             "https://github.com/IBM-Cloud/application-log-analysis"
           ],
-          "lastUpdated": "2022-11-07"
+          "lastUpdated": "2022-12-22"
         },
         {
           "name": "Text Analysis with Code Engine",
@@ -255,7 +241,7 @@
           "repos": [
             "https://github.com/IBM-Cloud/code-engine-text-analysis"
           ],
-          "lastUpdated": "2022-11-02"
+          "lastUpdated": "2023-01-17"
         }
       ]
     },
@@ -277,7 +263,7 @@
           "repos": [
             "https://github.com/IBM-Cloud/slack-chatbot-database-watson"
           ],
-          "lastUpdated": "2022-11-07"
+          "lastUpdated": "2022-12-27"
         }
       ]
     },
@@ -299,7 +285,7 @@
           "repos": [
             "https://github.com/IBM-Cloud/kubernetes-node-app"
           ],
-          "lastUpdated": "2022-09-12"
+          "lastUpdated": "2022-12-22"
         },
         {
           "name": "Apply end to end security to a cloud application",
@@ -318,7 +304,7 @@
           "repos": [
             "https://github.com/IBM-Cloud/secure-file-storage"
           ],
-          "lastUpdated": "2022-11-09"
+          "lastUpdated": "2023-01-10"
         },
         {
           "name": "Enhance security of your deployed application",
@@ -335,6 +321,25 @@
           ],
           "guide": true,
           "lastUpdated": "2022-11-16"
+        },
+        {
+          "name": "Enhance cloud security by applying context-based restrictions",
+          "url": "cbr-enhanced-security.html",
+          "description": "Learn how to implement context-based restrictions to enhance security of your cloud environment",
+          "imgSrc": "images/solution67-cbr-enhanced-security/architecture-e2e-security.svg",
+          "tags": [
+            "Kubernetes",
+            "Encryption",
+            "Security",
+            "App ID",
+            "Cloud Object Storage",
+            "Key Protect",
+            "Activity Tracker"
+          ],
+          "repos": [
+            "https://github.com/IBM-Cloud/secure-file-storage"
+          ],
+          "lastUpdated": "2023-01-24"
         }
       ]
     },
@@ -355,7 +360,7 @@
             "Key Protect",
             "Analytics Engine"
           ],
-          "lastUpdated": "2022-11-07"
+          "lastUpdated": "2023-01-02"
         },
         {
           "name": "Build a data lake with Object Storage",
@@ -371,7 +376,7 @@
           "repos": [
             "https://github.com/IBM-Cloud/sql-query-clients/tree/master/Python"
           ],
-          "lastUpdated": "2022-11-01"
+          "lastUpdated": "2022-12-27"
         },
         {
           "name": "Serverless web app and eventing for data retrieval and analytics",
@@ -387,7 +392,7 @@
           "repos": [
             "https://github.com/IBM-Cloud/github-traffic-stats"
           ],
-          "lastUpdated": "2022-11-07"
+          "lastUpdated": "2022-11-21"
         },
         {
           "name": "Build, deploy, test and monitor a predictive machine learning model",
@@ -404,7 +409,7 @@
           "repos": [
             "https://github.com/IBM-Cloud/ml-iris-classification"
           ],
-          "lastUpdated": "2021-11-30"
+          "lastUpdated": "2022-12-02"
         }
       ]
     },
@@ -458,7 +463,7 @@
           "repos": [
             "https://github.com/IBM-Cloud/vpc-tutorials/tree/master/vpc-public-app-private-backend"
           ],
-          "lastUpdated": "2021-12-01"
+          "lastUpdated": "2022-12-12"
         },
         {
           "name": "Deploy isolated workloads across multiple locations and zones",
@@ -472,7 +477,7 @@
             "Network",
             "Security"
           ],
-          "lastUpdated": "2022-09-06"
+          "lastUpdated": "2022-12-28"
         },
         {
           "name": "Use a VPC/VPN gateway for secure and private on-premises access to cloud resources",
@@ -489,7 +494,7 @@
           "repos": [
             "https://github.com/IBM-Cloud/vpc-tutorials"
           ],
-          "lastUpdated": "2022-08-18"
+          "lastUpdated": "2022-12-28"
         },
         {
           "name": "Install software on virtual server instances in VPC",
@@ -505,7 +510,7 @@
           "repos": [
             "https://github.com/IBM-Cloud/vpc-tutorials"
           ],
-          "lastUpdated": "2022-11-03"
+          "lastUpdated": "2022-12-22"
         },
         {
           "name": "Securely access remote instances with a bastion host",
@@ -519,7 +524,7 @@
             "Network",
             "Security"
           ],
-          "lastUpdated": "2022-09-09"
+          "lastUpdated": "2022-12-19"
         },
         {
           "name": "PHP web application on a LAMP Stack in VPC Gen2",
@@ -539,7 +544,7 @@
           "repos": [
             "https://github.com/IBM-Cloud/vpc-tutorials/tree/master/vpc-lamp"
           ],
-          "lastUpdated": "2021-12-06"
+          "lastUpdated": "2022-12-22"
         },
         {
           "name": "Team based privacy using IAM, VPC, Transit Gateway and DNS",
@@ -560,7 +565,7 @@
           "repos": [
             "https://github.com/IBM-Cloud/vpc-tg-dns-iam"
           ],
-          "lastUpdated": "2022-09-20"
+          "lastUpdated": "2022-12-23"
         },
         {
           "name": "Scale workloads in shared and dedicated VPC environments",
@@ -581,7 +586,7 @@
           "repos": [
             "https://github.com/IBM-Cloud/vpc-scaling-dedicated-host"
           ],
-          "lastUpdated": "2022-08-17"
+          "lastUpdated": "2023-01-03"
         }
       ]
     },
@@ -689,7 +694,7 @@
             "VMware",
             "Virtual Private Cloud"
           ],
-          "lastUpdated": "2022-11-07"
+          "lastUpdated": "2023-01-19"
         },
         {
           "name": "VMware VPC",
@@ -829,7 +834,7 @@
           "repos": [
             "https://github.com/IBM-Cloud/vmware-solutions-shared"
           ],
-          "lastUpdated": "2022-09-15"
+          "lastUpdated": "2022-12-21"
         }
       ]
     }
