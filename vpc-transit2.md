@@ -83,12 +83,12 @@ In addition:
 - Check for user permissions. Be sure that your user account has sufficient permissions to create and manage all the resources in this tutorial. See the list of:
    - [required permissions for VPC](https://{DomainName}/docs/vpc?topic=vpc-managing-user-permissions-for-vpc-resources).
    - [required permissions for creating {{site.data.keyword.tg_short}}](https://{DomainName}/docs/transit-gateway?topic=transit-gateway-iam).
-   - [required permissions for IP spoofing checks](https://{DomainName}/docs/)docs/vpc?topic=vpc-ip-spoofing-about).
+   - [required permissions for IP spoofing checks](/docs/vpc?topic=vpc-ip-spoofing-about).
 
 ## Summary of Part one
 {: #vpc-transit2-summary-of-part-one}
 
-In the [first part](todo) of this tutorial we carefully planned the address space of the transit and spoke VPCs. The zone based architecture is shown below:
+In [part one](/docs/solution-tutorials?topic=solution-tutorials-vpc-transit1) of this tutorial we carefully planned the address space of the transit and spoke VPCs. The zone based architecture is shown below:
 
 ![vpc-transit-zones](images/vpc-transit/vpc-transit-zones.svg){: class="center"}
 {: style="text-align: center;"}
