@@ -2,7 +2,7 @@
 subcollection: solution-tutorials
 copyright:
   years: 2022
-lastupdated: "2022-01-21"
+lastupdated: "2023-01-05"
 lasttested: ""
 
 # services is a comma-separated list of doc repo names as taken from https://github.ibm.com/cloud-docs/
@@ -37,6 +37,7 @@ completion-time: 1h
 
 This tutorial may incur costs. Use the [Cost Estimator](https://{DomainName}/estimator/review) to generate a cost estimate based on your projected usage.
 {: tip}
+
 
 
 This tutorial is part of [series](/docs/solution-tutorials?topic=solution-tutorials-vpc-bm-vmware#vpc-bm-vmware-objectives), and requires that you have completed the related tutorials in the presented order.
@@ -141,6 +142,8 @@ Next, create a vSAN cluster with two disks for Cache Tier, Select remaining disk
 8. On Claim disks, select `two disks` for Cache Tier, select remaining disks for Capacity Tier for each host
 9. Click **Finish**
 
+You can order vSAN licenses through [IBM Cloud Classic portal](https://{DomainName}/classic/devices/vmwarelicenses).
+{: note}
 
 ## Migrate the vCenter to vSAN
 {: #vpc-bm-vmware-vsan-migratevcenter}

@@ -39,6 +39,7 @@ This tutorial may incur costs. Use the [Cost Estimator](https://{DomainName}/est
 {: tip}
 
 
+
 This tutorial is part of [series](/docs/solution-tutorials?topic=solution-tutorials-vpc-bm-vmware#vpc-bm-vmware-objectives), and requires that you have completed the related tutorials in the presented order.
 {: important}
 
@@ -385,4 +386,4 @@ vlan-nic-tep-edge-2   | vlan           | 400     | vpc-tep-subnet      | true   
 
 The next step in the tutorial series is:
 
-* [Deploy {{site.data.keyword.vpc_short}} NSX-T](/docs/solution-tutorials?topic=solution-tutorials-vpc-bm-vmware-nsx-t-deploy#vpc-bm-vmware-nsx-t-deploy) 
+* [Deploy {{site.data.keyword.vpc_short}} NSX-T](/docs/solution-tutorials?topic=solution-tutorials-vpc-bm-vmware-nsx-t-deploy#vpc-bm-vmware-nsx-t-deploy)

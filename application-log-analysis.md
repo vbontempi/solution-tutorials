@@ -2,7 +2,7 @@
 subcollection: solution-tutorials
 copyright:
   years: 2022
-lastupdated: "2022-12-22"
+lastupdated: "2023-02-09"
 lasttested: "2022-12-01"
 
 content-type: tutorial
@@ -42,7 +42,7 @@ Moreover, you will also setup the [{{site.data.keyword.mon_full_notm}}](https://
 * Gain operational visibility into the performance and health of your app and the cluster running your app.
 
 
-![Architecture diagram](images/solution12/Architecture.png){: class="center"}
+![Architecture diagram](images/solution12/Architecture.png){: caption="Figure 1. Architecture diagram of the tutorial" caption-side="bottom"}
 {: style="text-align: center;"}
 
 1. User connects to the application and generates log entries.
@@ -70,6 +70,7 @@ In addition, make sure you:
 * and [grant permissions to a user to view monitoring metrics](/docs/monitoring?topic=monitoring-iam#iam_users)
 
 
+
 ## Create a Kubernetes cluster
 {: #application-log-analysis-create_cluster}
 {: step}
@@ -78,9 +79,27 @@ In addition, make sure you:
 
 A minimal cluster with one (1) zone, one (1) worker node and the smallest available size (**Flavor**) is sufficient for this tutorial. The name `mycluster` will be used in this tutorial.
 
-- For Kubernetes on VPC infrastructure, you are required to create a VPC and subnet(s) prior to creating the Kubernetes cluster. You may follow the instructions provided under the [Creating a standard VPC cluster](https://{DomainName}/docs/containers?topic=containers-clusters#clusters_vpcg2).
-- Make sure to attach a Public Gateway for each of the subnet that you create as it is required for accessing cloud services.
-- For Kubernetes on Classic infrastructure follow the [Creating a standard classic cluster](https://{DomainName}/docs/containers?topic=containers-clusters#clusters_standard) instructions.
+Open the [Kubernetes clusters](https://{DomainName}/kubernetes/clusters) and click **Create cluster**. See the documentation referenced below for more details based on the cluster type.  Summary:
+- Click **Standard tier cluster**
+- For Kubernetes on VPC infrastructure see reference documentation[Creating VPC clusters](/docs/containers?topic=containers-cluster-create-vpc-gen2&interface=ui).
+   - Click **Create VPC**:
+      - Enter a **name** for the VPC.
+      - Chose the same resource group as the cluster.
+      - Click **Create**.
+   - Attach a Public Gateway to each of the subnets that you create:
+      - Navigate to the [Virtual private clouds](https://{DomainName}/vpc-ext/network/vpcs)).
+      - Click the previously created VPC used for the cluster.
+      - Scroll down to subnets section and click a subnet.
+      - In the **Public Gateway** section, click **Detached** to change the state to **Attached**.
+      - Click the browser **back** button to return to the VPC details page.
+      - Repeat the previous three steps to attach a public gateway to each subnet.
+- For Kubernetes on Classic infrastructure see reference documentation [Creating classic cluster](/docs/containers?topic=containers-cluster-create-classic&interface=ui).
+- Choose a resource group.
+- Uncheck all zones except one.
+- Scale down to 1 **Worker nodes per zone**.
+- Choose the smallest **Worker Pool flavor**.
+- Enter a **Cluster name**.
+- Click **Create**.
 
 
 ## Deploy and configure a Kubernetes app to forward logs
@@ -151,6 +170,7 @@ In a terminal window:
    | **Variable**        | **Value**                                                            | **Description**                                                                                             |
    |---------------------|----------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------|
    | $MYINGRESSSUBDOMAIN | mycluster\-1234\-d123456789\.us\-south\.containers\.appdomain\.cloud | Retrieve from the cluster overview page or with `ibmcloud ks cluster get --cluster $MYCLUSTER`\. |
+   {: caption="Example and description for the environment variable MYINGRESSSUBDOMAIN" caption-side="bottom"}
 
 
 ## Validate {{site.data.keyword.la_short}} instance configuration
@@ -330,7 +350,7 @@ Note: Change the interval to **5 M** on the bottom bar of the UI.
 
 The sample application that was deployed includes code to generate **custom metrics**. These custom metrics are provided using a Prometheus client and mock multiple access to API endpoints.
 
-![Dashboard showing API counter metrics](images/solution12/wolam_api_counter_total.png){: class="center"}
+![Dashboard showing API counter metrics](images/solution12/wolam_api_counter_total.png){: caption="Figure 2. Dashboard showing API counter metrics" caption-side="bottom"}
 {: style="text-align: center;"}
 
 1. Under **Explore**, select **All workloads**.
@@ -357,7 +377,7 @@ To create a dashboard with a first panel:
 4. Edit the **Dashboard scope**, set the filter to **container_image**, **is** and **`icr.io/solution-tutorials/tutorial-application-log-analysis:latest`**.
 5. Save the dashboard.
 
-![New Dashboard](images/solution12/new_dashboard.png){: class="center"}
+![New Dashboard](images/solution12/new_dashboard.png){: caption="Figure 3. New dashboard" caption-side="bottom"}
 {: style="text-align: center;"}
 
 To add another panel:
@@ -373,7 +393,7 @@ To add another panel:
 {: #application-log-analysis-remove_resource}
 {: step}
 
-- If you created them as part of this tutorial, remove the logging and monitoring instances from [Observability](https://{DomainName}/observe) page.
+- If you created them as part of this tutorial, remove the logging and monitoring instances from [Observability](https://{DomainName}/observe) page.<!-- markdownlint-disable-line -->
 - Delete the cluster including worker node, app and containers. This action cannot be undone.
    ```sh
    ibmcloud ks cluster rm --cluster $MYCLUSTER -f --force-delete-storage

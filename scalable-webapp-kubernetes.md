@@ -2,8 +2,8 @@
 subcollection: solution-tutorials
 copyright:
   years: 2023
-lastupdated: "2023-01-02"
-lasttested: "2022-12-23"
+lastupdated: "2023-02-09"
+lasttested: "2023-02-08"
 
 content-type: tutorial
 services: containers, Registry, secrets-manager
@@ -39,8 +39,8 @@ For developers looking to kickstart their projects, the {{site.data.keyword.dev_
 ## Objectives
 {: #scalable-webapp-kubernetes-objectives}
 
-* Deploy a web application to the Kubernetes cluster.
-* Bind a custom subdomain.
+* Deploy a web application to the Kubernetes cluster.<!-- markdownlint-disable-line -->
+* Bind a custom subdomain.<!-- markdownlint-disable-line -->
 * Monitor the logs and health of the cluster.
 * Scale Kubernetes pods.
 
@@ -77,18 +77,34 @@ In addition, make sure you:
 
 {{site.data.keyword.containershort_notm}} delivers powerful tools by combining Docker and Kubernetes technologies, an intuitive user experience, and built-in security and isolation to automate the deployment, operation, scaling, and monitoring of containerized apps in a cluster of compute hosts.
 
-The major portion of this tutorial can be accomplished with a **Free** cluster. Two optional sections relating to Kubernetes Ingress and custom subdomain require a **Standard** cluster.
-
 A minimal cluster with one (1) zone, one (1) worker node and the smallest available size (**Flavor**) is sufficient for this tutorial.
 
-- Create the Kubernetes **version 1.19+** cluster:
-   - For Kubernetes on VPC infrastructure, you are required to create a VPC and subnet(s) before creating the Kubernetes cluster. You may follow the instructions provided under the [Creating a standard VPC cluster in the console](https://{DomainName}/docs/containers?topic=containers-clusters#clusters_vpcg2_ui).
-   - For Kubernetes on Classic infrastructure follow the [Creating a standard classic cluster](https://{DomainName}/docs/containers?topic=containers-clusters#clusters_standard) instructions.
+Open the [Kubernetes clusters](https://{DomainName}/kubernetes/clusters) and click **Create cluster**. See the documentation referenced below for more details based on the cluster type.  Summary:
+- Click **Standard tier cluster**
+- For Kubernetes on VPC infrastructure see reference documentation[Creating VPC clusters](/docs/containers?topic=containers-cluster-create-vpc-gen2&interface=ui).
+   - Click **Create VPC**:
+      - Enter a **name** for the VPC.
+      - Chose the same resource group as the cluster.
+      - Click **Create**.
+   - Attach a Public Gateway to each of the subnets that you create:
+      - Navigate to the [Virtual private clouds](https://{DomainName}/vpc-ext/network/vpcs)).
+      - Click the previously created VPC used for the cluster.
+      - Scroll down to subnets section and click a subnet.
+      - In the **Public Gateway** section, click **Detached** to change the state to **Attached**.
+      - Click the browser **back** button to return to the VPC details page.
+      - Repeat the previous three steps to attach a public gateway to each subnet.
+- For Kubernetes on Classic infrastructure see reference documentation [Creating classic cluster](/docs/containers?topic=containers-cluster-create-classic&interface=ui).
+- Choose a resource group.
+- Uncheck all zones except one.
+- Scale down to 1 **Worker nodes per zone**.
+- Choose the smallest **Worker Pool flavor**.
+- Enter a **Cluster name**.
+- Click **Create**.
 {: #create_cluster}
 
 
 
-## Clone a starter application
+## Clone a sample application
 {: #scalable-webapp-kubernetes-clone_application}
 {: step}
 
@@ -185,18 +201,9 @@ Note: If you want to build and push the application to your own container regist
    ```
    {: pre}
 
-1. Locate the service `kubernetesnodeapp` linked to your application.
-1. Make note of the the public port the service is listening on. The port is a 5-digit number(for example, 31569) under `PORT(S)`.
-1. Identify a public IP of a worker node with the command below:
+1. List the Kubernetes pods in the namespace:
    ```sh
-   ibmcloud ks workers --cluster $MYCLUSTER
-   ```
-   {: pre}
-
-1. For VPC the IP addresses of the clusters are private to the VPC. These will not be accessible from your desktop but can be accessed by opening the **Web Terminal** from the Kubernetes cluster console UI.  See [Using the Kubernetes web terminal in your web browser](https://{DomainName}/docs/containers?topic=containers-cs_cli_install#cli_web)
-1. Access the application at `http://worker-ip-address:portnumber/`:
-   ```sh
-   curl http://<worker-ip-address>:<portnumber>
+   kubectl get pods -n $KUBERNETES_NAMESPACE
    ```
    {: pre}
 
@@ -204,13 +211,11 @@ Note: If you want to build and push the application to your own container regist
 {: #scalable-webapp-kubernetes-ibm_domain}
 {: step}
 
-In the previous step, the application was accessed with a not standard port. The service was exposed by way of Kubernetes NodePort feature.
-
 Paid clusters come with an IBM-provided domain. This gives you a better option to expose applications with a proper URL and on standard HTTP/S ports.
 
 Use Ingress to set up the cluster inbound connection to the service.
 
-![Ingress](images/solution2/Ingress.png){: class="center"}
+![Ingress](images/solution2/Ingress.png){: caption="Ingress" caption-side="bottom"}
 {: style="text-align: center;"}
 
 1. Identify your IBM-provided **Ingress subdomain** and **Ingress secret**:
@@ -302,13 +307,13 @@ Now, import your certificate into the {{site.data.keyword.secrets-manager_short}
 2. Click on **Secrets** in the left navigation.
 3. Click **Add** and then **TLS certificates**.
 4. You can select either **Import certificate**, **Order a public certificate** or **Create a private certificate**. Detailed steps are available in the [Adding SSL or TLS certificates](https://{DomainName}/docs/secrets-manager?topic=secrets-manager-certificates&interface=ui) topic. If you selected to import a certificate, make sure to upload the certificate, private key and intermediate certificate files using the **Add file** button for each.
-5. Locate the entry for the imported or ordered certificate and click on it.
-   * Verify the domain name matches your custom domain. If you uploaded a wildcard certificate, an asterisk is included in the domain name.
-   * Click the **copy** symbol next to the certificate's **ID**.
-   * Create an environment variable pointing to the certificate ID:
+5. Locate the secret entry for the imported or ordered certificate and click on it.
+   * Verify the domain name matches your $CUSTOM_DOMAIN. If you uploaded a wildcard certificate, an asterisk is included in the domain name.
+   * Click the **copy** symbol next to the secret's **ID**.
+   * Create an environment variable pointing to the secret ID:
 
    ```sh
-   export CERTIFICATE_ID=<certificate ID>
+   export SECRET_ID=<secret ID>
    ```
    {: pre}
 
@@ -326,7 +331,7 @@ Now, import your certificate into the {{site.data.keyword.secrets-manager_short}
    {: pre}
 
 7. Click on **Endpoints** in the left navigation.
-8. Locate the **Public** endpoint for the **Vault API**.
+8. Locate the **Public** endpoint for the **Service API**.
    * Create an environment variable pointing to the endpoint:
 
    ```sh
@@ -389,7 +394,11 @@ In order to access the {{site.data.keyword.secrets-manager_short}} service insta
    ```
    {: pre}
 
-9. Access your application at `https://<myapp>.<example.com>/`.
+9. Access your application at `https://$MYAPP.$CUSTOM_DOMAIN/`.<!-- markdownlint-disable-line -->
+   ```sh
+   curl -I https://$MYAPP.$CUSTOM_DOMAIN
+   ```
+   {: pre}
 
 ## Monitor application health
 {: #scalable-webapp-kubernetes-monitor_application}
@@ -397,8 +406,11 @@ In order to access the {{site.data.keyword.secrets-manager_short}} service insta
 
 1. To check the health of your application, navigate to [clusters](https://{DomainName}/kubernetes/clusters) to see a list of clusters and click on your cluster.
 2. Click **Kubernetes Dashboard** to launch the dashboard in a new tab.
-3. Select **Nodes** on the left pane, click the **Name** of the nodes and see the **Allocation Resources** to see the health of your nodes.
-4. To review the application logs from the container, select **Pods**, **pod-name**, click **View logs** in the action menu in the upper right
+3. Click  **Pods** on the left then click a **pod-name** matching $MYAPP
+   - Examine he CPU and Memory usage.
+   - Note the node IP name.
+   - Click **View logs** in the action menu in the upper right to see the standard output and error of the application.
+4. Select **Nodes** on the left pane, click the **Name** of a node noted earlier and see the **Allocation Resources** to see the health of your nodes.
 5. To exec into the container select **Exec into** in the action menu
 
 ## Scale Kubernetes pods
@@ -412,7 +424,7 @@ kubectl scale deployment kubernetesnodeapp-deployment --replicas=2
 ```
 {: pre}
 
-After a short while, you will see two pods for your application in the Kubernetes dashboard (or with `kubectl get pods`). The Ingress controller in the cluster will handles the load balancing between the two replicas.
+After a short while, you will see two pods for your application in the Kubernetes dashboard (or with `kubectl get pods`). The Ingress controller in the cluster will handle the load balancing between the two replicas.
 
 With Kubernetes, you can enable [horizontal pod autoscaling](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/) to automatically increase or decrease the number of instances of your apps based on CPU.
 
@@ -428,6 +440,12 @@ Once the autoscaler is successfully created, you should see
 ## Remove resources
 {: #scalable-webapp-kubernetes-0}
 {: step}
+
+* Delete the horizontal pod autoscaler:
+   ```sh
+   kubectl delete horizontalpodautoscaler.autoscaling/kubernetesnodeapp-deployment
+   ```
+   {: pre}
 
 * Delete the resources applied:
    ```sh
@@ -462,7 +480,7 @@ Once the autoscaler is successfully created, you should see
    ```
    {: pre}
 
-* Delete the cluster.
+* Delete the cluster.<!-- markdownlint-disable-line -->
 
 ## Related content
 {: #scalable-webapp-kubernetes-20}
