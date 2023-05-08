@@ -2,14 +2,22 @@
 subcollection: solution-tutorials
 copyright:
   years: 2023
-lastupdated: "2023-03-29"
+lastupdated: "2023-05-08"
 lasttested: "2022-11-03"
 
+content-type: tutorial
+services: openshift, log-analysis, monitoring, containers, Cloudant
+account-plan: paid
+completion-time: 1h
+use-case: Cybersecurity, IdentityAndAccessManagement
 ---
 {{site.data.keyword.attribute-definition-list}}
 
 # Best practices for organizing users, teams, applications
 {: #users-teams-applications}
+{: toc-content-type="tutorial"}
+{: toc-services="openshift, log-analysis, monitoring, containers, Cloudant"}
+{: toc-completion-time="1h"}
 
 This tutorial may incur costs. Use the [Cost Estimator](/estimator/review) to generate a cost estimate based on your projected usage.
 {: tip}

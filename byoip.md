@@ -2,15 +2,23 @@
 subcollection: solution-tutorials
 copyright:
   years: 2022
-lastupdated: "2023-03-29"
+lastupdated: "2023-05-05"
 lasttested: "2019-04-23"
 
+content-type: tutorial
+services: virtual-servers
+account-plan: paid
+completion-time: 1h
+use-case: ApplicationModernization, CloudInfrastructure
 ---
 {{site.data.keyword.attribute-definition-list}}
 
 
 # Bring Your Own IP Address
 {: #byoip}
+{: toc-content-type="tutorial"}
+{: toc-services="virtual-servers"}
+{: toc-completion-time="1h"}
 
 This tutorial describes the use of **Classic Infrastructure**.  Most workloads can be implemented using [{{site.data.keyword.vpc_full}}](/docs/vpc) resources. Use {{site.data.keyword.vpc_short}} to create your own private cloud-like computing environment on shared public cloud infrastructure. A VPC gives an enterprise the ability to define and control a virtual network that is logically isolated from all other public cloud tenants, creating a private, secure place on the public cloud.  Specifically, you can [bring your own subnet](/docs/vpc?topic=vpc-configuring-address-prefixes) IP address range to a {{site.data.keyword.vpc_short}}.
 {: note}

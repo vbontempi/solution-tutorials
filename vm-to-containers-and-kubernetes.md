@@ -2,14 +2,22 @@
 subcollection: solution-tutorials
 copyright:
   years: 2018, 2023
-lastupdated: "2023-03-29"
+lastupdated: "2023-05-05"
 lasttested: "2022-12-01"
 
+content-type: tutorial
+services: containers
+account-plan: paid
+completion-time: 2h
+use-case: ApplicationModernization, Containers
 ---
 {{site.data.keyword.attribute-definition-list}}
 
 # Moving a VM based app to Kubernetes
 {: #vm-to-containers-and-kubernetes}
+{: toc-content-type="tutorial"}
+{: toc-services="containers"}
+{: toc-completion-time="2h"}
 
 This tutorial may incur costs. Use the [Cost Estimator](/estimator/review) to generate a cost estimate based on your projected usage.
 {: tip}

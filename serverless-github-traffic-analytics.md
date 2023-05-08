@@ -2,13 +2,14 @@
 subcollection: solution-tutorials
 copyright:
   years: 2023
-lastupdated: "2023-03-29"
+lastupdated: "2023-05-05"
 lasttested: "2022-11-21"
 
 content-type: tutorial
 services: codeengine, Db2onCloud, appid
 account-plan: paid
 completion-time: 1h
+use-case: Analytics, Cybersecurity, AIAndML
 ---
 {{site.data.keyword.attribute-definition-list}}
 
