@@ -2,7 +2,7 @@
 subcollection: solution-tutorials
 copyright:
   years: 2023
-lastupdated: "2023-10-05"
+lastupdated: "2023-12-14"
 lasttested: "2023-10-05"
 
 content-type: tutorial
@@ -18,7 +18,7 @@ use-case: ApplicationModernization, Cybersecurity, VirtualPrivateCloud
 {: toc-content-type="tutorial"}
 {: toc-services="vpc, transit-gateway, direct-link"}
 {: toc-completion-time="2h"}
-
+/
 This tutorial may incur costs. Use the [Cost Estimator](/estimator/review) to generate a cost estimate based on your projected usage.
 {: tip}
 
