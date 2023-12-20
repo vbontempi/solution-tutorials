@@ -2,8 +2,8 @@
 subcollection: solution-tutorials
 copyright:
   years: 2023
-lastupdated: "2023-12-13"
-lasttested: "2023-12-13"
+lastupdated: "2023-12-20"
+lasttested: "2023-12-20"
 
 content-type: tutorial
 services: containers, cloud-object-storage, activity-tracker, Registry, secrets-manager, appid, Cloudant, key-protect, log-analysis
@@ -19,7 +19,7 @@ use-case: Cybersecurity
 {: toc-services="containers, cloud-object-storage, activity-tracker, Registry, secrets-manager, appid, Cloudant, key-protect, log-analysis"}
 {: toc-completion-time="2h"}
 
-This tutorial may incur costs. Use the [Cost Estimator](/estimator/review) to generate a cost estimate based on your projected usage.
+This tutorial may incur costs. Use the [Cost Estimator](/estimator) to generate a cost estimate based on your projected usage.
 {: tip}
 
 
@@ -335,6 +335,6 @@ To remove the resource, use the browser and navigate to the [{{site.data.keyword
 {: related}
 
 * Blog post [Towards Zero Trust with Context-Based Restrictions](https://www.ibm.com/blog/towards-zero-trust-with-context-based-restrictions){: external}
-* Blog post [Introducing Context-Based Restrictions](https://www.ibm.com/blog/announcements/introducing-context-based-restrictions){: external}
+* Blog post [Introducing Context-Based Restrictions](https://www.ibm.com/blog/announcement/introducing-context-based-restrictions/){: external}
 * [What is Zero Trust?](https://www.ibm.com/topics/zero-trust){: external}
-* Tutorial: [Best practices for organizing users, teams, applications](/docs/solution-tutorials?topic=solution-tutorials-users-teams-applications#users-teams-applications)
+* [Best practices for organizing users, teams, applications](/docs/account?topic=account-account_setup)
