@@ -1,9 +1,8 @@
 ---
 subcollection: solution-tutorials
 copyright:
-  years: 2023
-
-lastupdated: "2023-10-10"
+  years: 2024
+lastupdated: "2024-01-02"
 lasttested: "2023-10-10"
 
 content-type: tutorial
@@ -20,7 +19,7 @@ use-case: Cybersecurity, VirtualPrivateCloud
 {: toc-services="schematics, vpc, cloud-object-storage, databases-for-postgresql, dns-svcs"}
 {: toc-completion-time="2h"}
 
-This tutorial will incur costs. Use the [Cost Estimator](/estimator/review) to generate a cost estimate based on your projected usage.
+This tutorial will incur costs. Use the [Cost Estimator](/estimator) to generate a cost estimate based on your projected usage.
 {: tip}
 
 

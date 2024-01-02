@@ -1,8 +1,8 @@
 ---
 subcollection: solution-tutorials
 copyright:
-  years: 2023
-lastupdated: "2023-11-27"
+  years: 2024
+lastupdated: "2024-01-02"
 lasttested: "2022-12-27"
 
 content-type: tutorial
@@ -19,7 +19,7 @@ use-case: AIAndML
 {: toc-services="cloud-object-storage, sql-query"}
 {: toc-completion-time="1h"}
 
-This tutorial may incur costs. Use the [Cost Estimator](/estimator/review) to generate a cost estimate based on your projected usage.
+This tutorial may incur costs. Use the [Cost Estimator](/estimator) to generate a cost estimate based on your projected usage.
 {: tip}
 
 

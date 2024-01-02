@@ -1,8 +1,8 @@
 ---
 subcollection: solution-tutorials
 copyright:
-  years: 2022, 2023
-lastupdated: "2023-09-28"
+  years: 2024
+lastupdated: "2024-01-02"
 lasttested: "2023-09-27"
 
 content-type: tutorial
@@ -19,7 +19,7 @@ use-case: AIAndML, ApplicationModernization
 {: toc-services="codeengine, containers, cloud-object-storage, natural-language-understanding"}
 {: toc-completion-time="2h"}
 
-This tutorial may incur costs. Use the [Cost Estimator](/estimator/review) to generate a cost estimate based on your projected usage.
+This tutorial may incur costs. Use the [Cost Estimator](/estimator) to generate a cost estimate based on your projected usage.
 {: tip}
 
 

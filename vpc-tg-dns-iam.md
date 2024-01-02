@@ -1,8 +1,8 @@
 ---
 subcollection: solution-tutorials
 copyright:
-  years: 2023
-lastupdated: "2023-10-11"
+  years: 2024
+lastupdated: "2024-01-02"
 lasttested: "2023-10-11"
 
 content-type: tutorial
@@ -19,7 +19,7 @@ use-case: ApplicationIntegration, ApplicationModernization, Cybersecurity, Virtu
 {: toc-services="vpc, account, transit-gateway, dns-svcs"}
 {: toc-completion-time="2h"}
 
-This tutorial may incur costs. Use the [Cost Estimator](/estimator/review){: external} to generate a cost estimate based on your projected usage.
+This tutorial may incur costs. Use the [Cost Estimator](/estimator){: external} to generate a cost estimate based on your projected usage.
 {: tip}
 
 

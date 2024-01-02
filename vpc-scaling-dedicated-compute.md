@@ -1,8 +1,8 @@
 ---
 subcollection: solution-tutorials
 copyright:
-  years: 2023
-lastupdated: "2023-10-10"
+  years: 2024
+lastupdated: "2024-01-02"
 lasttested: "2023-10-04"
 
 # services is a comma-separated list of doc repo names as taken from https://github.ibm.com/cloud-docs/
@@ -20,7 +20,7 @@ use-case: ApplicationModernization, Cybersecurity, VirtualPrivateCloud
 {: toc-services="vpc, databases-for-postgresql, schematics, cloud-object-storage"}
 {: toc-completion-time="2h"}
 
-This tutorial may incur costs. Use the [Cost Estimator](/estimator/review) to generate a cost estimate based on your projected usage.
+This tutorial may incur costs. Use the [Cost Estimator](/estimator) to generate a cost estimate based on your projected usage.
 {: tip}
 
 
@@ -235,7 +235,7 @@ For checking the logs of other VPC resources, refer to [VPC logging](/docs/vpc?t
 {: #vpc-scaling-dedicated-compute-dedicated}
 {: step}
 
-Provisioning dedicated hosts will incur costs. Use the [Cost Estimator](/estimator/review) to generate a cost estimate based on your projected usage.
+Provisioning dedicated hosts will incur costs. Use the [Cost Estimator](/estimator) to generate a cost estimate based on your projected usage.
 {: tip}
 
 
