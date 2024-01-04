@@ -2,8 +2,9 @@
 subcollection: solution-tutorials
 copyright:
   years: 2024
-lastupdated: "2024-01-02"
-lasttested: "2023-01-24"
+lastupdated: "2024-01-04"
+lasttested: "2024-01-04"
+
 
 content-type: tutorial
 services: vmware-service
@@ -14,7 +15,7 @@ use-case: ApplicationModernization, Vmware
 ---
 {{site.data.keyword.attribute-definition-list}}
 
-# Creating a virtual data center in a {{site.data.keyword.vmware-service_short}} with Terraform
+# Configuring a virtual data center in a {{site.data.keyword.vmware-service_short}} with Terraform
 {: #vmware-as-a-service-tf}
 {: toc-content-type="tutorial"}
 {: toc-services="vmware-service"}
@@ -24,7 +25,7 @@ This tutorial may incur costs. Use the [Cost Estimator](/estimator) to generate 
 {: tip}
 
 
-This tutorial is to demonstrate the basic steps to operationalize an {{site.data.keyword.vmware-service_full}} – single tenant instance after initial instance provisioning. This tutorial should take about 20-30 minutes to complete and assumes that [{{site.data.keyword.vmware-service_full}} – single tenant instance](/docs/vmware-service?topic=vmware-service-tenant-ordering) and [a virtual data center (VDC)](/docs/vmware-service?topic=vmware-service-vdc-adding) have already been provisioned. This tutorial uses an example Terraform template, which can be customized and modified for your use case, if needed.
+This tutorial is to demonstrate the basic steps to operationalize an {{site.data.keyword.vmware-service_full}} – single or multi-tenant virtual data center after initial instance provisioning. This tutorial should take about 20-30 minutes to complete and assumes that [{{site.data.keyword.vmware-service_full}} instance](/docs/vmware-service?topic=vmware-service-tenant-ordering) and [a virtual data center (VDC)](/docs/vmware-service?topic=vmware-service-vdc-adding) have already been provisioned. This tutorial uses an example Terraform template, which can be customized and modified for your use case, if needed.
 {: shortdesc}
 
 ## Objectives
@@ -81,7 +82,7 @@ You will find instructions to download and install these tools for your operatin
 
 
 ## Clone examples repo
-{: #vmware-as-a-service-vdc-clonerepo}
+{: #vmware-as-a-service-tf-clonerepo}
 {: step}
 
 The example Terraform templates for {{site.data.keyword.vmware-service_full}} are located in [GitHub](https://github.com/IBM/vmwaas-Terraform-examples){: external}.
@@ -104,7 +105,7 @@ https://github.com/IBM/vmwaas-terraform-examples.git
 
 
 ## Obtain the required information about your virtual data center
-{: #vmware-as-a-service-vdc-vdcinfo}
+{: #vmware-as-a-service-tf-vdcinfo}
 {: step}
 
 As a prerequisite, use the [IBM Cloud Console](/vmware) to [create your {{site.data.keyword.vmware-service_full}} - single tenant instance](/docs/vmware-service?topic=vmware-service-tenant-ordering) and [one or more virtual data centers](/docs/vmware-service?topic=vmware-service-vdc-adding) on it.
@@ -185,7 +186,7 @@ export TF_VAR_vmwaas_vdc_name="vdc-demo"
 You can export these to your shell, or you can get the terraform.tfvars lines to be added to `terraform.tfvars` files as an output of the script using the `tfvars` option.
 
 ## Configure Terraform template variables
-{: #vmware-as-a-service-vdc-tfvars}
+{: #vmware-as-a-service-tf-tfvars}
 {: step}
 
 This example infrastructure Terraform template is located in folder [`vcd-demo-infra`](https://github.com/IBM/vmwaas-terraform-examples/tree/main/vcd-demo-infra/){: external}.
@@ -226,15 +227,18 @@ You can use it as such, add more networks, more virtual machines and customize N
    vmwaas_org = "put-your-org-id-here"
    vmwaas_vdc_name = "put-your-vdc-name-here"
    
-   vmwaas_user = "put-your-username-here"
-   vmwaas_password = "put-your-password-here"
-   #vmwaas_api_token = ""                                  # Note. This will be supported in the near future.
+   vmwaas_api_token = ""                                    # Note. See VMware Docs to create API token.
+   #vmwaas_user = "put-your-username-here"                  # Note. When using a username and password, create a new local user in Director for terraform.
+   #vmwaas_password = "put-your-password-here"              # Note. When using a username and password, create a new local user in Director for terraform.
    ```
 
-   For these variables, you could alternatively create environment variables named TF_VAR_ for `vmwaas_user` and `vmwaas_password` rather than defining them in `terraform.tfvars` as shown through the `vmwaas.sh` script. In this case, comment these lines out in your `terraform.tfvars`.
+   To create an API token, see [VMware Docs](https://docs.vmware.com/en/VMware-Cloud-Director/10.4/VMware-Cloud-Director-Tenant-Portal-Guide/GUID-A1B3B2FA-7B2C-4EE1-9D1B-188BE703EEDE.html).
    {: tip}
 
-   If you change the authentication method, the provider block in the code needs to changed to use a different authentication method. Currently only username and password method is supported in {{site.data.keyword.vmware-service_full}} - single tenant instance.
+   For these variables, you could alternatively create environment variables named TF_VAR_ for `vmwaas_api_token`, `vmwaas_user` and `vmwaas_password` rather than defining them in `terraform.tfvars` as shown through the `vmwaas.sh` script. In this case, comment these lines out in your `terraform.tfvars`.
+   {: tip}
+
+   If you change the authentication method, the provider block in the code needs to changed to use a different authentication method.
    {: tip}
 
 2. Set a common name prefix to identify and separate your virtual data center networks, virtual machines and so on.
@@ -650,9 +654,11 @@ You can use it as such, add more networks, more virtual machines and customize N
    }
    ```
 
+It is generally not advised to use RDP over public Internet. The rule listed above is just used for illustration purposes.
+{: note}
 
 ## Init, plan and apply
-{: #vmware-as-a-service-vdc-apply}
+{: #vmware-as-a-service-tf-apply}
 {: step}
 
 1. To initialize your Terraform project, run `terraform init` command in the example directory and observe the output.
