@@ -1,16 +1,14 @@
 ---
 subcollection: solution-tutorials
 copyright:
-  years: 2023
-lastupdated: "2023-10-03"
+   years: 2023, 2024
+lastupdated: "2024-01-05"
 lasttested: "2023-09-27"
 
 content-type: tutorial
-# services is a comma-separated list of doc repo names as taken from https://github.ibm.com/cloud-docs/
 services: vpc, virtual-servers
 account-plan: paid
 completion-time: 1h
-# use-case is a comma-separated list or yaml bullet format. Select one or more use cases that represent your architecture from the Digital Taxonomy [use case](https://github.ibm.com/digital/taxonomy/blob/main/subsets/use_cases/use_cases_flat_list.csv) list. Use the value in the code column. The list available under [Topics](https://github.ibm.com/digital/taxonomy/blob/main/topics/topics_flat_list.csv) can also be used, but don't go too crazy.
 use-case: Cybersecurity, VirtualPrivateCloud, VirtualMachines
 ---
 
@@ -30,7 +28,7 @@ strongSwan is an open source IPsec-based VPN solution. For more information abou
 ## Objectives
 {: #solution-connect-site-vpn-objectives}
 
-You deployed one of the {{site.data.keyword.cloud_notm}} landing zone deployable architectures, like [Red Hat OpenShift Container Platform on VPC landing zone](https://{DomainName}/catalog/architecture/deploy-arch-ibm-slz-ocp-95fccffc-ae3b-42df-b6d9-80be5914d852-global?catalog_query=aHR0cHM6Ly9jbG91ZC5pYm0uY29tL2NhdGFsb2cjcmVmZXJlbmNlX2FyY2hpdGVjdHVyZQ%3D%3D){: external}, [VPC landing zone](https://{DomainName}/catalog/architecture/deploy-arch-ibm-slz-vpc-9fc0fa64-27af-4fed-9dce-47b3640ba739-global?catalog_query=aHR0cHM6Ly9jbG91ZC5pYm0uY29tL2NhdGFsb2cjcmVmZXJlbmNlX2FyY2hpdGVjdHVyZQ%3D%3D){: external} or [VSI on VPC landing zone](https://{DomainName}/catalog/architecture/deploy-arch-ibm-slz-vsi-ef663980-4c71-4fac-af4f-4a510a9bcf68-global?catalog_query=aHR0cHM6Ly9jbG91ZC5pYm0uY29tL2NhdGFsb2cjcmVmZXJlbmNlX2FyY2hpdGVjdHVyZQ%3D%3D){: external}. The virtual servers are created and working correctly.
+You deployed one of the {{site.data.keyword.cloud_notm}} landing zone deployable architectures, like [Red Hat OpenShift Container Platform on VPC landing zone](https://cloud.ibm.com/catalog/architecture/deploy-arch-ibm-slz-ocp-95fccffc-ae3b-42df-b6d9-80be5914d852-global?catalog_query=aHR0cHM6Ly9jbG91ZC5pYm0uY29tL2NhdGFsb2cjcmVmZXJlbmNlX2FyY2hpdGVjdHVyZQ%3D%3D){: external}, [VPC landing zone](https://cloud.ibm.com/catalog/architecture/deploy-arch-ibm-slz-vpc-9fc0fa64-27af-4fed-9dce-47b3640ba739-global?catalog_query=aHR0cHM6Ly9jbG91ZC5pYm0uY29tL2NhdGFsb2cjcmVmZXJlbmNlX2FyY2hpdGVjdHVyZQ%3D%3D){: external} or [VSI on VPC landing zone](https://cloud.ibm.com/catalog/architecture/deploy-arch-ibm-slz-vsi-ef663980-4c71-4fac-af4f-4a510a9bcf68-global?catalog_query=aHR0cHM6Ly9jbG91ZC5pYm0uY29tL2NhdGFsb2cjcmVmZXJlbmNlX2FyY2hpdGVjdHVyZQ%3D%3D){: external}. The virtual servers are created and working correctly.
 
 By default, network access to the VPC landing zone topology is locked down for security compliance reasons, so you can't access the management or workload VSIs. How can you deploy your application in the workload VSIs that are located in the workload VPC?
 

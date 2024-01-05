@@ -2,7 +2,7 @@
 subcollection: solution-tutorials
 copyright:
   years: 2024
-lastupdated: "2024-01-02"
+lastupdated: "2024-01-05"
 lasttested: "2023-10-11"
 
 content-type: tutorial
@@ -28,7 +28,7 @@ This tutorial walks you through how to install {{site.data.keyword.redhat_opensh
 
 Based on the open source Istio project, {{site.data.keyword.redhat_openshift_notm}} Service Mesh adds a transparent layer on existing distributed applications. {{site.data.keyword.redhat_openshift_notm}} Service Mesh provides a platform for behavioral insight and operational control over your networked microservices in a service mesh. With {{site.data.keyword.redhat_openshift_notm}}, you can connect, secure, and monitor microservices in your {{site.data.keyword.openshiftlong_notm}} cluster.
 
-[Istio](https://www.ibm.com/cloud/info/istio){: external} is an open platform to connect, secure, control and observe microservices, also known as a service mesh, on cloud platforms such as Kubernetes in {{site.data.keyword.openshiftshort}}.
+[Istio](https://www.ibm.com/topics/istio){: external} is an open platform to connect, secure, control and observe microservices, also known as a service mesh, on cloud platforms such as Kubernetes in {{site.data.keyword.openshiftshort}}.
 
 ## Objectives
 {: #openshift-service-mesh-objectives}
@@ -215,7 +215,7 @@ You successfully installed Istio into your cluster.
 {: #openshift-service-mesh-deploy_bookinfo_app}
 {: step}
 
-The [BookInfo application](https://istio.io/docs/examples/bookinfo/){: external} displays information about a book, similar to a single catalog entry of an online book store. Displayed on the page is a description of the book, book details (ISBN, number of pages, and so on), and a few book reviews.
+The [BookInfo application](https://istio.io/latest/docs/examples/bookinfo/){: external} displays information about a book, similar to a single catalog entry of an online book store. Displayed on the page is a description of the book, book details (ISBN, number of pages, and so on), and a few book reviews.
 
 The Bookinfo application is broken into four separate microservices:
 
@@ -524,4 +524,4 @@ Delete the cluster to delete everything in one-go. This action is irreversible.
 - [Understanding {{site.data.keyword.redhat_openshift_notm}} Service Mesh](https://docs.openshift.com/container-platform/4.13/service_mesh/v2x/ossm-architecture.html){: external}
 - [{{site.data.keyword.openshiftlong_notm}}](/docs/openshift)
 - [Comparing Service Mesh and Istio](https://docs.openshift.com/container-platform/4.13/service_mesh/v2x/ossm-architecture.html){: external} - [Exposing apps with routes](/docs/openshift?topic=openshift-openshift_routes)
-- [Istio Observability](https://istio.io/docs/concepts/observability/){: external}
+- [Istio Observability](https://istio.io/latest/docs/concepts/observability/){: external}
