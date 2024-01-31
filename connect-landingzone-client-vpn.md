@@ -274,6 +274,7 @@ Make sure you have your development environment configured:
 
     - Replace the values with the ones that you looked up in [Before you begin](#solution-connect-client-vpn-prereqs).
     - If you don’t already have a {{site.data.keyword.secrets-manager_short}} instance, remove the lines that start with `existing_sm`. The Terraform module creates a {{site.data.keyword.secrets-manager_short}} instance if you don’t already have one.
+    - In the case you already have a {{site.data.keyword.secrets-manager_short}} instance and you configured the lines starting with `existing_sm` accordingly, check it to provide a valid certificate template to use for the VPN server and its name to match what set by the terraform module input variable `certificate_template_name`: the default name looked by the module is `my-template` so if different you need to add an entry to the `terraform.tfvars` file to set the input variable `certificate_template_name` to the expected certificate template name.
 
     Don't check in this file to version control because it contains the API key secret. If you don't want to save the information in the file, you can pass the variable to Terraform through command-line arguments.
     {: important}
